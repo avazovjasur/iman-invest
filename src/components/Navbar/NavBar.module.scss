@@ -1,0 +1,50 @@
+@import "../../styles/mixins.scss";
+
+.nav {
+  @include resa("padding", 24px);
+  @include resa("padding-top", 14px);
+  @include resa("padding-bottom", 34px);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0px -4px 20px 0px #0404150d;
+  background-color: #ffffff;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% / 4);
+  @include resa("gap", 4px);
+  cursor: pointer;
+  color: #040415;
+  &.active {
+    color: #3680ff;
+  }
+}
+
+.navItemTitle {
+  @include resa("line-height", 14px);
+  @include resa("font-size", 10px);
+  color: inherit;
+}
+
+.navItemIcon {
+  @include resa("width", 24px);
+  @include resa("height", 24px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: #040415;
+  }
+}

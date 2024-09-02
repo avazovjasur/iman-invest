@@ -1,8 +1,10 @@
 import NavBar from "@/components/Navbar"
+import HomeInner from "@/components/HomeInner"
 
 const Home = () => {
   return <>
-    <NavBar/>
+    <HomeInner />
+    <NavBar />
   </>
 }
 
