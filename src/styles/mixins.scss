@@ -1,0 +1,19 @@
+@mixin media($size) {
+    @media (max-width:#{$size}px) {
+        @content;
+    }
+}
+
+$baseValueUltraLarge: 1920px;
+$baseValueLarge: 1512px;
+$baseValueSmall: 350px;
+
+@mixin resl($property, $value) {
+    #{$property}: calc(($value / $baseValueUltraLarge) * 100vw);
+}
+@mixin res($property, $value, $important: false) {
+    #{$property}: calc(($value / $baseValueLarge) * 100vw) #{if($important, '!important', '')};
+}
+@mixin resa($property, $value) {
+    #{$property}: calc(($value / $baseValueSmall) * 100vw);
+}
