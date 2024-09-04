@@ -1,14 +1,23 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import { Inter } from "next/font/google";
+import React, { useEffect, useState } from "react";
 import SplashScreen from "@/components/SplashScreen";
+import { useRouter } from "next/router";
 
 export default function Home() {
-  const [preloader, setPreloader] = useState(false)
+  const router = useRouter()
+  
+  function redirectToReg() {
+    router.push('/registration/lang')
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      redirectToReg()
+    }, 3000)
+  }, [])
 
   return (
     <>
-      {preloader && <SplashScreen />}
+      <SplashScreen />
     </>
   )
 }

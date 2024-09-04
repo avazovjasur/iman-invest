@@ -1,0 +1,100 @@
+@import '../mixins.scss';
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    @include resa('padding', 30px);
+    @include resa('padding-top', 44px);
+    @include resa('padding-bottom', 44px);
+    position: relative;
+}
+
+.title {
+    font-weight: 600;
+    @include resa('font-size', 26px);
+    @include resa('line-height', 32px);
+    @include resa('margin-bottom', 10px);
+    color: black;
+}
+
+.subtitle {
+    font-weight: 500;
+    @include resa('font-size', 14px);
+    @include resa('line-height', 22px);
+    @include resa('margin-bottom', 30px);
+    color: black;
+}
+
+.numberInput {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    @include resa('height', 64px);
+
+    p {
+        @include resa('width', 68px);
+        height: 100%;
+        background-color: #F4F4F5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include resa('border-radius', 18px);
+        font-weight: 500;
+        @include resa('font-size', 16px);
+    }
+
+    input {
+        @include resa('width', 240px);
+        height: 100%;
+        background-color: #F4F4F5;
+        @include resa('border-radius', 18px);
+        font-weight: 500;
+        @include resa('font-size', 16px);
+        border: none;
+        outline: none;
+        @include resa('padding', 15px);
+    }
+}
+
+.bottom {
+    position: absolute;
+    left: 50%;
+    @include resa('bottom', 44px);
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    @include resa('min-width', 315px);
+    @include resa('gap', 10px);
+
+    .text {
+        font-weight: 500;
+        color: #00000080;
+        @include resa('font-size', 11px);
+        @include resa('line-height', 15px);
+
+        span {
+            color: #3680FF;
+        }
+    }
+
+    .next {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #3680FF;
+        color: white;
+        @include resa('height', 54px);
+        @include resa('border-radius', 20px);
+        font-weight: 600;
+        @include resa('font-size', 17px);
+    }
+}
