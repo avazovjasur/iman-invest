@@ -1,9 +1,12 @@
+import { useRouter } from 'next/router'
+
 import styles from '../../styles/modules/number.module.scss'
 
 const number = () => {
+    const router = useRouter()
 
     function nextPage() {
-        router.push('/registration/number')
+        router.push('/registration/code')
     }
 
 

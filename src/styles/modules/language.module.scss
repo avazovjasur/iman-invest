@@ -48,6 +48,9 @@
     @include resa('padding', 15px);
     @include resa('border-radius', 18px);
     background-color: #3881ff0d;
+    border: solid transparent;
+    @include resa('border-width', 2px);
+    transition: border 100ms;
     
     &.active {
     border: solid #3680FF;

@@ -1,0 +1,92 @@
+@import '../mixins.scss';
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    @include resa('padding', 30px);
+    @include resa('padding-top', 81px);
+    @include resa('padding-bottom', 40px);
+    position: relative;
+}
+
+.title {
+    width: 100%;
+    font-weight: 600;
+    @include resa('font-size', 26px);
+    @include resa('margin-bottom', 10px);
+    color: black;
+}
+
+.subtitle {
+width: 100%;
+    font-weight: 500;
+    @include resa('font-size', 14px);
+    @include resa('line-height', 22px);
+    @include resa('margin-bottom', 81px);
+    color: black;
+}
+
+.pinIndicators {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include resa('gap', 15px);
+    width: 100%;
+}
+
+.pinIndicator {
+    @include resa('width', 12px);
+    @include resa('height', 12px);
+    border: solid #3680FF;
+    @include resa('border-width', 2px);
+    border-radius: 50%;
+    @include resa('margin-bottom', 81px);
+
+    &.filled {
+        background-color: #3680FF;
+    }
+}
+
+.numberPad {
+    @include resa('width', 288px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    @include resa('gap', 24px);
+    position: relative;
+    
+    .numberButton {
+        font-weight: 600;
+        @include resa('width', 80px);
+        @include resa('height', 80px);
+        border-radius: 50%;
+        background-color: hsla(240, 68%, 5%, 0.05);
+        @include resa('font-size', 28px);
+        @include resa('line-height', 34px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .deleteButton {
+        font-weight: 600;
+        @include resa('width', 80px);
+        @include resa('height', 80px);
+        border-radius: 50%;
+        background-color: hsla(240, 68%, 5%, 0.05);
+        @include resa('font-size', 28px);
+        @include resa('line-height', 34px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
