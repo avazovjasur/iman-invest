@@ -1,0 +1,147 @@
+@import "../../styles/mixins.scss";
+
+// @include resa("padding-bottom", 34px);
+
+.modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #ffffff;
+}
+
+.modalWrapper {
+  @include resa("padding-top", 47px);
+}
+
+.modalClose {
+  display: flex;
+  justify-content: flex-end;
+  @include resa("padding-right", 20px);
+  @include resa("padding-top", 15px);
+  @include resa("padding-bottom", 15px);
+  @include resa("height", 52px);
+}
+
+.modalCloseBtn {
+  @include resa("font-size", 15px);
+  @include resa("line-height", 22px);
+  font-weight: 600;
+  color: #040415;
+  opacity: 0.5;
+  &.active {
+    visibility: hidden;
+  }
+}
+
+.modalStepOne {
+  @include resa("margin-top", 3px);
+}
+
+.modalImage {
+  @include resa("padding-right", 10px);
+  @include resa("padding-left", 10px);
+  img {
+    aspect-ratio: 355/360;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.stepOneContent,
+.stepTwoContent {
+  @include resa("height", 105px);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  @include resa("gap", 15px);
+  @include resa("max-width", 315px);
+}
+
+.stepOneContent {
+  @include resa("margin-top", 37px);
+}
+
+.stepTwoContent {
+  @include resa("margin-top", 40px);
+}
+
+.stepTitle {
+  @include resa("font-size", 30px);
+  @include resa("line-height", 34px);
+  font-weight: 700;
+  text-align: center;
+  span {
+    color: #3680ff;
+  }
+  .line {
+    position: relative;
+    display: inline;
+    &::before {
+      content: " ";
+      position: absolute;
+      left: 0;
+      top: 60%;
+      transform: translateY(-50%);
+      @include resa("height", 4px);
+      width: 100%;
+      background: #3680ff;
+    }
+  }
+}
+
+.stepText {
+  @include resa("font-size", 15px);
+  @include resa("line-height", 22px);
+  font-weight: 600;
+  text-align: center;
+  color: #040415;
+}
+
+.modalPagination {
+  @include resa("margin-top", 50px);
+  display: flex;
+  justify-content: center;
+}
+
+.modalPaginationList {
+  display: flex;
+  align-items: center;
+  @include resa("gap", 5px);
+}
+
+.modalPaginationItem {
+  @include resa("width", 4px);
+  @include resa("height", 4px);
+  opacity: 0.2;
+  @include resa("border-radius", 10px);
+  background-color: #040415;
+  transition: 0.3s all;
+  &.active {
+    opacity: 1;
+    @include resa("width", 24px);
+  }
+}
+
+.modalButton {
+  display: flex;
+  justify-content: center;
+  @include resa("margin-top", 40px);
+  button {
+    width: 100%;
+    @include resa("padding-top", 17px);
+    @include resa("padding-bottom", 17px);
+    @include resa("max-width", 315px);
+    @include resa("font-size", 17px);
+    @include resa("line-height", 20px);
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+    background-color: #3680ff;
+    @include resa("border-radius", 20px);
+  }
+}
