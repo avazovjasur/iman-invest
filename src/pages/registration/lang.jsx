@@ -1,18 +1,28 @@
+import React, {useState} from 'react'
 import { useRouter } from 'next/router'
+
 import styles from '../../styles/modules/language.module.scss'
 
 const lang = () => {
     const router = useRouter()
+    const [activeLang, setActiveLang] = useState('ru')
 
     function nextPage() {
         router.push('/registration/number')
     }
 
+    const handleLangClick = (lang) => {
+        setActiveLang(lang)
+    };
+
     return <div className={styles.container}>
         <h1 className={styles.title}>Выберите язык</h1>
         <p className={styles.subtitle}>Tilni tanlov qiling <br /> Choose language</p>
         <div className={styles.langs}>
-            <div className={`${styles.lang} ${styles.active}`}>
+                <button
+                    className={`${styles.lang} ${activeLang === 'ru' ? styles.active : ''}`}
+                    onClick={() => handleLangClick('ru')}
+                >
                 <div className={styles.pic}>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clipPath="url(#clip0_4564_19013)">
@@ -28,8 +38,11 @@ const lang = () => {
 </svg>
                 </div>
                 <p className={styles.text}>Русский</p>
-            </div>
-            <div className={styles.lang}>
+            </button>
+                <button
+                    className={`${styles.lang} ${activeLang === 'uz' ? styles.active : ''}`}
+                    onClick={() => handleLangClick('uz')}
+                >
                 <div className={styles.pic}>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clipPath="url(#clip0_4564_19016)">
@@ -60,8 +73,11 @@ const lang = () => {
 </svg>
                 </div>
                 <p className={styles.text}>Uzbekcha</p>
-            </div>
-            <div className={styles.lang}>
+            </button>
+                <button
+                    className={`${styles.lang} ${activeLang === 'en' ? styles.active : ''}`}
+                    onClick={() => handleLangClick('en')}
+                >
                 <div className={styles.pic}>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clipPath="url(#clip0_4564_19019)">
@@ -88,7 +104,7 @@ const lang = () => {
 </svg>
                 </div>
                 <p className={styles.text}>English</p>
-            </div>
+            </button>
         </div>
         <button onClick={nextPage} className={styles.next} type='button'>Продолжить</button>
     </div>
