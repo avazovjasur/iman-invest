@@ -1,4 +1,4 @@
-@import '../mixins.scss';
+@import "../mixins.scss";
 
 .container {
     display: flex;
@@ -8,26 +8,26 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    @include resa('padding', 30px);
-    @include resa('padding-top', 78px);
-    @include resa('padding-bottom', 78px);
+    @include resa("padding", 30px);
+    @include resa("padding-top", 78px);
+    @include resa("padding-bottom", 78px);
     position: relative;
 }
 
 .title {
     font-weight: 600;
-    @include resa('font-size', 26px);
-    @include resa('line-height', 32px);
-    @include resa('margin-bottom', 10px);
+    @include resa("font-size", 26px);
+    @include resa("line-height", 32px);
+    @include resa("margin-bottom", 10px);
 }
 
 .subtitle {
     font-weight: 500;
-    @include resa('font-size', 14px);
-    @include resa('line-height', 22px);
+    @include resa("font-size", 14px);
+    @include resa("line-height", 22px);
     color: #040415;
-    opacity: .5;
-    @include resa('margin-bottom', 24px);
+    opacity: 0.5;
+    @include resa("margin-bottom", 24px);
 }
 
 .langs {
@@ -35,7 +35,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    @include resa('gap', 12px);
+    @include resa("gap", 12px);
     width: 100%;
 }
 
@@ -44,19 +44,19 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    @include resa('gap', 10px);
-    @include resa('padding', 15px);
-    @include resa('border-radius', 18px);
+    @include resa("gap", 10px);
+    @include resa("padding", 15px);
+    @include resa("border-radius", 18px);
     background-color: #3881ff0d;
-    
+
     &.active {
-    border: solid #3680FF;
-    @include resa('border-width', 2px);
+        border: solid #3680ff;
+        @include resa("border-width", 2px);
     }
 
     .pic {
-        @include resa('width', 30px);
-        @include resa('height', 30px);
+        @include resa("width", 30px);
+        @include resa("height", 30px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -69,8 +69,8 @@
 
     .text {
         font-weight: 500;
-        @include resa('font-size', 16px);
-        @include resa('line-height', 20px);
+        @include resa("font-size", 16px);
+        @include resa("line-height", 20px);
     }
 }
 
@@ -78,15 +78,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #3680FF;
+    background-color: #3680ff;
     color: white;
-    @include resa('min-width', 315px);
-    @include resa('height', 54px);
+    @include resa("min-width", 315px);
+    @include resa("height", 54px);
     position: absolute;
     left: 50%;
-    @include resa('bottom', 44px);
+    @include resa("bottom", 44px);
     transform: translateX(-50%);
-    @include resa('border-radius', 20px);
+    @include resa("border-radius", 20px);
     font-weight: 600;
-    @include resa('font-size', 17px);
+    @include resa("font-size", 17px);
 }

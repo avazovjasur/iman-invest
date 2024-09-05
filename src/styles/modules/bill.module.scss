@@ -1,0 +1,870 @@
+@import "../mixins.scss";
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  @include resa("padding", 20px);
+  @include resa("padding-top", 47px);
+  min-height: 100vh;
+  @include resa("padding-bottom", 44px);
+  position: relative;
+}
+
+.billsHeader {
+  padding: 0;
+  @include resa("padding-top", 21px);
+  @include resa("padding-bottom", 21px);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
+  @include resa("gap", 20px);
+  @include resa("margin-bottom", 30px);
+}
+
+.billsHeaderTitle {
+  font-weight: 600;
+  @include resa("font-size", 16px);
+  @include resa("line-height", 20px);
+  text-align: left;
+  color: #040415;
+}
+
+.billsHeaderButton {
+  @include resa("width", 16px);
+  @include resa("height", 16px);
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.contentForm {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 36px);
+}
+
+.contentTitle {
+  font-weight: 600;
+  @include resa("font-size", 20px);
+  @include resa("line-height", 24px);
+  text-align: left;
+  color: #040415;
+  @include resa("margin-bottom", 16px);
+}
+
+.contentFormBox {
+  display: flex;
+  @include resa("gap", 8px);
+  @include resa("height", 64px);
+}
+
+.contentFormInput {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+
+  @include resa("padding-bottom", 12px);
+  @include resa("padding-top", 12px);
+  @include resa("width", 263px);
+  @include resa("padding-left", 15px);
+  @include resa("padding-right", 15px);
+  @include resa("border-radius", 18px);
+  background-color: #f4f4f5;
+  span {
+    font-weight: 500;
+    @include resa("font-size", 12px);
+    @include resa("line-height", 16px);
+    text-align: left;
+    color: #040415;
+    opacity: 0.5;
+  }
+  input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+    text-align: left;
+    &::placeholder {
+      font-weight: 500;
+      @include resa("font-size", 16px);
+      text-align: left;
+      opacity: 0.2;
+    }
+  }
+
+  &:not(:has(+ .contentFormItem)) {
+    width: 100%;
+  }
+}
+
+.contentFormItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include resa("font-size", 30px);
+  line-height: 0px;
+  @include resa("width", 64px);
+  @include resa("height", 64px);
+  @include resa("border-radius", 18px);
+  background-color: #f4f4f5;
+}
+
+.contentFormNotice {
+  @include resa("margin-top", 8px);
+  color: #040415;
+  font-weight: 500;
+  text-align: left;
+  @include resa("font-size", 13px);
+  @include resa("line-height", 16px);
+  opacity: 0.5;
+}
+
+.contentFormBlock {
+  display: flex;
+  @include resa("gap", 27px);
+  align-items: center;
+}
+
+.contentFormList {
+  display: flex;
+  @include resa("gap", 10px);
+}
+
+.contentFormListItem {
+  font-weight: 500;
+  @include resa("font-size", 16px);
+  @include resa("line-height", 20px);
+  text-align: left;
+  color: #a1a1a1;
+  @include resa("padding-left", 14px);
+  @include resa("padding-right", 14px);
+  @include resa("padding-top", 12px);
+  @include resa("padding-bottom", 12px);
+  @include resa("width", 78px);
+  @include resa("height", 44px);
+  background-color: #f4f4f5;
+  @include resa("border-radius", 12px);
+  outline-style: solid;
+  outline-color: #f4f4f5;
+  @include resa("outline-width", 2px);
+  &.active {
+    outline-color: #3680ff;
+  }
+}
+
+.contentFormPersentage {
+  font-weight: 600;
+  text-align: right;
+  color: #1e468c;
+  opacity: 0.4;
+  @include resa("font-size", 22px);
+  @include resa("line-height", 26px);
+}
+
+.billList {
+  @include resa("margin-top", 4px);
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 20px);
+}
+
+.billListItem {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.billListItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include resa("width", 60px);
+  @include resa("height", 38px);
+  background: #f4f4f5;
+  @include resa("border-radius", 9px);
+  svg {
+    &:first-child {
+      @include resa("width", 18px);
+      @include resa("height", 18px);
+    }
+  }
+}
+
+.billListItemTexts {
+  @include resa("margin-left", 15px);
+  @include resa("margin-right", 10px);
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  width: 100%;
+  @include resa("min-width", 222px);
+  & > h3 {
+    color: #040415;
+    font-weight: 500;
+    text-align: left;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+  }
+  & > p {
+    color: #040415;
+    font-weight: 500;
+    text-align: left;
+    opacity: 0.5;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+  }
+}
+
+.billGift {
+  @include resa("margin-top", 24px);
+  @include resa("padding", 20px);
+  width: 100%;
+  @include resa("border-radius", 25px);
+  @include resa("border-width", 2px);
+  border-style: solid;
+  border-color: #8668d8;
+  background: #4059e61a;
+  display: flex;
+  @include resa("gap", 12px);
+  align-items: center;
+  position: relative;
+}
+
+.billGiftIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include resa("width", 42px);
+  @include resa("height", 42px);
+  @include resa("border-radius", 50px);
+  background-color: #ffffff;
+  svg {
+    @include resa("width", 24px);
+    @include resa("height", 24px);
+  }
+}
+
+.billGiftTexts {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  & > h3 {
+    font-weight: 500;
+    text-align: left;
+    color: #040415;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+  }
+  & > p {
+    opacity: 0.5;
+    color: #040415;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    font-weight: 500;
+    text-align: left;
+  }
+}
+
+.billGiftTime {
+  position: absolute;
+  @include resa("top", -12px);
+  @include resa("right", 10px);
+  display: flex;
+  align-items: center;
+  @include resa("gap", 6px);
+  @include resa("padding-left", 8px);
+  @include resa("padding-right", 8px);
+  @include resa("padding-top", 2px);
+  @include resa("padding-bottom", 2px);
+  background: #ffffff;
+  box-shadow: 0px 0px 10px 0px #0404150d;
+  @include resa("border-radius", 50px);
+  & > h3 {
+    color: #4059e6;
+    font-weight: 600;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    text-align: left;
+  }
+}
+
+.totalList {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 12px);
+}
+
+.totalListItem {
+  background: #f4f4f599;
+  border-style: solid;
+  border-color: #0404150d;
+  @include resa("border-width", 1px);
+  @include resa("border-radius", 25px);
+  @include resa("padding", 20px);
+}
+
+.totalListItemTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & > h3 {
+    font-weight: 600;
+    color: #1e468c;
+    @include resa("font-size", 22px);
+    @include resa("line-height", 26px);
+    opacity: 0.4;
+  }
+}
+
+.totalListItemTitle {
+  color: #9aa3b3;
+  @include resa("font-size", 13px);
+  @include resa("line-height", 16px);
+  font-weight: 500;
+  text-align: left;
+  @include resa("margin-top", 10px);
+}
+
+.totalOther {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.totalOtherTexts {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  h3 {
+    color: #040415;
+    font-weight: 500;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+    text-align: left;
+  }
+  p {
+    color: #9aa3b3;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    font-weight: 500;
+    text-align: left;
+  }
+}
+
+.totalOtherCheckbox {
+  @include resa("padding", 2px);
+  @include resa("width", 46px);
+  @include resa("height", 28px);
+  @include resa("border-radius", 50px);
+  background: #0404151a;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    @include resa("width", 24px);
+    @include resa("height", 24px);
+    @include resa("top", 2px);
+    @include resa("left", 2px);
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
+    transform: translateX(4.8vw);
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+
+  input:checked + &::after {
+    transform: translateX(18px);
+  }
+}
+
+.totalButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3680ff;
+  width: 100%;
+  @include resa("height", 54px);
+  font-weight: 600;
+  text-align: center;
+  color: #ffffff;
+  @include resa("font-size", 17px);
+  @include resa("line-height", 20px);
+  @include resa("border-radius", 20px);
+}
+
+.totalText {
+  font-weight: 500;
+  @include resa("font-size", 13px);
+  @include resa("line-height", 16px);
+  text-align: left;
+  color: #354259;
+  opacity: 0.5;
+}
+
+.features {
+  @include resa("margin-top", 36px);
+  background: #f4f4f599;
+  outline-style: solid;
+  outline-color: #0404150d;
+  @include resa("outline-width", 1px);
+  @include resa("border-radius", 25px);
+  @include resa("padding", 20px);
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 20px);
+}
+
+.featuresListItem {
+  display: flex;
+  align-items: center;
+  @include resa("gap", 12px);
+}
+
+.featuresListItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include resa("height", 42px);
+  @include resa("width", 42px);
+  border-radius: 50%;
+  background: #ffffff;
+  svg {
+    @include resa("height", 20px);
+    @include resa("width", 20px);
+  }
+}
+
+.featuresListItemTexts {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  @include resa("max-width", 241px);
+  h3 {
+    color: #040415;
+    font-weight: 600;
+    text-align: left;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+  }
+  p {
+    font-weight: 500;
+    text-align: left;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    color: #9aa3b3;
+  }
+}
+
+.privacy {
+  @include resa("margin-top", 35px);
+  text-align: center;
+  font-weight: 500;
+  @include resa("font-size", 11px);
+  @include resa("line-height", 15px);
+  color: #04041580;
+  a {
+    color: #6f49fe;
+  }
+}
+
+.payment {
+  background: rgba(4, 4, 21, 0.55);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.paymentBox {
+  display: none;
+  position: relative;
+  height: 100%;
+}
+
+.paymentContent {
+  // max-height: 80vh;
+  @include resa("max-height", 612px);
+}
+
+.card {
+  // max-height: 50vh;
+  @include resa("max-height", 376px);
+}
+
+.card,
+.paymentContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #ffffff;
+  @include resa("border-top-left-radius", 20px);
+  @include resa("border-top-right-radius", 20px);
+  width: 100%;
+  @include resa("padding-top", 30px);
+  @include resa("padding-bottom", 44px);
+  @include resa("padding-left", 20px);
+  @include resa("padding-right", 20px);
+  height: 100%;
+}
+
+.paymentTitle {
+  font-weight: 600;
+  text-align: left;
+  opacity: 0.8;
+  color: #040415;
+  @include resa("font-size", 20px);
+  @include resa("line-height", 24px);
+}
+
+.paymentSubTitle {
+  font-weight: 500;
+  @include resa("font-size", 13px);
+  @include resa("line-height", 21px);
+  text-align: left;
+  color: #040415;
+  opacity: 0.5;
+  @include resa("margin-top", 4px);
+}
+
+.paymentHeader {
+  @include resa("max-width", 299px);
+}
+
+.paymentList {
+  @include resa("margin-top", 30px);
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 20px);
+}
+
+.paymentListItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.paymentListItemIcon {
+  @include resa("width", 60px);
+  @include resa("height", 38px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include resa("border-radius", 9px);
+  background: linear-gradient(112.99deg, #4dccaa 2.11%, #37ff31 104.77%);
+  svg {
+    @include resa("width", 18px);
+    @include resa("height", 18px);
+    &.plus {
+      @include resa("width", 12px);
+      @include resa("height", 12px);
+    }
+  }
+  &:not(.main) {
+    background: #f4f4f5;
+  }
+  position: relative;
+  h3 {
+    position: absolute;
+    font-weight: 500;
+    text-align: left;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 13px);
+    @include resa("left", 6px);
+    @include resa("bottom", 4px);
+    color: #ffffff;
+  }
+}
+
+.paymentListItemTexts {
+  @include resa("margin-left", 15px);
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  h3 {
+    font-weight: 500;
+    text-align: left;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+    color: #040415;
+    display: flex;
+    align-items: center;
+    @include resa("gap", 4px);
+    span {
+      display: flex;
+      align-items: center;
+    }
+    svg {
+      @include resa("height", 16px);
+      @include resa("width", 11px);
+    }
+  }
+  p {
+    opacity: 0.5;
+    font-weight: 500;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    text-align: left;
+    color: #040415;
+    &.error {
+      color: #f93c65;
+      opacity: 1;
+    }
+  }
+}
+
+.paymentListItemInput {
+  margin-left: auto;
+  svg {
+    @include resa("width", 12px);
+    @include resa("height", 12px);
+  }
+}
+
+.cardForm {
+  @include resa("margin-top", 20px);
+}
+
+.cardFormInput {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  @include resa("gap", 4px);
+
+  @include resa("padding-bottom", 12px);
+  @include resa("padding-top", 12px);
+  width: 100%;
+  @include resa("height", 64px);
+  @include resa("padding-left", 15px);
+  @include resa("padding-right", 15px);
+  @include resa("border-radius", 18px);
+  background-color: #f4f4f5;
+  span {
+    font-weight: 500;
+    @include resa("font-size", 12px);
+    @include resa("line-height", 16px);
+    text-align: left;
+    color: #040415;
+    opacity: 0.5;
+  }
+  input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+    text-align: left;
+    &::placeholder {
+      font-weight: 500;
+      @include resa("font-size", 16px);
+      text-align: left;
+      opacity: 0.2;
+    }
+  }
+  &:not(:has(span)) {
+    justify-content: center;
+  }
+}
+.cardFormInputHalf {
+  width: 50%;
+}
+
+.cardFormInputIcon {
+  position: absolute;
+  @include resa("top", 21px);
+  @include resa("right", 15px);
+  svg {
+    @include resa("width", 22px);
+    @include resa("height", 22px);
+  }
+}
+
+.cardFormBox {
+  @include resa("margin-top", 10px);
+  display: flex;
+  @include resa("gap", 9px);
+}
+
+.expiryInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.expiryInput label {
+  font-size: 14px;
+  color: #a0a0a5;
+  margin-bottom: 5px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  background-color: #f4f4f5;
+  @include resa("gap", 15px);
+}
+
+.inputGroup input {
+  border: none;
+  background: none;
+  color: #040415;
+  @include resa("font-size", 16px);
+  @include resa("line-height", 20px);
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  background: none;
+}
+
+.inputGroup span {
+  color: #040415;
+  font-size: 18px;
+  opacity: 0.1;
+}
+
+.cardFormButton {
+  width: 100%;
+  @include resa("margin-top", 20px);
+  @include resa("height", 54px);
+  @include resa("border-radius", 20px);
+  background-color: #6f49fe;
+  font-weight: 600;
+  text-align: center;
+  @include resa("font-size", 17px);
+  @include resa("line-height", 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  &:disabled {
+    background-color: #efefef;
+    color: rgba(4, 4, 21, 0.4);
+  }
+}
+
+.paymentEnd {
+  @include resa("padding-top", 102px);
+  @include resa("padding-bottom", 44px);
+  @include resa("padding-left", 20px);
+  @include resa("padding-right", 20px);
+  background-color: #ffffff;
+  height: 100%;
+}
+
+.paymentEndBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include resa("padding-top", 147px);
+  @include resa("padding-bottom", 147px);
+  h3 {
+    @include resa("margin-top", 30px);
+    font-family: Gilroy;
+    font-weight: 600;
+    @include resa("font-size", 26px);
+    @include resa("line-height", 30px);
+    text-align: center;
+    color: #040415;
+  }
+  p {
+    @include resa("margin-top", 10px);
+    font-weight: 500;
+    @include resa("font-size", 14px);
+    @include resa("line-height", 22px);
+    text-align: center;
+    color: #040415;
+  }
+}
+
+.paymentEndBoxIcon {
+  background: #aeefa6;
+  @include resa("width", 81px);
+  @include resa("height", 81px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    @include resa("width", 28px);
+    @include resa("height", 28px);
+  }
+}
+
+.paymentEndInfo {
+  background: #f4f4f599;
+  outline-style: solid;
+  outline-color: #0404150d;
+  @include resa("outline-width", 1px);
+  @include resa("padding", 20px);
+  @include resa("border-radius", 25px);
+  @include resa("gap", 12px);
+  display: flex;
+  align-items: center;
+}
+
+.paymentEndInfoIcon {
+  @include resa("width", 42px);
+  @include resa("height", 42px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  svg {
+    @include resa("width", 20px);
+    @include resa("height", 20px);
+  }
+}
+
+.paymentEndInfoTexts {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  h3 {
+    font-weight: 600;
+    color: #040415;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+  }
+  p {
+    font-weight: 500;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    @include resa("max-width", 220px);
+    color: #040415;
+    opacity: 0.5;
+  }
+}
+
+.paymentEndButton {
+  @include resa("margin-top", 26px);
+}
