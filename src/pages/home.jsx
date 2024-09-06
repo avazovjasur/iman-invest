@@ -6,7 +6,7 @@ const Home = () => {
   return <>
     <HomeInner />
     <NavBar />
-    <OnBoarding />
+    {/* <OnBoarding /> */}
   </>
 }
 
