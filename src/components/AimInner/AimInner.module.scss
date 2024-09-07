@@ -1,0 +1,476 @@
+@import "../../styles/mixins.scss";
+
+.top {
+  width: 100%;
+  background: #3680ff;
+  background-image: url("../../../public/aim-top.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0;
+  @include resa("border-bottom-left-radius", 24px);
+  @include resa("border-bottom-right-radius", 24px);
+  @include resa("padding", 4px);
+  @include resa("padding-top", 46px);
+  @include resa("padding-bottom", 21px);
+}
+
+.topButton {
+  @include resa("padding", 16px);
+  @include resa("padding-left", 15px);
+  @include resa("padding-top", 16px);
+  @include resa("padding-right", 75px);
+  svg {
+    @include resa("height", 14px);
+    @include resa("width", 8px);
+  }
+}
+
+.topContent {
+  @include resa("margin-top", 12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topContentHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include resa("gap", 8px);
+  h3 {
+    font-weight: 600;
+    text-align: left;
+    color: #ffffff;
+    @include resa("font-size", 14px);
+    @include resa("line-height", 20px);
+  }
+  svg {
+    @include resa("width", 17px);
+    @include resa("height", 16px);
+  }
+}
+
+.topContentTitle {
+  @include resa("margin-top", 6px);
+  @include resa("font-size", 32px);
+  @include resa("line-height", 38px);
+  font-weight: 500;
+  @include resa("letter-spacing", -0.16px);
+  text-align: left;
+  color: #ffffff;
+  text-align: center;
+}
+
+.topProfit {
+  @include resa("margin-top", 6px);
+  display: flex;
+  align-items: center;
+  @include resa("gap", 8px);
+  @include resa("padding-top", 4px);
+  @include resa("padding-bottom", 5px);
+  @include resa("padding-left", 6px);
+  @include resa("padding-right", 10px);
+  @include resa("border-radius", 12px);
+  background: #0000000f;
+  svg {
+    @include resa("width", 17px);
+    @include resa("height", 16px);
+  }
+}
+
+.topProfitIcon {
+  display: flex;
+  align-items: center;
+  @include resa("gap", 4px);
+}
+
+.topProfitTitle {
+  font-weight: 500;
+  @include resa("line-height", 20px);
+  @include resa("font-size", 14px);
+  text-align: left;
+  color: #ffffff;
+}
+
+.topProfitLine {
+  @include resa("width", 1px);
+  @include resa("height", 14px);
+  background-color: #ffffff;
+  opacity: 0.2;
+}
+
+.content {
+  @include resa("padding", 16px);
+  @include resa("padding-bottom", 58px);
+}
+
+.contentButtons {
+  display: flex;
+  @include resa("gap", 7px);
+}
+
+.contentButtonsItem {
+  @include resa("border-radius", 20px);
+  background: #3680ff;
+  text-align: center;
+  width: 50%;
+  @include resa("padding-bottom", 16.5px);
+  @include resa("padding-top", 17.5px);
+  font-weight: 600;
+  @include resa("line-height", 20px);
+  @include resa("font-size", 17px);
+  color: #ffffff;
+  &.other {
+    background: #3680ff14;
+    color: #3680ff;
+  }
+}
+
+.contentWrapper {
+  @include resa("margin-top", 16px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  @include resa("grid-gap", 8px);
+}
+
+.contentWrapperBox {
+  background-color: #f8f8f9;
+  @include resa("border-radius", 14px);
+
+  position: relative;
+}
+
+.contentWrapperHalf {
+  @include resa("padding-top", 16px);
+  @include resa("padding-left", 14px);
+  @include resa("padding-right", 14px);
+  grid-column: span 1;
+  @include resa("height", 138px);
+}
+
+.contentWrapperTitle {
+  font-weight: 600;
+  @include resa("line-height", 20px);
+  @include resa("font-size", 17px);
+  @include resa("padding-left", 2px);
+  @include resa("padding-right", 2px);
+  text-align: left;
+  color: #000000;
+}
+
+.contentWrapperSubTitle {
+  font-weight: 500;
+  @include resa("margin-top", 7px);
+  @include resa("line-height", 20px);
+  @include resa("font-size", 14px);
+  @include resa("padding-left", 2px);
+  text-align: left;
+  color: #9aa3b3;
+}
+
+.contentWrapperProgress {
+  position: absolute;
+  @include resa("left", 14px);
+  @include resa("right", 14px);
+  @include resa("bottom", 17px);
+  @include resa("height", 9px);
+  background: #4c91ff33;
+  @include resa("border-radius", 100px);
+  span {
+    display: block;
+    height: 100%;
+    width: 50%;
+    background: #4c91ff;
+    @include resa("border-radius", 100px);
+  }
+}
+
+.contentWrapperCard {
+  background: linear-gradient(112.99deg, #4daacc 2.11%, #3137ff 104.77%);
+  position: absolute;
+  @include resa("left", 13px);
+  @include resa("right", 15.5px);
+  bottom: 0;
+  @include resa("height", 69px);
+  @include resa("border-top-left-radius", 9px);
+  @include resa("border-top-right-radius", 9px);
+  display: flex;
+  @include resa("gap", 32.5px);
+}
+
+.contentWrapperCardIcon {
+  position: relative;
+  padding-top: 15px;
+}
+
+.contentWrapperCardTexts {
+  @include resa("margin-top", 9.9px);
+  @include resa("margin-left", 7px);
+  h3 {
+    @include resa("margin-left", 4px);
+    font-weight: 700;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 19.19px);
+    text-align: left;
+    color: #ffffff;
+  }
+  h4 {
+    @include resa("margin-top", 13.1px);
+    font-weight: 500;
+    @include resa("font-size", 14px);
+    @include resa("line-height", 20px);
+    text-align: left;
+    color: #ffffff;
+    opacity: 0.5;
+  }
+}
+
+.contentWrapperAuto {
+  @include resa("height", 88px);
+  grid-column: span 2;
+  @include resa("padding", 16px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.contentWrapperAutoTexts {
+  p {
+    font-weight: 500;
+    @include resa("line-height", 16px);
+    @include resa("max-width", 185px);
+    @include resa("margin-top", 4px);
+    @include resa("font-size", 12px);
+    text-align: left;
+    color: #9aa3b3;
+  }
+}
+
+.contentWrapperAutoCheckbox {
+  @include resa("padding", 2px);
+  @include resa("width", 46px);
+  @include resa("height", 28px);
+  @include resa("border-radius", 50px);
+  background: #0404151a;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    @include resa("width", 24px);
+    @include resa("height", 24px);
+    @include resa("top", 2px);
+    @include resa("left", 2px);
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+
+  &.active {
+    &::after {
+      transform: translateX(4.8vw);
+    }
+    background: #3680ff;
+  }
+}
+
+.contentGraph {
+  grid-column: span 2;
+  @include resa("height", 286px);
+  @include resa("padding", 16px);
+  @include resa("padding-bottom", 12px);
+}
+
+.contentGraphContent {
+  @include resa("height", 170px);
+}
+
+.contentGraphLine {
+  width: 100%;
+  @include resa("height", 1px);
+  background-color: #040415;
+  opacity: 0.05;
+}
+
+.contentTitle {
+  font-weight: 600;
+  text-align: left;
+  color: #000000;
+  @include resa("line-height", 20px);
+  @include resa("font-size", 16px);
+}
+
+.contentGraphBottom {
+  @include resa("margin-top", 12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include resa("gap", 51.33px);
+}
+
+.contentGraphBottomItems {
+  cursor: pointer;
+  @include resa("padding", 6px);
+  @include resa("padding-left", 12px);
+  @include resa("padding-right", 12px);
+  font-weight: 500;
+  text-align: center;
+  @include resa("line-height", 16px);
+  @include resa("font-size", 12px);
+  color: #9aa3b3;
+  &.active {
+    background: #ffffff;
+    @include resa("border-radius", 10px);
+    color: #040415;
+  }
+}
+
+.contentWrapperHistory {
+  grid-column: span 2;
+  @include resa("padding", 16px);
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 20px);
+  @include resa("margin-top", 16px);
+  @include resa("margin-bottom", 16px);
+}
+
+.historyListItem {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.historyListItemLeft {
+  display: flex;
+  align-items: center;
+  @include resa("gap", 12px);
+}
+
+.historyListItemIcon {
+  background: #01cab033;
+  @include resa("width", 40px);
+  @include resa("height", 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.historyListItemTexts {
+  display: flex;
+  flex-direction: column;
+  h3 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    @include resa("line-height", 18px);
+    @include resa("font-size", 14px);
+    text-align: left;
+    color: #040415;
+  }
+  p {
+    font-weight: 500;
+    @include resa("line-height", 18px);
+    @include resa("font-size", 12px);
+    text-align: left;
+    color: #9aa3b3;
+  }
+}
+
+.historyListItemPrice {
+  font-weight: 500;
+  @include resa("line-height", 18px);
+  @include resa("font-size", 16px);
+  text-align: right;
+  color: #01cab0;
+}
+
+.historyButton {
+  width: 100%;
+  font-weight: 600;
+  @include resa("line-height", 20px);
+  @include resa("font-size", 15px);
+  text-align: center;
+  color: #9aa3b3;
+  @include resa("margin-top", 16px);
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 20px);
+}
+
+.featuresListItem {
+  display: flex;
+  align-items: center;
+  @include resa("gap", 12px);
+}
+
+.featuresListItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include resa("height", 42px);
+  @include resa("width", 42px);
+  border-radius: 50%;
+  background: #ffffff;
+  svg {
+    @include resa("height", 20px);
+    @include resa("width", 20px);
+  }
+}
+
+.featuresListItemTexts {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  @include resa("max-width", 241px);
+  h3 {
+    color: #040415;
+    font-weight: 600;
+    text-align: left;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+  }
+  p {
+    font-weight: 500;
+    text-align: left;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    color: #9aa3b3;
+  }
+}
+
+.contentButton {
+  width: 100%;
+  background: #ff603814;
+  @include resa("margin-top", 48px);
+  @include resa("border-radius", 20px);
+  @include resa("padding-top", 17px);
+  @include resa("padding-bottom", 17px);
+  font-weight: 600;
+  @include resa("font-size", 17px);
+  @include resa("line-height", 20px);
+  text-align: center;
+  color: #ff6038;
+}

@@ -1,7 +1,7 @@
 import styles from '../../styles/modules/bill.module.scss'
 import PaymentDrawer from "@/components/PaymentDrawer"
 import { useRef, useState } from 'react';
-
+import Link from 'next/link';
 
 const lang = () => {
   const monthRef = useRef(null);
@@ -40,11 +40,13 @@ const lang = () => {
 
   return <div className={styles.container}>
     <div className={styles.billsHeader}>
-      <button className={styles.billsHeaderButton}>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11 1L4 8L11 15" stroke="#040415" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
+      <Link href="/home">
+        <button className={styles.billsHeaderButton}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 1L4 8L11 15" stroke="#040415" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </Link>
       <h3 className={styles.billsHeaderTitle}>Выберите условия</h3>
     </div>
     <div className={styles.content}>
@@ -457,7 +459,7 @@ const lang = () => {
               <input id='card' type="number" placeholder='8399 9005 8499 4033' />
               <button type='button' className={styles.cardFormInputIcon}>
                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M1 5C1 2.79086 2.79086 1 5 1H8V3H5C3.89543 3 3 3.89543 3 5V8H1V5ZM1 17C1 19.2091 2.79086 21 5 21H8V19H5C3.89543 19 3 18.1046 3 17V14H1V17ZM17 1C19.2091 1 21 2.79086 21 5V8H19V5C19 3.89543 18.1046 3 17 3H14V1H17ZM21 17C21 19.2091 19.2091 21 17 21H14V19H17C18.1046 19 19 18.1046 19 17V14H21V17ZM21 10H1V12H21V10Z" fill="#040415" />
+                  <path fillRule="evenodd" clipRule="evenodd" d="M1 5C1 2.79086 2.79086 1 5 1H8V3H5C3.89543 3 3 3.89543 3 5V8H1V5ZM1 17C1 19.2091 2.79086 21 5 21H8V19H5C3.89543 19 3 18.1046 3 17V14H1V17ZM17 1C19.2091 1 21 2.79086 21 5V8H19V5C19 3.89543 18.1046 3 17 3H14V1H17ZM21 17C21 19.2091 19.2091 21 17 21H14V19H17C18.1046 19 19 18.1046 19 17V14H21V17ZM21 10H1V12H21V10Z" fill="#040415" />
                 </svg>
               </button>
             </div>
@@ -514,9 +516,9 @@ const lang = () => {
         <div className={styles.paymentEndBox}>
           <div className={styles.paymentEndBoxIcon}>
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_4565_32166)">
-                <path d="M8.16699 14.0003L14.0003 19.8337L25.667 8.16699" stroke="#040415" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M2.33301 14.0003L8.16634 19.8337M13.9997 14.0003L19.833 8.16699" stroke="#040415" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round" />
+              <g clipPath="url(#clip0_4565_32166)">
+                <path d="M8.16699 14.0003L14.0003 19.8337L25.667 8.16699" stroke="#040415" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M2.33301 14.0003L8.16634 19.8337M13.9997 14.0003L19.833 8.16699" stroke="#040415" strokeWidth="2.33333" strokeLinecap="round" strokeLinejoin="round" />
               </g>
               <defs>
                 <clipPath id="clip0_4565_32166">
@@ -534,10 +536,10 @@ const lang = () => {
         <div className={styles.paymentEndInfo}>
           <div className={styles.paymentEndInfoIcon}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_4565_32178)">
-                <path d="M2 10C2 11.0506 2.20693 12.0909 2.60896 13.0615C3.011 14.0321 3.60028 14.914 4.34315 15.6569C5.08601 16.3997 5.96793 16.989 6.93853 17.391C7.90914 17.7931 8.94943 18 10 18C11.0506 18 12.0909 17.7931 13.0615 17.391C14.0321 16.989 14.914 16.3997 15.6569 15.6569C16.3997 14.914 16.989 14.0321 17.391 13.0615C17.7931 12.0909 18 11.0506 18 10C18 8.94943 17.7931 7.90914 17.391 6.93853C16.989 5.96793 16.3997 5.08601 15.6569 4.34315C14.914 3.60028 14.0321 3.011 13.0615 2.60896C12.0909 2.20693 11.0506 2 10 2C8.94943 2 7.90914 2.20693 6.93853 2.60896C5.96793 3.011 5.08601 3.60028 4.34315 4.34315C3.60028 5.08601 3.011 5.96793 2.60896 6.93853C2.20693 7.90914 2 8.94943 2 10Z" stroke="#040415" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M10 6V11" stroke="#040415" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M10 14V14.0083" stroke="#040415" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <g clipPath="url(#clip0_4565_32178)">
+                <path d="M2 10C2 11.0506 2.20693 12.0909 2.60896 13.0615C3.011 14.0321 3.60028 14.914 4.34315 15.6569C5.08601 16.3997 5.96793 16.989 6.93853 17.391C7.90914 17.7931 8.94943 18 10 18C11.0506 18 12.0909 17.7931 13.0615 17.391C14.0321 16.989 14.914 16.3997 15.6569 15.6569C16.3997 14.914 16.989 14.0321 17.391 13.0615C17.7931 12.0909 18 11.0506 18 10C18 8.94943 17.7931 7.90914 17.391 6.93853C16.989 5.96793 16.3997 5.08601 15.6569 4.34315C14.914 3.60028 14.0321 3.011 13.0615 2.60896C12.0909 2.20693 11.0506 2 10 2C8.94943 2 7.90914 2.20693 6.93853 2.60896C5.96793 3.011 5.08601 3.60028 4.34315 4.34315C3.60028 5.08601 3.011 5.96793 2.60896 6.93853C2.20693 7.90914 2 8.94943 2 10Z" stroke="#040415" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 6V11" stroke="#040415" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 14V14.0083" stroke="#040415" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </g>
               <defs>
                 <clipPath id="clip0_4565_32178">

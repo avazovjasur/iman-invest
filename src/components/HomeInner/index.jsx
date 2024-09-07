@@ -1,4 +1,5 @@
 import styles from './HomeInner.module.scss'
+import Link from 'next/link';
 
 const HomeInner = () => {
 
@@ -30,7 +31,7 @@ const HomeInner = () => {
         <div className={styles.contentProfit}>
           <div className={styles.contentProfitIcon}>
             <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.44205 12.4996L8.55751 3.50029M8.55751 3.50029L4.51294 6.94869M8.55751 3.50029L12.5123 7.05132" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+              <path d="M8.44205 12.4996L8.55751 3.50029M8.55751 3.50029L4.51294 6.94869M8.55751 3.50029L12.5123 7.05132" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
             </svg>
             <h3 className={styles.contentProfitTitle}> Прибыль</h3>
           </div>
@@ -113,186 +114,196 @@ const HomeInner = () => {
       <div className={styles.goalContent}>
         <div className={styles.goalTop}>
           <h3 className={styles.goalTopTitle}>Ваши цели</h3>
-          <button type='button' className={styles.goalTopButton}>
-            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.0173 8.66634H8.68392V11.9997C8.68392 12.3663 8.38392 12.6663 8.01725 12.6663C7.65059 12.6663 7.35059 12.3663 7.35059 11.9997V8.66634H4.01725C3.65059 8.66634 3.35059 8.36634 3.35059 7.99967C3.35059 7.63301 3.65059 7.33301 4.01725 7.33301H7.35059V3.99967C7.35059 3.63301 7.65059 3.33301 8.01725 3.33301C8.38392 3.33301 8.68392 3.63301 8.68392 3.99967V7.33301H12.0173C12.3839 7.33301 12.6839 7.63301 12.6839 7.99967C12.6839 8.36634 12.3839 8.66634 12.0173 8.66634Z" fill="#367FFD" />
-            </svg>
-            Добавить
-          </button>
+          <Link href="/bill/open">
+            <button type='button' className={styles.goalTopButton}>
+              <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0173 8.66634H8.68392V11.9997C8.68392 12.3663 8.38392 12.6663 8.01725 12.6663C7.65059 12.6663 7.35059 12.3663 7.35059 11.9997V8.66634H4.01725C3.65059 8.66634 3.35059 8.36634 3.35059 7.99967C3.35059 7.63301 3.65059 7.33301 4.01725 7.33301H7.35059V3.99967C7.35059 3.63301 7.65059 3.33301 8.01725 3.33301C8.38392 3.33301 8.68392 3.63301 8.68392 3.99967V7.33301H12.0173C12.3839 7.33301 12.6839 7.63301 12.6839 7.99967C12.6839 8.36634 12.3839 8.66634 12.0173 8.66634Z" fill="#367FFD" />
+              </svg>
+              Добавить
+            </button>
+          </Link>
         </div>
         <ul className={styles.goalList}>
-          <li className={styles.goalListItem}>
-            <div className={styles.goalListItemHeader}>
-              <h3>
-                На лабутены 👠
-              </h3>
-              <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path opacity="0.5" d="M1 0.5L6 5.5L1 10.5" stroke="#828DA1" stroke-linecap="round" />
-              </svg>
-            </div>
-            <div className={styles.goalListItemStatistics}>
-              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g opacity="0.5">
-                  <g clip-path="url(#clip0_4841_8272)">
-                    <path d="M10.6665 11.1663C10.6665 10.4297 8.57717 9.83301 5.99984 9.83301M10.6665 11.1663C10.6665 11.903 8.57717 12.4997 5.99984 12.4997C3.4225 12.4997 1.33317 11.903 1.33317 11.1663M10.6665 11.1663V14.4577C10.6665 15.217 8.57717 15.833 5.99984 15.833C3.4225 15.833 1.33317 15.2177 1.33317 14.4577V11.1663M10.6665 11.1663C13.2158 11.1663 15.3332 10.5083 15.3332 9.83301V3.16634M5.99984 9.83301C3.4225 9.83301 1.33317 10.4297 1.33317 11.1663M5.99984 9.83301C3.0545 9.83301 0.666504 9.17501 0.666504 8.49967V5.16634M5.99984 3.83301C3.0545 3.83301 0.666504 4.42967 0.666504 5.16634M0.666504 5.16634C0.666504 5.90301 3.0545 6.49967 5.99984 6.49967C5.99984 7.17501 8.1685 7.83301 10.7178 7.83301C13.2672 7.83301 15.3332 7.17501 15.3332 6.49967M15.3332 3.16634C15.3332 2.42967 13.2665 1.83301 10.7178 1.83301C8.16917 1.83301 6.1025 2.42967 6.1025 3.16634M15.3332 3.16634C15.3332 3.90301 13.2665 4.49967 10.7178 4.49967C8.16917 4.49967 6.1025 3.90301 6.1025 3.16634M6.1025 3.16634V9.94367" stroke="#828DA1" stroke-width="1.2" />
-                  </g>
-                </g>
-                <defs>
-                  <clipPath id="clip0_4841_8272">
-                    <rect width="16" height="16" fill="white" transform="translate(0 0.5)" />
-                  </clipPath>
-                </defs>
-              </svg>
-              <span>12 700 394</span>
-              <span className={styles.goalListItemIncome}>+ 723 467 сум</span>
-            </div>
-            <div className={styles.goalListItemLine}></div>
-            <div className={styles.goalItemBottom}>
-              <div className={styles.goalItemFeatures}>
-                <div className={styles.goalItemFeaturesBox}>
-                  Ставка <span>27%</span>
-                </div>
-                <div className={styles.goalItemFeaturesBox}>
-                  На 12 мес
-                </div>
-              </div>
-              <div className={styles.goalItemExtra}>
-                <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 3.75L5.5 8.25L13 0.75" stroke="#828DA1" stroke-linecap="round" />
+          <Link href="/aim/1">
+            <li className={styles.goalListItem}>
+              <div className={styles.goalListItemHeader}>
+                <h3>
+                  На лабутены 👠
+                </h3>
+                <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path opacity="0.5" d="M1 0.5L6 5.5L1 10.5" stroke="#828DA1" strokeLinecap="round" />
                 </svg>
-                Автоплатеж
               </div>
-            </div>
-          </li>
-          <li className={styles.goalListItem}>
-            <div className={styles.goalListItemHeader}>
-              <h3>
-                На лабутены 👠
-              </h3>
-              <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path opacity="0.5" d="M1 0.5L6 5.5L1 10.5" stroke="#828DA1" stroke-linecap="round" />
-              </svg>
-            </div>
-            <div className={styles.goalListItemStatistics}>
-              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g opacity="0.5">
-                  <g clip-path="url(#clip0_4841_8272)">
-                    <path d="M10.6665 11.1663C10.6665 10.4297 8.57717 9.83301 5.99984 9.83301M10.6665 11.1663C10.6665 11.903 8.57717 12.4997 5.99984 12.4997C3.4225 12.4997 1.33317 11.903 1.33317 11.1663M10.6665 11.1663V14.4577C10.6665 15.217 8.57717 15.833 5.99984 15.833C3.4225 15.833 1.33317 15.2177 1.33317 14.4577V11.1663M10.6665 11.1663C13.2158 11.1663 15.3332 10.5083 15.3332 9.83301V3.16634M5.99984 9.83301C3.4225 9.83301 1.33317 10.4297 1.33317 11.1663M5.99984 9.83301C3.0545 9.83301 0.666504 9.17501 0.666504 8.49967V5.16634M5.99984 3.83301C3.0545 3.83301 0.666504 4.42967 0.666504 5.16634M0.666504 5.16634C0.666504 5.90301 3.0545 6.49967 5.99984 6.49967C5.99984 7.17501 8.1685 7.83301 10.7178 7.83301C13.2672 7.83301 15.3332 7.17501 15.3332 6.49967M15.3332 3.16634C15.3332 2.42967 13.2665 1.83301 10.7178 1.83301C8.16917 1.83301 6.1025 2.42967 6.1025 3.16634M15.3332 3.16634C15.3332 3.90301 13.2665 4.49967 10.7178 4.49967C8.16917 4.49967 6.1025 3.90301 6.1025 3.16634M6.1025 3.16634V9.94367" stroke="#828DA1" stroke-width="1.2" />
+              <div className={styles.goalListItemStatistics}>
+                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <g clipPath="url(#clip0_4841_8272)">
+                      <path d="M10.6665 11.1663C10.6665 10.4297 8.57717 9.83301 5.99984 9.83301M10.6665 11.1663C10.6665 11.903 8.57717 12.4997 5.99984 12.4997C3.4225 12.4997 1.33317 11.903 1.33317 11.1663M10.6665 11.1663V14.4577C10.6665 15.217 8.57717 15.833 5.99984 15.833C3.4225 15.833 1.33317 15.2177 1.33317 14.4577V11.1663M10.6665 11.1663C13.2158 11.1663 15.3332 10.5083 15.3332 9.83301V3.16634M5.99984 9.83301C3.4225 9.83301 1.33317 10.4297 1.33317 11.1663M5.99984 9.83301C3.0545 9.83301 0.666504 9.17501 0.666504 8.49967V5.16634M5.99984 3.83301C3.0545 3.83301 0.666504 4.42967 0.666504 5.16634M0.666504 5.16634C0.666504 5.90301 3.0545 6.49967 5.99984 6.49967C5.99984 7.17501 8.1685 7.83301 10.7178 7.83301C13.2672 7.83301 15.3332 7.17501 15.3332 6.49967M15.3332 3.16634C15.3332 2.42967 13.2665 1.83301 10.7178 1.83301C8.16917 1.83301 6.1025 2.42967 6.1025 3.16634M15.3332 3.16634C15.3332 3.90301 13.2665 4.49967 10.7178 4.49967C8.16917 4.49967 6.1025 3.90301 6.1025 3.16634M6.1025 3.16634V9.94367" stroke="#828DA1" strokeWidth="1.2" />
+                    </g>
                   </g>
-                </g>
-                <defs>
-                  <clipPath id="clip0_4841_8272">
-                    <rect width="16" height="16" fill="white" transform="translate(0 0.5)" />
-                  </clipPath>
-                </defs>
-              </svg>
-              <span>12 700 394</span>
-              <span className={styles.goalListItemIncome}>+ 723 467 сум</span>
-            </div>
-            <div className={styles.goalListItemLine}></div>
-            <div className={styles.goalItemBottom}>
-              <div className={styles.goalItemFeatures}>
-                <div className={styles.goalItemFeaturesBox}>
-                  Ставка <span>27%</span>
-                </div>
-                <div className={styles.goalItemFeaturesBox}>
-                  На 12 мес
-                </div>
-              </div>
-              <div className={styles.goalItemExtra}>
-                <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 3.75L5.5 8.25L13 0.75" stroke="#828DA1" stroke-linecap="round" />
+                  <defs>
+                    <clipPath id="clip0_4841_8272">
+                      <rect width="16" height="16" fill="white" transform="translate(0 0.5)" />
+                    </clipPath>
+                  </defs>
                 </svg>
-                Автоплатеж
+                <span>12 700 394</span>
+                <span className={styles.goalListItemIncome}>+ 723 467 сум</span>
               </div>
-            </div>
-          </li>
-          <li className={styles.goalListItem}>
-            <div className={styles.goalListItemHeader}>
-              <h3>
-                На лабутены 👠
-              </h3>
-              <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path opacity="0.5" d="M1 0.5L6 5.5L1 10.5" stroke="#828DA1" stroke-linecap="round" />
-              </svg>
-            </div>
-            <div className={styles.goalListItemStatistics}>
-              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g opacity="0.5">
-                  <g clip-path="url(#clip0_4841_8272)">
-                    <path d="M10.6665 11.1663C10.6665 10.4297 8.57717 9.83301 5.99984 9.83301M10.6665 11.1663C10.6665 11.903 8.57717 12.4997 5.99984 12.4997C3.4225 12.4997 1.33317 11.903 1.33317 11.1663M10.6665 11.1663V14.4577C10.6665 15.217 8.57717 15.833 5.99984 15.833C3.4225 15.833 1.33317 15.2177 1.33317 14.4577V11.1663M10.6665 11.1663C13.2158 11.1663 15.3332 10.5083 15.3332 9.83301V3.16634M5.99984 9.83301C3.4225 9.83301 1.33317 10.4297 1.33317 11.1663M5.99984 9.83301C3.0545 9.83301 0.666504 9.17501 0.666504 8.49967V5.16634M5.99984 3.83301C3.0545 3.83301 0.666504 4.42967 0.666504 5.16634M0.666504 5.16634C0.666504 5.90301 3.0545 6.49967 5.99984 6.49967C5.99984 7.17501 8.1685 7.83301 10.7178 7.83301C13.2672 7.83301 15.3332 7.17501 15.3332 6.49967M15.3332 3.16634C15.3332 2.42967 13.2665 1.83301 10.7178 1.83301C8.16917 1.83301 6.1025 2.42967 6.1025 3.16634M15.3332 3.16634C15.3332 3.90301 13.2665 4.49967 10.7178 4.49967C8.16917 4.49967 6.1025 3.90301 6.1025 3.16634M6.1025 3.16634V9.94367" stroke="#828DA1" stroke-width="1.2" />
+              <div className={styles.goalListItemLine}></div>
+              <div className={styles.goalItemBottom}>
+                <div className={styles.goalItemFeatures}>
+                  <div className={styles.goalItemFeaturesBox}>
+                    Ставка <span>27%</span>
+                  </div>
+                  <div className={styles.goalItemFeaturesBox}>
+                    На 12 мес
+                  </div>
+                </div>
+                <div className={styles.goalItemExtra}>
+                  <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3.75L5.5 8.25L13 0.75" stroke="#828DA1" strokeLinecap="round" />
+                  </svg>
+                  Автоплатеж
+                </div>
+              </div>
+            </li>
+          </Link>
+          <Link href="/aim/1">
+            <li className={styles.goalListItem}>
+              <div className={styles.goalListItemHeader}>
+                <h3>
+                  На лабутены 👠
+                </h3>
+                <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path opacity="0.5" d="M1 0.5L6 5.5L1 10.5" stroke="#828DA1" strokeLinecap="round" />
+                </svg>
+              </div>
+              <div className={styles.goalListItemStatistics}>
+                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <g clipPath="url(#clip0_4841_8272)">
+                      <path d="M10.6665 11.1663C10.6665 10.4297 8.57717 9.83301 5.99984 9.83301M10.6665 11.1663C10.6665 11.903 8.57717 12.4997 5.99984 12.4997C3.4225 12.4997 1.33317 11.903 1.33317 11.1663M10.6665 11.1663V14.4577C10.6665 15.217 8.57717 15.833 5.99984 15.833C3.4225 15.833 1.33317 15.2177 1.33317 14.4577V11.1663M10.6665 11.1663C13.2158 11.1663 15.3332 10.5083 15.3332 9.83301V3.16634M5.99984 9.83301C3.4225 9.83301 1.33317 10.4297 1.33317 11.1663M5.99984 9.83301C3.0545 9.83301 0.666504 9.17501 0.666504 8.49967V5.16634M5.99984 3.83301C3.0545 3.83301 0.666504 4.42967 0.666504 5.16634M0.666504 5.16634C0.666504 5.90301 3.0545 6.49967 5.99984 6.49967C5.99984 7.17501 8.1685 7.83301 10.7178 7.83301C13.2672 7.83301 15.3332 7.17501 15.3332 6.49967M15.3332 3.16634C15.3332 2.42967 13.2665 1.83301 10.7178 1.83301C8.16917 1.83301 6.1025 2.42967 6.1025 3.16634M15.3332 3.16634C15.3332 3.90301 13.2665 4.49967 10.7178 4.49967C8.16917 4.49967 6.1025 3.90301 6.1025 3.16634M6.1025 3.16634V9.94367" stroke="#828DA1" strokeWidth="1.2" />
+                    </g>
                   </g>
-                </g>
-                <defs>
-                  <clipPath id="clip0_4841_8272">
-                    <rect width="16" height="16" fill="white" transform="translate(0 0.5)" />
-                  </clipPath>
-                </defs>
-              </svg>
-              <span>12 700 394</span>
-              <span className={styles.goalListItemIncome}>+ 723 467 сум</span>
-            </div>
-            <div className={styles.goalListItemLine}></div>
-            <div className={styles.goalItemBottom}>
-              <div className={styles.goalItemFeatures}>
-                <div className={styles.goalItemFeaturesBox}>
-                  Ставка <span>27%</span>
-                </div>
-                <div className={styles.goalItemFeaturesBox}>
-                  На 12 мес
-                </div>
-              </div>
-              <div className={styles.goalItemExtra}>
-                <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 3.75L5.5 8.25L13 0.75" stroke="#828DA1" stroke-linecap="round" />
+                  <defs>
+                    <clipPath id="clip0_4841_8272">
+                      <rect width="16" height="16" fill="white" transform="translate(0 0.5)" />
+                    </clipPath>
+                  </defs>
                 </svg>
-                Автоплатеж
+                <span>12 700 394</span>
+                <span className={styles.goalListItemIncome}>+ 723 467 сум</span>
               </div>
-            </div>
-          </li>
-          <li className={styles.goalListItem}>
-            <div className={styles.goalListItemHeader}>
-              <h3>
-                На лабутены 👠
-              </h3>
-              <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path opacity="0.5" d="M1 0.5L6 5.5L1 10.5" stroke="#828DA1" stroke-linecap="round" />
-              </svg>
-            </div>
-            <div className={styles.goalListItemStatistics}>
-              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g opacity="0.5">
-                  <g clip-path="url(#clip0_4841_8272)">
-                    <path d="M10.6665 11.1663C10.6665 10.4297 8.57717 9.83301 5.99984 9.83301M10.6665 11.1663C10.6665 11.903 8.57717 12.4997 5.99984 12.4997C3.4225 12.4997 1.33317 11.903 1.33317 11.1663M10.6665 11.1663V14.4577C10.6665 15.217 8.57717 15.833 5.99984 15.833C3.4225 15.833 1.33317 15.2177 1.33317 14.4577V11.1663M10.6665 11.1663C13.2158 11.1663 15.3332 10.5083 15.3332 9.83301V3.16634M5.99984 9.83301C3.4225 9.83301 1.33317 10.4297 1.33317 11.1663M5.99984 9.83301C3.0545 9.83301 0.666504 9.17501 0.666504 8.49967V5.16634M5.99984 3.83301C3.0545 3.83301 0.666504 4.42967 0.666504 5.16634M0.666504 5.16634C0.666504 5.90301 3.0545 6.49967 5.99984 6.49967C5.99984 7.17501 8.1685 7.83301 10.7178 7.83301C13.2672 7.83301 15.3332 7.17501 15.3332 6.49967M15.3332 3.16634C15.3332 2.42967 13.2665 1.83301 10.7178 1.83301C8.16917 1.83301 6.1025 2.42967 6.1025 3.16634M15.3332 3.16634C15.3332 3.90301 13.2665 4.49967 10.7178 4.49967C8.16917 4.49967 6.1025 3.90301 6.1025 3.16634M6.1025 3.16634V9.94367" stroke="#828DA1" stroke-width="1.2" />
+              <div className={styles.goalListItemLine}></div>
+              <div className={styles.goalItemBottom}>
+                <div className={styles.goalItemFeatures}>
+                  <div className={styles.goalItemFeaturesBox}>
+                    Ставка <span>27%</span>
+                  </div>
+                  <div className={styles.goalItemFeaturesBox}>
+                    На 12 мес
+                  </div>
+                </div>
+                <div className={styles.goalItemExtra}>
+                  <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3.75L5.5 8.25L13 0.75" stroke="#828DA1" strokeLinecap="round" />
+                  </svg>
+                  Автоплатеж
+                </div>
+              </div>
+            </li>
+          </Link>
+          <Link href="/aim/1">
+            <li className={styles.goalListItem}>
+              <div className={styles.goalListItemHeader}>
+                <h3>
+                  На лабутены 👠
+                </h3>
+                <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path opacity="0.5" d="M1 0.5L6 5.5L1 10.5" stroke="#828DA1" strokeLinecap="round" />
+                </svg>
+              </div>
+              <div className={styles.goalListItemStatistics}>
+                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <g clipPath="url(#clip0_4841_8272)">
+                      <path d="M10.6665 11.1663C10.6665 10.4297 8.57717 9.83301 5.99984 9.83301M10.6665 11.1663C10.6665 11.903 8.57717 12.4997 5.99984 12.4997C3.4225 12.4997 1.33317 11.903 1.33317 11.1663M10.6665 11.1663V14.4577C10.6665 15.217 8.57717 15.833 5.99984 15.833C3.4225 15.833 1.33317 15.2177 1.33317 14.4577V11.1663M10.6665 11.1663C13.2158 11.1663 15.3332 10.5083 15.3332 9.83301V3.16634M5.99984 9.83301C3.4225 9.83301 1.33317 10.4297 1.33317 11.1663M5.99984 9.83301C3.0545 9.83301 0.666504 9.17501 0.666504 8.49967V5.16634M5.99984 3.83301C3.0545 3.83301 0.666504 4.42967 0.666504 5.16634M0.666504 5.16634C0.666504 5.90301 3.0545 6.49967 5.99984 6.49967C5.99984 7.17501 8.1685 7.83301 10.7178 7.83301C13.2672 7.83301 15.3332 7.17501 15.3332 6.49967M15.3332 3.16634C15.3332 2.42967 13.2665 1.83301 10.7178 1.83301C8.16917 1.83301 6.1025 2.42967 6.1025 3.16634M15.3332 3.16634C15.3332 3.90301 13.2665 4.49967 10.7178 4.49967C8.16917 4.49967 6.1025 3.90301 6.1025 3.16634M6.1025 3.16634V9.94367" stroke="#828DA1" strokeWidth="1.2" />
+                    </g>
                   </g>
-                </g>
-                <defs>
-                  <clipPath id="clip0_4841_8272">
-                    <rect width="16" height="16" fill="white" transform="translate(0 0.5)" />
-                  </clipPath>
-                </defs>
-              </svg>
-              <span>12 700 394</span>
-              <span className={styles.goalListItemIncome}>+ 723 467 сум</span>
-            </div>
-            <div className={styles.goalListItemLine}></div>
-            <div className={styles.goalItemBottom}>
-              <div className={styles.goalItemFeatures}>
-                <div className={styles.goalItemFeaturesBox}>
-                  Ставка <span>27%</span>
-                </div>
-                <div className={styles.goalItemFeaturesBox}>
-                  На 12 мес
-                </div>
-              </div>
-              <div className={styles.goalItemExtra}>
-                <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 3.75L5.5 8.25L13 0.75" stroke="#828DA1" stroke-linecap="round" />
+                  <defs>
+                    <clipPath id="clip0_4841_8272">
+                      <rect width="16" height="16" fill="white" transform="translate(0 0.5)" />
+                    </clipPath>
+                  </defs>
                 </svg>
-                Автоплатеж
+                <span>12 700 394</span>
+                <span className={styles.goalListItemIncome}>+ 723 467 сум</span>
               </div>
-            </div>
-          </li>
+              <div className={styles.goalListItemLine}></div>
+              <div className={styles.goalItemBottom}>
+                <div className={styles.goalItemFeatures}>
+                  <div className={styles.goalItemFeaturesBox}>
+                    Ставка <span>27%</span>
+                  </div>
+                  <div className={styles.goalItemFeaturesBox}>
+                    На 12 мес
+                  </div>
+                </div>
+                <div className={styles.goalItemExtra}>
+                  <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3.75L5.5 8.25L13 0.75" stroke="#828DA1" strokeLinecap="round" />
+                  </svg>
+                  Автоплатеж
+                </div>
+              </div>
+            </li>
+          </Link>
+          <Link href="/aim/1">
+            <li className={styles.goalListItem}>
+              <div className={styles.goalListItemHeader}>
+                <h3>
+                  На лабутены 👠
+                </h3>
+                <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path opacity="0.5" d="M1 0.5L6 5.5L1 10.5" stroke="#828DA1" strokeLinecap="round" />
+                </svg>
+              </div>
+              <div className={styles.goalListItemStatistics}>
+                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <g clipPath="url(#clip0_4841_8272)">
+                      <path d="M10.6665 11.1663C10.6665 10.4297 8.57717 9.83301 5.99984 9.83301M10.6665 11.1663C10.6665 11.903 8.57717 12.4997 5.99984 12.4997C3.4225 12.4997 1.33317 11.903 1.33317 11.1663M10.6665 11.1663V14.4577C10.6665 15.217 8.57717 15.833 5.99984 15.833C3.4225 15.833 1.33317 15.2177 1.33317 14.4577V11.1663M10.6665 11.1663C13.2158 11.1663 15.3332 10.5083 15.3332 9.83301V3.16634M5.99984 9.83301C3.4225 9.83301 1.33317 10.4297 1.33317 11.1663M5.99984 9.83301C3.0545 9.83301 0.666504 9.17501 0.666504 8.49967V5.16634M5.99984 3.83301C3.0545 3.83301 0.666504 4.42967 0.666504 5.16634M0.666504 5.16634C0.666504 5.90301 3.0545 6.49967 5.99984 6.49967C5.99984 7.17501 8.1685 7.83301 10.7178 7.83301C13.2672 7.83301 15.3332 7.17501 15.3332 6.49967M15.3332 3.16634C15.3332 2.42967 13.2665 1.83301 10.7178 1.83301C8.16917 1.83301 6.1025 2.42967 6.1025 3.16634M15.3332 3.16634C15.3332 3.90301 13.2665 4.49967 10.7178 4.49967C8.16917 4.49967 6.1025 3.90301 6.1025 3.16634M6.1025 3.16634V9.94367" stroke="#828DA1" strokeWidth="1.2" />
+                    </g>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_4841_8272">
+                      <rect width="16" height="16" fill="white" transform="translate(0 0.5)" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                <span>12 700 394</span>
+                <span className={styles.goalListItemIncome}>+ 723 467 сум</span>
+              </div>
+              <div className={styles.goalListItemLine}></div>
+              <div className={styles.goalItemBottom}>
+                <div className={styles.goalItemFeatures}>
+                  <div className={styles.goalItemFeaturesBox}>
+                    Ставка <span>27%</span>
+                  </div>
+                  <div className={styles.goalItemFeaturesBox}>
+                    На 12 мес
+                  </div>
+                </div>
+                <div className={styles.goalItemExtra}>
+                  <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3.75L5.5 8.25L13 0.75" stroke="#828DA1" strokeLinecap="round" />
+                  </svg>
+                  Автоплатеж
+                </div>
+              </div>
+            </li>
+          </Link>
         </ul>
       </div>
 
