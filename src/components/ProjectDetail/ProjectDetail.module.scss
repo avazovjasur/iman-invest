@@ -1,0 +1,289 @@
+@import "../../styles/mixins.scss";
+
+.content {
+  @include resa("padding-top", 47px);
+  background-color: #f5f7fa;
+}
+
+.contentHeader {
+  display: flex;
+  @include resa("gap", 32px);
+  @include resa("padding", 4px);
+  align-items: center;
+}
+
+.contentHeaderButton {
+  @include resa("padding", 16px);
+  @include resa("padding-left", 15px);
+  @include resa("padding-right", 75px);
+  svg {
+    @include resa("width", 8px);
+    @include resa("height", 14px);
+  }
+}
+
+.contentHeaderTitle {
+  font-weight: 600;
+  @include resa("font-size", 16px);
+  @include resa("line-height", 20px);
+  text-align: center;
+  color: #040415;
+}
+
+.contentBody {
+  @include resa("padding", 16px);
+  @include resa("padding-top", 8px);
+  @include resa("padding-bottom", 42px);
+}
+
+.dev {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.devButton {
+  @include resa("padding-right", 10px);
+  @include resa("padding-left", 10px);
+  @include resa("padding-bottom", 4px);
+  @include resa("padding-top", 4px);
+  @include resa("border-radius", 41px);
+  background: #000000;
+  color: #ffffff;
+  font-weight: 600;
+  @include resa("font-size", 12px);
+  @include resa("line-height", 20px);
+  text-align: center;
+}
+
+.devBox {
+  display: flex;
+  align-items: center;
+  @include resa("gap", 12px);
+}
+
+.devBoxIcon {
+  @include resa("width", 50px);
+  @include resa("height", 50px);
+  @include resa("border-radius", 10px);
+  @include resa("padding-right", 4px);
+  @include resa("padding-left", 4px);
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  @include resa("font-size", 16px);
+  @include resa("line-height", 18px);
+  text-align: center;
+  color: #fad618;
+}
+
+.devBoxTexts {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  h3 {
+    font-weight: 600;
+    @include resa("font-size", 14px);
+    @include resa("line-height", 18px);
+    text-align: left;
+  }
+  p {
+    font-weight: 500;
+    @include resa("font-size", 12px);
+    @include resa("line-height", 16px);
+    text-align: left;
+    opacity: 0.5;
+  }
+}
+
+.demo {
+  @include resa("margin-top", 16px);
+  @include resa("margin-bottom", 16px);
+  display: flex;
+  align-items: center;
+  @include resa("gap", 8px);
+}
+
+.demoIcon {
+  svg {
+    @include resa("height", 20px);
+    @include resa("width", 20px);
+  }
+}
+
+.demoText {
+  font-weight: 500;
+  @include resa("font-size", 14px);
+  @include resa("line-height", 18px);
+  text-align: left;
+  color: #828da1;
+}
+
+.itemImg {
+  @include resa("height", 240px);
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    @include resa("border-radius", 20px);
+  }
+  span {
+    position: absolute;
+    @include resa("left", 16px);
+    @include resa("top", 16px);
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    @include resa("border-radius", 41px);
+    @include resa("font-size", 12px);
+    @include resa("line-height", 20px);
+    background-color: #000000;
+    @include resa("padding-right", 10px);
+    @include resa("padding-left", 10px);
+    @include resa("padding-bottom", 4px);
+    @include resa("padding-top", 4px);
+  }
+}
+
+.itemList {
+  @include resa("margin-top", 8px);
+  @include resa("gap", 8px);
+  display: flex;
+}
+
+.itemListItem {
+  @include resa("height", 50px);
+  @include resa("width", 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  @include resa("border-radius", 10px);
+  overflow: hidden;
+  font-weight: 600;
+  @include resa("font-size", 14px);
+  @include resa("line-height", 18px);
+  text-align: center;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.about {
+  background: #ffffff;
+  @include resa("border-radius", 20px);
+  @include resa("margin-top", 16px);
+  @include resa("padding-top", 24px);
+  @include resa("padding-bottom", 8px);
+  @include resa("padding-left", 16px);
+  @include resa("padding-right", 16px);
+}
+
+.aboutList {
+  @include resa("margin-top", 8px);
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutListItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include resa("padding-top", 16px);
+  @include resa("padding-bottom", 16px);
+  border-bottom-color: #0404150d;
+  border-bottom-style: solid;
+  @include resa("border-bottom-width", 1px);
+  &:last-child {
+    border: none;
+  }
+  h3 {
+    font-weight: 500;
+    text-align: left;
+    @include resa("font-size", 14px);
+    @include resa("line-height", 18px);
+    opacity: 0.5;
+    color: #040415;
+  }
+  h4 {
+    font-weight: 500;
+    @include resa("font-size", 14px);
+    @include resa("line-height", 18px);
+    color: #040415;
+  }
+}
+
+.block {
+  @include resa("margin-top", 16px);
+  background: #ffbb3829;
+  @include resa("border-radius", 20px);
+  border-style: solid;
+  border-color: #ffbb3829;
+  @include resa("border-width", 2px);
+  @include resa("padding", 16px);
+  h3 {
+    font-weight: 600;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+    text-align: left;
+    color: #755627;
+  }
+  p {
+    @include resa("margin-top", 5px);
+    color: #755627;
+    font-weight: 500;
+    @include resa("font-size", 12px);
+    @include resa("line-height", 16px);
+    text-align: left;
+    opacity: 0.5;
+  }
+}
+
+.blockButton {
+  display: flex;
+  width: 100%;
+  @include resa("gap", 8px);
+  align-items: center;
+  justify-content: center;
+  @include resa("margin-top", 16px);
+  background-color: #828da1;
+  @include resa("border-radius", 20px);
+  @include resa("padding-top", 17px);
+  @include resa("padding-bottom", 17px);
+  svg {
+    @include resa("height", 20px);
+    @include resa("width", 20px);
+  }
+  h3 {
+    font-weight: 600;
+    @include resa("font-size", 17px);
+    @include resa("line-height", 20px);
+    text-align: center;
+    color: #ffffff;
+  }
+}
+
+.tip {
+  margin: auto;
+  @include resa("margin-top", 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include resa("gap", 8px);
+  svg {
+    @include resa("height", 20px);
+    @include resa("width", 20px);
+  }
+  h3 {
+    font-weight: 500;
+    @include resa("font-size", 14px);
+    @include resa("line-height", 18px);
+    text-align: left;
+    color: #828da1;
+  }
+}
