@@ -15,6 +15,7 @@
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
     "sass": "^1.77.8",
+    "uuid": "^10.0.0",
     "vaul": "^0.9.2"
   }
 }

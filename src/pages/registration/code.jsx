@@ -9,8 +9,8 @@ const Code = () => {
     const handleInputChange = (e, index) => {
         const { value } = e.target;
 
-        if (/^\d+$/.test(value)) { // проверяем, что введены только цифры
-            const digits = value.split('').slice(0, 4); // берем первые 4 цифры
+        if (/^\d+$/.test(value)) {
+            const digits = value.split('').slice(0, 4)
             digits.forEach((digit, i) => {
                 if (index + i < 4) {
                     inputRefs.current[index + i].value = digit;
@@ -22,10 +22,9 @@ const Code = () => {
                 inputRefs.current[nextIndex].focus();
             }
         } else {
-            e.target.value = ''; // если не цифры, очищаем поле
+            e.target.value = '';
         }
 
-        // Проверяем заполненность всех полей после изменения значения
         const allDigitsFilled = inputRefs.current.every((input) => input.value.length === 1);
         if (allDigitsFilled) {
             router.push('/registration/pin');
