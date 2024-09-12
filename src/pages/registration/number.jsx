@@ -15,7 +15,7 @@ const Number = () => {
 //   }
 
   async function handleSubmit() {
-    router.push("/registration/code");
+    router.push("/registration/code")
     // if (!validatePhoneNumber(phoneNumber)) {
     //   alert("Введите корректный номер телефона");
     //   return;
