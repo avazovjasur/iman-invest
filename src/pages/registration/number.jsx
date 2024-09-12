@@ -12,8 +12,7 @@ const Number = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            // Проверяем, уменьшилась ли высота окна (предполагая, что это из-за клавиатуры)
-            if (window.innerHeight < 500) { // порог можно изменить в зависимости от устройства
+            if (window.innerHeight < 500) { 
                 setIsKeyboardOpen(true);
             } else {
                 setIsKeyboardOpen(false);
