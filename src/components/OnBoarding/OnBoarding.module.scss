@@ -15,6 +15,7 @@
 
 .modalWrapper {
   @include resa("padding-top", 30px);
+  @include resa("padding-bottom", 10px);
 }
 
 .modalClose {
