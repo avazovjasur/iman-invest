@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
+import axios from "axios";
+
 import styles from "../../styles/modules/number.module.scss";
 
 const Number = () => {
@@ -26,22 +28,28 @@ const Number = () => {
       phone_number: fullPhoneNumber,
     };
 
-    try {
-      const response = await fetch('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', {
-        method: 'POST',
-        headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Otp-Secret': process.env.NEXT_PUBLIC_OTP_SECRET,
-        },
-        body: JSON.stringify(requestBody),
-      });
+    console.log("Otp-Secret:", process.env.NEXT_PUBLIC_OTP_SECRET);
 
-      if (response.ok) {
+    try {
+      const response = await axios.post(
+        "https://dev.api.investment.imaninvest.com/v1/investor/send-otp",
+        requestBody,
+        {
+          headers: {
+            accept: "application/json",
+            "Content-Type": "application/json",
+            "Otp-Secret": process.env.NEXT_PUBLIC_OTP_SECRET,
+          },
+        }
+      );
+
+      if (response.status === 200) {
         router.push("/registration/code");
       } else {
-        const errorData = await response.json();
-        alert(`Ошибка: ${errorData.error || 'Не удалось отправить данные'}`);
+        console.log("Response data:", response.data);
+        alert(
+          `Ошибка: ${response.data.error || "Не удалось отправить данные"}`
+        );
       }
     } catch (error) {
       console.error("Error:", error);
