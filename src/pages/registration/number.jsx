@@ -9,52 +9,49 @@ const Number = () => {
   const router = useRouter();
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  function validatePhoneNumber(number) {
-    const regex = /^\d{9}$/;
-    return regex.test(number);
-  }
+//   function validatePhoneNumber(number) {
+//     const regex = /^\d{9}$/;
+//     return regex.test(number);
+//   }
 
   async function handleSubmit() {
-    if (!validatePhoneNumber(phoneNumber)) {
-      alert("Введите корректный номер телефона");
-      return;
-    }
+    router.push("/registration/code");
+    // if (!validatePhoneNumber(phoneNumber)) {
+    //   alert("Введите корректный номер телефона");
+    //   return;
+    // }
 
-    const fullPhoneNumber = `998${phoneNumber}`;
+    // const fullPhoneNumber = `998${phoneNumber}`;
 
-    const requestBody = {
-      auth_type: 1,
-      email: `${uuid()}@iman.uz`,
-      phone_number: fullPhoneNumber,
-    };
+    // const requestBody = {
+    //   auth_type: 1,
+    //   email: `${uuid()}@iman.uz`,
+    //   phone_number: fullPhoneNumber,
+    // };
 
-    console.log("Otp-Secret:", process.env.NEXT_PUBLIC_OTP_SECRET);
+    // console.log("Otp-Secret:", process.env.NEXT_PUBLIC_OTP_SECRET);
 
-    try {
-      const response = await axios.post(
-        "https://dev.api.investment.imaninvest.com/v1/investor/send-otp",
-        requestBody,
-        {
-          headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-            "Otp-Secret": process.env.NEXT_PUBLIC_OTP_SECRET,
-          },
-        }
-      );
+    // try {
+    //   const response = await axios.post(
+    //     "https://dev.api.investment.imaninvest.com/v1/investor/send-otp",
+    //     requestBody,
+    //     {
+    //       headers: {
+    //         accept: "application/json",
+    //         "Content-Type": "application/json",
+    //         "Otp-Secret": process.env.NEXT_PUBLIC_OTP_SECRET,
+    //       },
+    //     }
+    //   );
 
-      if (response.status === 200) {
-        router.push("/registration/code");
-      } else {
-        console.log("Response data:", response.data);
-        alert(
-          `Ошибка: ${response.data.error || "Не удалось отправить данные"}`
-        );
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Произошла ошибка, попробуйте позже.");
-    }
+    //   if (response.status === 200) {
+    //     router.push("/registration/code");
+    //   } else {
+    //     console.log("Response data:", response.data);
+    //   }
+    // } catch (error) {
+    //   console.error("Error:", error);
+    // }
   }
 
   return (
