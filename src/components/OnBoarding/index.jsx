@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
-import styles from './OnBoarding.module.scss'
+import React, { useState, useEffect } from 'react';
+import styles from './OnBoarding.module.scss';
 
 const OnBoarding = () => {
   const [step, setStep] = useState(1);
+  const [isShown, setIsShown] = useState(false);
+
+  useEffect(() => {
+    const hasSeenOnBoarding = localStorage.getItem('hasSeenOnBoarding');
+    if (!hasSeenOnBoarding) {
+      setIsShown(true);
+    }
+  }, []);
 
   const handleNextStep = () => {
     setStep(step + 1);
   };
 
   const handleSkip = () => {
-    setStep(0);
+    localStorage.setItem('hasSeenOnBoarding', 'true');
+    setIsShown(false);
   };
 
-  return <>
-    {step !== 0 && <div className={styles.modal}>
+  if (!isShown) {
+    return null;
+  }
+
+  return (
+    <div className={styles.modal}>
       <div className={styles.modalWrapper}>
         <div className={styles.modalClose}>
           <button className={`${styles.modalCloseBtn} ${step === 3 ? styles.active : ''}`} onClick={handleSkip}>Пропустить</button>
@@ -70,8 +83,8 @@ const OnBoarding = () => {
           {step === 3 && <button onClick={handleSkip}>Начать</button>}
         </div>
       </div>
-    </div >}
-  </>
+    </div>
+  );
 }
 
-export default OnBoarding
+export default OnBoarding;
