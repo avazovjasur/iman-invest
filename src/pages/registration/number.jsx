@@ -12,7 +12,7 @@ const Number = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerHeight < 500) { 
+            if (window.innerHeight < 500) {
                 setIsKeyboardOpen(true);
             } else {
                 setIsKeyboardOpen(false);
@@ -55,6 +55,8 @@ const Number = () => {
                     value={phoneNumber}
                     onChange={handleInputChange}
                     placeholder="Номер телефона"
+                    type="tel"
+                    inputMode="numeric"
                     className={!isValid ? styles.errorInput : ''}
                 />
             </div>
