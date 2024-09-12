@@ -4,17 +4,18 @@
 
 .modal {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: #ffffff;
+  z-index: 99999;
 }
 
 .modalWrapper {
-  @include resa("padding-top", 47px);
+  @include resa("padding-top", 30px);
 }
 
 .modalClose {

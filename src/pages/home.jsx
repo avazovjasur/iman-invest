@@ -12,7 +12,7 @@ const Home = () => {
     {activeIndex === 0 && <HomeInner />}
     {activeIndex === 1 && <ProjectsInner />}
     <NavBar activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
-    {/* <OnBoarding /> */}
+    <OnBoarding />
   </>
 }
 
