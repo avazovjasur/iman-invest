@@ -29,6 +29,17 @@ button {
   cursor: pointer;
 }
 
+button:focus,
+button:active {
+  outline: none;
+  box-shadow: none;
+  background-color: inherit;
+}
+
 a {
   text-decoration: none;
+}
+
+html::-webkit-scrollbar {
+  width: 0;
 }

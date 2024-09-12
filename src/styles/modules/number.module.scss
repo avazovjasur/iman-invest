@@ -1,4 +1,4 @@
-@import '../mixins.scss';
+@import "../mixins.scss";
 
 .container {
     display: flex;
@@ -8,25 +8,29 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    @include resa('padding', 30px);
-    @include resa('padding-top', 44px);
-    @include resa('padding-bottom', 44px);
+    @include resa("padding", 30px);
+    @include resa("padding-top", 44px);
+    @include resa("padding-bottom", 34px);
     position: relative;
+
+    &.keyboardOpen {
+        @include resa("padding-bottom", 5px);
+    }
 }
 
 .title {
     font-weight: 600;
-    @include resa('font-size', 26px);
-    @include resa('line-height', 32px);
-    @include resa('margin-bottom', 10px);
+    @include resa("font-size", 26px);
+    @include resa("line-height", 32px);
+    @include resa("margin-bottom", 10px);
     color: black;
 }
 
 .subtitle {
     font-weight: 500;
-    @include resa('font-size', 14px);
-    @include resa('line-height', 22px);
-    @include resa('margin-bottom', 30px);
+    @include resa("font-size", 14px);
+    @include resa("line-height", 22px);
+    @include resa("margin-bottom", 20px);
     color: black;
 }
 
@@ -35,53 +39,53 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    @include resa('height', 64px);
+    @include resa("height", 64px);
 
     p {
-        @include resa('width', 68px);
+        @include resa("width", 68px);
         height: 100%;
-        background-color: #F4F4F5;
+        background-color: #f4f4f5;
         display: flex;
         align-items: center;
         justify-content: center;
-        @include resa('border-radius', 18px);
+        @include resa("border-radius", 18px);
         font-weight: 500;
-        @include resa('font-size', 16px);
+        @include resa("font-size", 16px);
     }
 
     input {
-        @include resa('width', 240px);
+        @include resa("width", 240px);
         height: 100%;
-        background-color: #F4F4F5;
-        @include resa('border-radius', 18px);
+        background-color: #f4f4f5;
+        @include resa("border-radius", 18px);
         font-weight: 500;
-        @include resa('font-size', 16px);
+        @include resa("font-size", 16px);
         border: none;
         outline: none;
-        @include resa('padding', 15px);
+        @include resa("padding", 15px);
     }
 }
 
 .bottom {
     position: absolute;
     left: 50%;
-    @include resa('bottom', 44px);
+    @include resa("bottom", 44px);
     transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    @include resa('min-width', 315px);
-    @include resa('gap', 10px);
+    @include resa("min-width", 315px);
+    @include resa("gap", 10px);
 
     .text {
         font-weight: 500;
         color: #00000080;
-        @include resa('font-size', 11px);
-        @include resa('line-height', 15px);
+        @include resa("font-size", 11px);
+        @include resa("line-height", 15px);
 
         span {
-            color: #3680FF;
+            color: #3680ff;
         }
     }
 
@@ -90,11 +94,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #3680FF;
+        background-color: #3680ff;
         color: white;
-        @include resa('height', 54px);
-        @include resa('border-radius', 20px);
+        @include resa("height", 54px);
+        @include resa("border-radius", 20px);
         font-weight: 600;
-        @include resa('font-size', 17px);
+        @include resa("font-size", 17px);
     }
+}
+
+.error {
+    @include resa("font-size", 11px);
+    @include resa("line-height", 15px);
+    @include resa("margin-top", 4px);
+    @include resa("padding-left", 4px);
+    color: #3680ff;
 }

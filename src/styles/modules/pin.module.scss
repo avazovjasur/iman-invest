@@ -12,6 +12,7 @@
     @include resa('padding-top', 81px);
     @include resa('padding-bottom', 40px);
     position: relative;
+    overflow-y: auto; // Добавляем прокрутку
 }
 
 .title {
@@ -42,13 +43,13 @@ width: 100%;
 .pinIndicator {
     @include resa('width', 12px);
     @include resa('height', 12px);
-    border: solid #3680FF;
+    border: solid black;
     @include resa('border-width', 2px);
     border-radius: 50%;
     @include resa('margin-bottom', 81px);
 
     &.filled {
-        background-color: #3680FF;
+        background-color: black;
     }
 }
 

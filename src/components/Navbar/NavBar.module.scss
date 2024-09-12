@@ -21,10 +21,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(100% / 4);
+  width: calc(100% / 3);
   @include resa("gap", 4px);
   cursor: pointer;
   color: #040415;
+  user-select: none;
   &.active {
     color: #3680ff;
   }

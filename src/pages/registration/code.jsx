@@ -9,26 +9,20 @@ const Code = () => {
     const handleInputChange = (e, index) => {
         const { value } = e.target;
 
-        if (/^\d+$/.test(value)) { // проверяем, что введены только цифры
-            const digits = value.split('').slice(0, 4); // берем первые 4 цифры
-            digits.forEach((digit, i) => {
-                if (index + i < 4) {
-                    inputRefs.current[index + i].value = digit;
-                }
-            });
+        if (/^\d$/.test(value)) {
+            inputRefs.current[index].value = value;
 
-            const nextIndex = index + digits.length;
-            if (nextIndex < 4) {
-                inputRefs.current[nextIndex].focus();
+            const nextEmptyIndex = inputRefs.current.findIndex(input => input.value === '');
+            if (nextEmptyIndex !== -1) {
+                inputRefs.current[nextEmptyIndex].focus();
+            } else {
+                const allDigitsFilled = inputRefs.current.every((input) => input.value.length === 1);
+                if (allDigitsFilled) {
+                    router.push('/registration/pin');
+                }
             }
         } else {
-            e.target.value = ''; // если не цифры, очищаем поле
-        }
-
-        // Проверяем заполненность всех полей после изменения значения
-        const allDigitsFilled = inputRefs.current.every((input) => input.value.length === 1);
-        if (allDigitsFilled) {
-            router.push('/registration/pin');
+            e.target.value = '';
         }
     };
 
@@ -51,7 +45,7 @@ const Code = () => {
             <div className={styles.header}>
                 <button onClick={back} className={styles.backButton}>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 1L4 8L11 15" stroke="#040415" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M11 1L4 8L11 15" stroke="#040415" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 </button>
                 <h1 className={styles.title}>Введите код</h1>
@@ -65,7 +59,7 @@ const Code = () => {
                         key={index}
                         ref={(el) => (inputRefs.current[index] = el)}
                         className={styles.codeInput}
-                        type="number"
+                        type="text"
                         inputMode="numeric"
                         maxLength="1"
                         onChange={(e) => handleInputChange(e, index)}
