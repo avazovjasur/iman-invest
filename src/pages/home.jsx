@@ -7,7 +7,16 @@ import OnBoarding from "@/components/OnBoarding";
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isOnBoardingVisible, setIsOnBoardingVisible] = useState(true);
+  const [isOnBoardingVisible, setIsOnBoardingVisible] = useState(false);
+
+  useEffect(() => {
+    const hasSeenOnBoarding = localStorage.getItem('hasSeenOnBoarding');
+
+    if (!hasSeenOnBoarding) {
+      setIsOnBoardingVisible(true);
+      localStorage.setItem('hasSeenOnBoarding', 'true');
+    }
+  }, []);
 
   useEffect(() => {
     if (isOnBoardingVisible) {

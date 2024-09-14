@@ -10,7 +10,6 @@
   overflow: hidden;
   overflow-y: scroll;
   @include resa("padding", 20px);
-  @include resa("padding-top", 47px);
   min-height: 100vh;
   @include resa("padding-bottom", 44px);
   position: relative;

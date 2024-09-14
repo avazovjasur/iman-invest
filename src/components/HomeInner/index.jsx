@@ -67,7 +67,7 @@ const HomeInner = () => {
             потому что не добавлены цели и не выбран тариф заработка</p>
         </div>
       </div> */}
-      <div className={styles.goalHeader}>
+      {/* <div className={styles.goalHeader}>
         <ul className={styles.headerList}>
           <li className={styles.headerListItem}>
             <div className={styles.headerListItemInner}>
@@ -110,7 +110,7 @@ const HomeInner = () => {
             </div>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div className={styles.goalContent}>
         <div className={styles.goalTop}>
           <h3 className={styles.goalTopTitle}>Ваши цели</h3>

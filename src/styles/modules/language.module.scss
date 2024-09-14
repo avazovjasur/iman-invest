@@ -9,8 +9,8 @@
     height: 100vh;
     overflow: hidden;
     @include resa("padding", 30px);
-    @include resa("padding-top", 78px);
-    @include resa("padding-bottom", 78px);
+    @include resa("padding-top", 32px);
+    @include resa("padding-bottom", 32px);
     position: relative;
 }
 
@@ -49,9 +49,9 @@
     @include resa("border-radius", 18px);
     background-color: #3881ff0d;
     border: solid transparent;
-    @include resa('border-width', 2px);
+    @include resa("border-width", 2px);
     transition: border 100ms;
-    
+
     &.active {
         border: solid #3680ff;
         @include resa("border-width", 2px);
@@ -87,7 +87,7 @@
     @include resa("height", 54px);
     position: absolute;
     left: 50%;
-    @include resa("bottom", 44px);
+    @include resa("bottom", 24px);
     transform: translateX(-50%);
     @include resa("border-radius", 20px);
     font-weight: 600;

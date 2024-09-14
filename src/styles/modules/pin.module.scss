@@ -1,4 +1,4 @@
-@import '../mixins.scss';
+@import "../mixins.scss";
 
 .container {
     display: flex;
@@ -8,27 +8,27 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    @include resa('padding', 30px);
-    @include resa('padding-top', 81px);
-    @include resa('padding-bottom', 40px);
+    @include resa("padding", 30px);
+    @include resa("padding-top", 30px);
+    @include resa("padding-bottom", 24px);
     position: relative;
-    overflow-y: auto; // Добавляем прокрутку
+    overflow-y: auto;
 }
 
 .title {
     width: 100%;
     font-weight: 600;
-    @include resa('font-size', 26px);
-    @include resa('margin-bottom', 10px);
+    @include resa("font-size", 26px);
+    @include resa("margin-bottom", 10px);
     color: black;
 }
 
 .subtitle {
-width: 100%;
+    width: 100%;
     font-weight: 500;
-    @include resa('font-size', 14px);
-    @include resa('line-height', 22px);
-    @include resa('margin-bottom', 81px);
+    @include resa("font-size", 14px);
+    @include resa("line-height", 22px);
+    @include resa("margin-bottom", 50px);
     color: black;
 }
 
@@ -36,17 +36,17 @@ width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    @include resa('gap', 15px);
+    @include resa("gap", 15px);
     width: 100%;
 }
 
 .pinIndicator {
-    @include resa('width', 12px);
-    @include resa('height', 12px);
+    @include resa("width", 12px);
+    @include resa("height", 12px);
     border: solid black;
-    @include resa('border-width', 2px);
+    @include resa("border-width", 2px);
     border-radius: 50%;
-    @include resa('margin-bottom', 81px);
+    @include resa("margin-bottom", 50px);
 
     &.filled {
         background-color: black;
@@ -54,22 +54,22 @@ width: 100%;
 }
 
 .numberPad {
-    @include resa('width', 288px);
+    @include resa("width", 288px);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    @include resa('gap', 24px);
+    @include resa("gap", 24px);
     position: relative;
-    
+
     .numberButton {
         font-weight: 600;
-        @include resa('width', 80px);
-        @include resa('height', 80px);
+        @include resa("width", 80px);
+        @include resa("height", 80px);
         border-radius: 50%;
         background-color: hsla(240, 68%, 5%, 0.05);
-        @include resa('font-size', 28px);
-        @include resa('line-height', 34px);
+        @include resa("font-size", 28px);
+        @include resa("line-height", 34px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -77,12 +77,12 @@ width: 100%;
 
     .deleteButton {
         font-weight: 600;
-        @include resa('width', 80px);
-        @include resa('height', 80px);
+        @include resa("width", 80px);
+        @include resa("height", 80px);
         border-radius: 50%;
         background-color: hsla(240, 68%, 5%, 0.05);
-        @include resa('font-size', 28px);
-        @include resa('line-height', 34px);
+        @include resa("font-size", 28px);
+        @include resa("line-height", 34px);
         display: flex;
         align-items: center;
         justify-content: center;

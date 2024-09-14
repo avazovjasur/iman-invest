@@ -9,7 +9,7 @@ const ProjectsInner = () => {
       <h2 className={styles.contentTitle}>
         Инвестиции в проекты
       </h2>
-      <div className={styles.goalHeader}>
+      {/* <div className={styles.goalHeader}>
         <ul className={styles.headerList}>
           <li className={styles.headerListItem}>
             <div className={styles.headerListItemInner}>
@@ -52,7 +52,7 @@ const ProjectsInner = () => {
             </div>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div className={styles.contentWrapper}>
         <ul className={styles.contentList}>
           <Link href="/projects/1">

@@ -11,7 +11,7 @@
   @include resa("border-bottom-left-radius", 24px);
   @include resa("border-bottom-right-radius", 24px);
   @include resa("padding", 4px);
-  @include resa("padding-top", 46px);
+  @include resa("padding-top", 24px);
   @include resa("padding-bottom", 21px);
 }
 
@@ -102,7 +102,7 @@
 
 .content {
   @include resa("padding", 16px);
-  @include resa("padding-bottom", 58px);
+  @include resa("padding-bottom", 24px);
 }
 
 .contentButtons {

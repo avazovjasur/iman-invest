@@ -3,7 +3,7 @@
 .nav {
   @include resa("padding", 24px);
   @include resa("padding-top", 14px);
-  @include resa("padding-bottom", 34px);
+  @include resa("padding-bottom", 14px);
   position: fixed;
   left: 0;
   bottom: 0;

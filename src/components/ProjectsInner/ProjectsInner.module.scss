@@ -1,8 +1,8 @@
 @import "../../styles/mixins.scss";
 
 .content {
-  @include resa("padding-top", 71px);
-  @include resa("padding-bottom", 105px);
+  @include resa("padding-top", 24px);
+  @include resa("padding-bottom", 85px);
   background: #f5f7fa;
 }
 

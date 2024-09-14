@@ -10,7 +10,7 @@ const OnBoarding = ({ onClose }) => {
 
   const handleSkip = () => {
     setStep(0);
-    onClose();  // Закрываем OnBoarding
+    onClose();
   };
 
   return (

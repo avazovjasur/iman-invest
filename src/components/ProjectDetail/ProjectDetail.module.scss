@@ -1,7 +1,7 @@
 @import "../../styles/mixins.scss";
 
 .content {
-  @include resa("padding-top", 47px);
+  @include resa("padding-top", 16px);
   background-color: #f5f7fa;
 }
 
@@ -33,7 +33,7 @@
 .contentBody {
   @include resa("padding", 16px);
   @include resa("padding-top", 8px);
-  @include resa("padding-bottom", 42px);
+  @include resa("padding-bottom", 28px);
 }
 
 .dev {
