@@ -38,15 +38,11 @@ a {
   text-decoration: none;
 }
 
-body::-webkit-scrollbar {
-  display: none;
+*::-webkit-scrollbar {
+  width: 0;
 }
 
-body {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
 
 body {
-  background-color: white;
+  background-color: #f5f7fa;
 }
