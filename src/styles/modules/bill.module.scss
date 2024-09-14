@@ -165,6 +165,7 @@
 }
 
 .contentFormListItem {
+  cursor: pointer;
   font-weight: 500;
   @include resa("font-size", 16px);
   @include resa("line-height", 20px);
