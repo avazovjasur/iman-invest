@@ -134,7 +134,7 @@
 .modalButton {
   display: flex;
   justify-content: center;
-  // @include resa("margin-top", 40px);
+  @include resa("margin-top", 20px);
   margin-top: auto;
   button {
     width: 100%;
