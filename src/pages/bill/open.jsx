@@ -4,6 +4,12 @@ import { useRef, useState } from 'react';
 import Link from 'next/link';
 
 const lang = () => {
+  const [isChecked, setIsCapActive] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsCapActive(!isChecked);
+  };
+
   const monthRef = useRef(null);
   const yearRef = useRef(null);
   const [cvv, setCvv] = useState('');
@@ -38,6 +44,52 @@ const lang = () => {
     }
   };
 
+  const [amount, setAmount] = useState('');
+  const [selectedId, setSelectedId] = useState(3);
+  const [percentage, setPercentage] = useState(27);
+  const [income, setIncome] = useState('0');
+
+  const formatNumber = (value) => {
+    const cleanedValue = value.replace(/\D/g, '');
+    if (cleanedValue === '') {
+      return '';
+    }
+    const formattedValue = new Intl.NumberFormat('ru-RU').format(cleanedValue);
+    return `${formattedValue} сум`;
+  };
+
+  const handleSumInputChange = (e) => {
+    let cleanedValue = e.target.value.replace(/\D/g, '');
+
+    // Ограничиваем значение максимумом
+    if (parseInt(cleanedValue, 10) > 99999999999) {
+      cleanedValue = '99999999999';
+    }
+
+    if (cleanedValue === '') {
+      setAmount('');
+      setIncome('');
+    } else if (parseInt(cleanedValue, 10) >= 500000) {
+      setAmount(cleanedValue);
+      calculateIncome(cleanedValue, percentage);
+    } else {
+      setAmount('500000');
+      calculateIncome('500000', percentage);
+    }
+  };
+
+
+  const handleTermChange = (id, percentage) => {
+    setSelectedId(id);
+    setPercentage(percentage);
+    calculateIncome(amount, percentage);
+  };
+
+  const calculateIncome = (amount, percentage) => {
+    const income = (amount * percentage) / 100;
+    setIncome(income.toString());
+  };
+
   return <div className={styles.container}>
     <div className={styles.billsHeader}>
       <Link href="/home">
@@ -55,8 +107,8 @@ const lang = () => {
           <h3 className={styles.contentTitle}>Выберите цель</h3>
           <div className={styles.contentFormBox}>
             <div className={styles.contentFormInput} >
-              <span>Цель</span>
               <input id='target' type="text" placeholder='Например: Машина' />
+              <span>Цель</span>
             </div>
             <div className={styles.contentFormItem}>
               🏎
@@ -66,20 +118,19 @@ const lang = () => {
         <label htmlFor="price">
           <h3 className={styles.contentTitle}>Начать с суммы</h3>
           <div className={styles.contentFormBox}>
-            <div className={styles.contentFormInput} >
-              <span>Сумма</span>
+            <div className={styles.contentFormInput}>
               <input
                 id='price'
                 type="text"
-                placeholder='1 000 000'
+                placeholder='1 000 000 сум'
                 inputMode="numeric"
+                value={formatNumber(amount)}
+                onChange={handleSumInputChange}
+                onBlur={(e) => e.target.value = formatNumber(e.target.value)}
                 pattern="[0-9]*"
-                onKeyPress={(e) => {
-                  if (!/[0-9]/.test(e.key)) {
-                    e.preventDefault();
-                  }
-                }}
-              />            </div>
+              />
+              <span>Сумма</span>
+            </div>
           </div>
           <span className={styles.contentFormNotice}>Минимум 500 000 сум</span>
         </label>
@@ -87,11 +138,29 @@ const lang = () => {
           <h3 className={styles.contentTitle}>Выберите срок</h3>
           <div className={styles.contentFormBlock}>
             <div className={styles.contentFormList}>
-              <div className={styles.contentFormListItem}>12 мес</div>
-              <div className={styles.contentFormListItem}>18 мес</div>
-              <div className={`${styles.contentFormListItem} ${styles.active}`}>24 мес</div>
+              <div
+                id="term-1"
+                className={`${styles.contentFormListItem} ${selectedId === 1 ? styles.active : ''}`}
+                onClick={() => handleTermChange(1, 15)}
+              >
+                12 мес
+              </div>
+              <div
+                id="term-2"
+                className={`${styles.contentFormListItem} ${selectedId === 2 ? styles.active : ''}`}
+                onClick={() => handleTermChange(2, 20)}
+              >
+                18 мес
+              </div>
+              <div
+                id="term-3"
+                className={`${styles.contentFormListItem} ${selectedId === 3 ? styles.active : ''}`}
+                onClick={() => handleTermChange(3, 27)}
+              >
+                24 мес
+              </div>
             </div>
-            <div className={styles.contentFormPersentage}>~0%</div>
+            <div className={styles.contentFormPersentage}>~{percentage}%</div>
           </div>
         </label>
         <div>
@@ -191,8 +260,10 @@ const lang = () => {
           <div className={styles.totalList}>
             <div className={styles.totalListItem}>
               <div className={styles.totalListItemTop}>
-                <h3>0 сум</h3>
-                <h3>~0%</h3>
+                <h3 className={`${income > 0 ? styles.active : ''}`}>
+                  {income > 0 ? `+ ${formatNumber(income)}` : formatNumber(income)}
+                </h3>
+                <h3>~{percentage}%</h3>
               </div>
               <h3 className={styles.totalListItemTitle}>
                 Ваш доход
@@ -202,11 +273,20 @@ const lang = () => {
               <div className={styles.totalOther}>
                 <div className={styles.totalOtherTexts}>
                   <h3>Капитализация</h3>
-                  <p>Прибыль увеличивается, потому что находятся в обороте</p>
+                  <p>Прибыль увеличивается, потому что находится в обороте</p>
                 </div>
                 <div>
-                  <label className={styles.totalOtherCheckbox} htmlFor="cap">
-                    <input type="checkbox" name="cap" id="cap" />
+                  <label
+                    className={`${styles.totalOtherCheckbox} ${isChecked ? styles.active : ''}`}
+                    htmlFor="cap"
+                  >
+                    <input
+                      type="checkbox"
+                      name="cap"
+                      id="cap"
+                      checked={isChecked}
+                      onChange={handleCheckboxChange}
+                    />
                   </label>
                 </div>
               </div>

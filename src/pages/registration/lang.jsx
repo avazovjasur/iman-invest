@@ -72,7 +72,7 @@ const lang = () => {
 </defs>
 </svg>
                 </div>
-                <p className={styles.text}>Uzbekcha</p>
+                <p className={styles.text}>O'zbekcha</p>
             </button>
                 <button
                     className={`${styles.lang} ${activeLang === 'en' ? styles.active : ''}`}

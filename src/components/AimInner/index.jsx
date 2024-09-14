@@ -1,10 +1,22 @@
 import styles from './AimInner.module.scss'
 import Link from 'next/link';
+import { useState } from 'react';
 import dynamic from "next/dynamic";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 
 const AimInner = () => {
+  const [isCapActive, setIsCapActive] = useState(false);
+  const [isAutoActive, setIsAutoActive] = useState(false);
+
+  const handleCapCheckboxChange = () => {
+    setIsCapActive(!isCapActive);
+  };
+
+  const handleAutoCheckboxChange = () => {
+    setIsAutoActive(!isAutoActive);
+  };
+
   const option = {
     chart: {
       id: 'apexchart-example',
@@ -125,8 +137,17 @@ const AimInner = () => {
             <p>Деньги списываются автоматически с вашей карты</p>
           </div>
           <div>
-            <label className={`${styles.contentWrapperAutoCheckbox} ${styles.active}`} htmlFor="cap">
-              <input type="checkbox" name="cap" id="cap" />
+            <label
+              className={`${styles.contentWrapperAutoCheckbox} ${isAutoActive ? styles.active : ''}`}
+              htmlFor="auto"
+            >
+              <input
+                type="checkbox"
+                name="auto"
+                id="auto"
+                checked={isAutoActive}
+                onChange={handleAutoCheckboxChange}
+              />
             </label>
           </div>
         </div>
@@ -159,8 +180,17 @@ const AimInner = () => {
             <p>Прибыль увеличивается, потому что находится в обороте</p>
           </div>
           <div>
-            <label className={`${styles.contentWrapperAutoCheckbox} ${styles.active}`} htmlFor="cap">
-              <input type="checkbox" name="cap" id="cap" />
+            <label
+              className={`${styles.contentWrapperAutoCheckbox} ${isCapActive ? styles.active : ''}`}
+              htmlFor="cap"
+            >
+              <input
+                type="checkbox"
+                name="cap"
+                id="cap"
+                checked={isCapActive}
+                onChange={handleCapCheckboxChange}
+              />
             </label>
           </div>
         </div>
