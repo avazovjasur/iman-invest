@@ -68,8 +68,18 @@ const lang = () => {
           <div className={styles.contentFormBox}>
             <div className={styles.contentFormInput} >
               <span>Сумма</span>
-              <input id='price' type="text" placeholder='1 000 000' />
-            </div>
+              <input
+                id='price'
+                type="text"
+                placeholder='1 000 000'
+                inputMode="numeric"
+                pattern="[0-9]*"
+                onKeyPress={(e) => {
+                  if (!/[0-9]/.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
+              />            </div>
           </div>
           <span className={styles.contentFormNotice}>Минимум 500 000 сум</span>
         </label>
