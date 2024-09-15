@@ -191,6 +191,10 @@
   opacity: 0.4;
   @include resa("font-size", 22px);
   @include resa("line-height", 26px);
+  &.active {
+    color: #040415;
+    opacity: 1;
+  }
 }
 
 .billList {
@@ -348,6 +352,10 @@
     &.active {
       color: #01cab0;
       @include resa("letter-spacing", -0.3px);
+    }
+    &.percentage {
+      color: #040415;
+      opacity: 1;
     }
   }
 }

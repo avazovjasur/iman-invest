@@ -160,7 +160,7 @@ const lang = () => {
                 24 мес
               </div>
             </div>
-            <div className={styles.contentFormPersentage}>~{percentage}%</div>
+            <div className={`${styles.contentFormPersentage}  ${percentage > 0 ? styles.active : ''}`}>~{percentage}%</div>
           </div>
         </label>
         <div>
@@ -263,7 +263,7 @@ const lang = () => {
                 <h3 className={`${income > 0 ? styles.active : ''}`}>
                   {income > 0 ? `+ ${formatNumber(income)}` : formatNumber(income)}
                 </h3>
-                <h3>~{percentage}%</h3>
+                <h3 className={`${percentage > 0 ? styles.percentage : ''}`}>~{percentage}%</h3>
               </div>
               <h3 className={styles.totalListItemTitle}>
                 Ваш доход
