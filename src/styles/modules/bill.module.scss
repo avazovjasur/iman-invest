@@ -81,31 +81,24 @@
   background-color: #f4f4f5;
   span {
     font-weight: 500;
-    @include resa("font-size", 12px);
-    @include resa("line-height", 16px);
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
     text-align: left;
     color: #040415;
     opacity: 0.5;
-    position: relative;
+    position: absolute;
     transition: 0.3s all;
-    background-color: #f4f4f5;
-    @include resa("min-width", 60px);
-    width: fit-content;
-    @include resa("left", -8px);
-    @include resa("bottom", -4px);
-    @include resa("padding-left", 8px);
-    @include resa("padding-right", 8px);
-    @include resa("padding-top", 4px);
-    @include resa("padding-bottom", 4px);
-    @include resa("border-radius", 4px);
+    top: 50%;
+    transform: translateY(-50%);
   }
   input {
     background-color: transparent;
     outline: none;
-    position: relative;
+    position: absolute;
     border: none;
     transition: 0.3s all;
     font-weight: 500;
+    @include resa("bottom", 12px);
     @include resa("font-size", 16px);
     @include resa("line-height", 20px);
     text-align: left;
@@ -113,17 +106,21 @@
       font-weight: 500;
       @include resa("font-size", 16px);
       text-align: left;
-      opacity: 0.2;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-    &:focus {
-      transform: translateY(-2vw);
+
+    &:focus::placeholder {
+      opacity: 0.2;
     }
   }
 
   input:focus + span,
   input:not(:placeholder-shown) + span {
-    transform: translateY(-5vw);
-    opacity: 1;
+    @include resa("top", 12px);
+    transform: translateY(0);
+    @include resa("font-size", 12px);
+    @include resa("line-height", 16px);
   }
 
   &:not(:has(+ .contentFormItem)) {

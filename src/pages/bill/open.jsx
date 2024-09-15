@@ -106,10 +106,10 @@ const lang = () => {
         <label htmlFor="target">
           <h3 className={styles.contentTitle}>Выберите цель</h3>
           <div className={styles.contentFormBox}>
-            <div className={styles.contentFormInput} >
+            <label htmlFor='target' className={styles.contentFormInput} >
               <input id='target' type="text" placeholder='Например: Машина' />
               <span>Цель</span>
-            </div>
+            </label>
             <div className={styles.contentFormItem}>
               🏎
             </div>
@@ -118,7 +118,7 @@ const lang = () => {
         <label htmlFor="price">
           <h3 className={styles.contentTitle}>Начать с суммы</h3>
           <div className={styles.contentFormBox}>
-            <div className={styles.contentFormInput}>
+            <label htmlFor='price' className={styles.contentFormInput}>
               <input
                 id='price'
                 type="text"
@@ -130,7 +130,7 @@ const lang = () => {
                 pattern="[0-9]*"
               />
               <span>Сумма</span>
-            </div>
+            </label>
           </div>
           <span className={styles.contentFormNotice}>Минимум 500 000 сум</span>
         </label>
