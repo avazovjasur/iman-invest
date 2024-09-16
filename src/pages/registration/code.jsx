@@ -1,10 +1,17 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import styles from '../../styles/modules/code.module.scss';
 import { useRouter } from 'next/router';
 
 const Code = () => {
     const router = useRouter();
     const inputRefs = useRef([]);
+
+    useEffect(() => {
+        // Автоматически фокусируемся на первом поле ввода
+        if (inputRefs.current[0]) {
+            inputRefs.current[0].focus();
+        }
+    }, []);
 
     const handleInputChange = (e, index) => {
         const { value } = e.target;

@@ -35,12 +35,12 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div className='wrapper'>
       {activeIndex === 0 && <HomeInner />}
       {activeIndex === 1 && <ProjectsInner />}
       <NavBar activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       {isOnBoardingVisible && <OnBoarding onClose={handleOnBoardingClose} />}
-    </>
+    </div>
   );
 };
 
