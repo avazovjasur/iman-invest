@@ -66,22 +66,25 @@ const Number = () => {
         }
 
         console.log('data', data);
+        console.log('Sending OTP request...');
+        console.log('Sending OTP request...123');
+        const response = await axios.post('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', data, {
+            headers: {
+                'accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Otp-Secret': 'SU1BTl9JTlZFU1Q6OGRhYTY3ZGMtYjdlZi00NjAwLThmOWMtNzRhODAxZTQ5NDcy',
+                'Origin': 'https://iman-invest.vercel.app'
+            },
+            withCredentials: true
+        });
+        console.log('OTP sent successfully:', response.data);
 
-        try {
-            console.log('Sending OTP request...');
-            const response = await axios.post('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', data, {
-                headers: {
-                    'accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Otp-Secret': 'SU1BTl9JTlZFU1Q6OGRhYTY3ZGMtYjdlZi00NjAwLThmOWMtNzRhODAxZTQ5NDcy'
-                }
-            });
-            console.log('OTP sent successfully:', response.data);
-            router.push('/registration/code');
-        } catch (error) {
-            console.error('Error sending OTP:', error);
-            setIsValid(false);
-        }
+        // try {
+        //     router.push('/registration/code');
+        // } catch (error) {
+        //     console.error('Error sending OTP:', error);
+        //     setIsValid(false);
+        // }
     }
 
     return (
