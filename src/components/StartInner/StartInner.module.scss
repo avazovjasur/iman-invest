@@ -2,14 +2,15 @@
 
 .wrapper {
   min-height: 100vh;
+  @include resa("padding-top", 24px);
   @include resa("padding-bottom", 90px);
+  background: #f5f7fa;
 }
 
 .start {
   &Title {
     @include resa("padding-left", 16px);
     @include resa("padding-right", 16px);
-    @include resa("padding-top", 20px);
     font-weight: 600;
     @include resa("font-size", 20px);
     @include resa("line-height", 24px);
@@ -358,6 +359,80 @@
       @include resa("line-height", 18px);
       text-align: left;
       color: #828da1;
+    }
+    &Box {
+      position: relative;
+    }
+    &Content {
+      @include resa("left", -16px);
+      @include resa("bottom", 36px);
+      width: 100%;
+      z-index: 2;
+      @include resa("border-radius", 20px);
+      @include resa("height", 112px);
+      @include resa("width", 343px);
+      position: absolute;
+      background-color: #ffffff;
+      &Inner {
+        display: flex;
+        align-items: flex-start;
+        @include resa("gap", 12px);
+        @include resa("border-radius", 20px);
+        @include resa("padding", 16px);
+        width: 100%;
+        height: 100%;
+        background: #3680ff1f;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          border-top: 12px solid #3680ff1f;
+          left: 97px;
+          bottom: -12px;
+        }
+      }
+      &Icon {
+        @include resa("height", 20px);
+        @include resa("width", 20px);
+      }
+      &Texts {
+        display: flex;
+        flex-direction: column;
+        @include resa("gap", 8px);
+        h3 {
+          font-weight: 600;
+          @include resa("font-size", 14px);
+          @include resa("line-height", 18px);
+          text-align: left;
+          color: #03034b;
+        }
+        p {
+          @include resa("font-size", 14px);
+          @include resa("line-height", 18px);
+          font-weight: 500;
+          text-align: left;
+          color: #163c7e;
+          opacity: 0.5;
+        }
+      }
+      &Exit {
+        @include resa("height", 24px);
+        @include resa("min-width", 24px);
+        @include resa("width", 24px);
+        background: #3680ff1f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include resa("border-radius", 8px);
+        svg {
+          @include resa("height", 12px);
+          @include resa("width", 12px);
+        }
+      }
     }
   }
 }

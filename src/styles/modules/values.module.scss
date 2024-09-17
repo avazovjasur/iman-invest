@@ -1,0 +1,77 @@
+@import "../mixins.scss";
+
+.content {
+  background: #f5f7fa;
+  min-height: 100vh;
+  &Header {
+    display: flex;
+    @include resa("gap", 19px);
+    @include resa("padding", 4px);
+    align-items: center;
+    &Button {
+      @include resa("padding-left", 15px);
+      @include resa("padding-right", 75px);
+      @include resa("height", 44px);
+      display: flex;
+      align-items: center;
+      svg {
+        @include resa("width", 8px);
+        @include resa("height", 12px);
+      }
+    }
+    &Title {
+      font-weight: 600;
+      @include resa("font-size", 16px);
+      @include resa("line-height", 20px);
+      text-align: center;
+      color: #040415;
+    }
+  }
+  &Body {
+    @include resa("margin-top", 8px);
+    @include resa("padding-right", 16px);
+    @include resa("padding-left", 16px);
+    @include resa("padding-bottom", 30px);
+  }
+  &List {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    @include resa("gap", 4px);
+
+    &Item {
+      width: 100%;
+      @include resa("height", 236.5px);
+      @include resa("border-radius", 14px);
+      position: relative;
+      background-image: url(../../../public/start-img.png);
+      background-size: cover;
+      background-position: center;
+      &Box {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include resa("padding-left", 10px);
+        @include resa("left", 8px);
+        @include resa("bottom", 8px);
+        @include resa("padding-right", 10px);
+        @include resa("padding-bottom", 4px);
+        @include resa("padding-top", 4px);
+        @include resa("border-radius", 40px);
+        @include resa("gap", 4px);
+        background: #040415;
+        svg {
+          @include resa("width", 12px);
+          @include resa("height", 10px);
+        }
+        h3 {
+          font-weight: 500;
+          @include resa("font-size", 12px);
+          @include resa("line-height", 18px);
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

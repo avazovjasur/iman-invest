@@ -1,0 +1,110 @@
+@import "../mixins.scss";
+@import "../mixins.scss";
+
+.content {
+  background: #f5f7fa;
+  min-height: 100vh;
+  &Header {
+    display: flex;
+    @include resa("padding", 4px);
+    align-items: center;
+    position: relative;
+    &Button {
+      position: relative;
+      z-index: 2;
+      @include resa("padding-left", 15px);
+      @include resa("padding-right", 75px);
+      @include resa("height", 44px);
+      display: flex;
+      align-items: center;
+      svg {
+        @include resa("width", 8px);
+        @include resa("height", 12px);
+      }
+    }
+    &Title {
+      width: 100%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 600;
+      @include resa("font-size", 16px);
+      @include resa("line-height", 20px);
+      text-align: center;
+      color: #040415;
+    }
+  }
+  &Body {
+    @include resa("margin-top", 8px);
+    @include resa("padding-right", 16px);
+    @include resa("padding-left", 16px);
+    @include resa("padding-bottom", 30px);
+  }
+  &List {
+    display: flex;
+    flex-direction: column;
+    @include resa("gap", 12px);
+    &Item {
+      @include resa("padding", 16px);
+      @include resa("border-radius", 16px);
+      background: #ffffff;
+      &Img {
+        width: 100%;
+        @include resa("padding", 8px);
+        @include resa("border-radius", 14px);
+        @include resa("height", 175px);
+        background-image: url(../../../public/useful-item.jpg);
+        background-size: cover;
+        background-position: center;
+        span {
+          display: inline-flex;
+          align-items: center;
+          background: #040415;
+          @include resa("padding", 10px);
+          @include resa("padding-top", 4px);
+          @include resa("padding-bottom", 4px);
+          @include resa("border-radius", 41px);
+          @include resa("gap", 4px);
+          svg {
+            @include resa("width", 12px);
+            @include resa("height", 12px);
+          }
+          h3 {
+            @include resa("font-size", 12px);
+            @include resa("line-height", 18px);
+            font-weight: 500;
+            text-align: center;
+            color: #ffffff;
+          }
+        }
+      }
+      &Inner {
+        @include resa("margin-top", 16px);
+      }
+      &Title {
+        font-weight: 600;
+        @include resa("font-size", 16px);
+        @include resa("line-height", 20px);
+        text-align: left;
+        color: #040415;
+      }
+      &Date {
+        @include resa("margin-top", 8px);
+        display: flex;
+        align-items: center;
+        @include resa("gap", 6px);
+        svg {
+          @include resa("width", 16px);
+          @include resa("height", 16px);
+        }
+        h3 {
+          font-weight: 500;
+          @include resa("font-size", 14px);
+          @include resa("line-height", 20px);
+          text-align: center;
+          color: #828da1;
+        }
+      }
+    }
+  }
+}

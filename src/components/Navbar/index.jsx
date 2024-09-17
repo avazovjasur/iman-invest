@@ -29,7 +29,7 @@ const NavBar = ({ activeIndex, setActiveIndex }) => {
         >
           <div className={styles.navItemIcon}>
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 5H14.5C15.0523 5 15.5 5.44772 15.5 6V7H9.5V6C9.5 5.44772 9.94772 5 10.5 5ZM7.5 7V6C7.5 4.34315 8.84315 3 10.5 3H14.5C16.1569 3 17.5 4.34315 17.5 6V7H19.5C21.1569 7 22.5 8.34315 22.5 10V19C22.5 20.6569 21.1569 22 19.5 22H5.5C3.84315 22 2.5 20.6569 2.5 19V10C2.5 8.34315 3.84315 7 5.5 7H7.5ZM17.5 9H15.5H9.5H7.5H5.5C4.94772 9 4.5 9.44772 4.5 10V19C4.5 19.5523 4.94772 20 5.5 20H19.5C20.0523 20 20.5 19.5523 20.5 19V10C20.5 9.44771 20.0523 9 19.5 9H17.5Z" fill="currentColor" />
+              <path fillRule="evenodd" clipRule="evenodd" d="M10.5 5H14.5C15.0523 5 15.5 5.44772 15.5 6V7H9.5V6C9.5 5.44772 9.94772 5 10.5 5ZM7.5 7V6C7.5 4.34315 8.84315 3 10.5 3H14.5C16.1569 3 17.5 4.34315 17.5 6V7H19.5C21.1569 7 22.5 8.34315 22.5 10V19C22.5 20.6569 21.1569 22 19.5 22H5.5C3.84315 22 2.5 20.6569 2.5 19V10C2.5 8.34315 3.84315 7 5.5 7H7.5ZM17.5 9H15.5H9.5H7.5H5.5C4.94772 9 4.5 9.44772 4.5 10V19C4.5 19.5523 4.94772 20 5.5 20H19.5C20.0523 20 20.5 19.5523 20.5 19V10C20.5 9.44771 20.0523 9 19.5 9H17.5Z" fill="currentColor" />
             </svg>
           </div>
           <h3 className={styles.navItemTitle}>Проекты</h3>
@@ -40,11 +40,11 @@ const NavBar = ({ activeIndex, setActiveIndex }) => {
         >
           <div className={styles.navItemIcon}>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_4934_8252)">
-                <rect x="2.00781" y="2" width="7" height="7" rx="1" fill="#ffffff" stroke="currentColor" stroke-width="2" />
-                <rect x="16.5078" y="0.549956" width="7" height="7" rx="1" transform="rotate(45 16.5078 0.549956)" fill="#ffffff" stroke="currentColor" stroke-width="2" />
-                <rect x="2.00781" y="13" width="7" height="7" rx="1" fill="#ffffff" stroke="currentColor" stroke-width="2" />
-                <rect x="13.0078" y="13" width="7" height="7" rx="1" fill="#ffffff" stroke="currentColor" stroke-width="2" />
+              <g clipPath="url(#clip0_4934_8252)">
+                <rect x="2.00781" y="2" width="7" height="7" rx="1" fill="#ffffff" stroke="currentColor" strokeWidth="2" />
+                <rect x="16.5078" y="0.549956" width="7" height="7" rx="1" transform="rotate(45 16.5078 0.549956)" fill="#ffffff" stroke="currentColor" strokeWidth="2" />
+                <rect x="2.00781" y="13" width="7" height="7" rx="1" fill="#ffffff" stroke="currentColor" strokeWidth="2" />
+                <rect x="13.0078" y="13" width="7" height="7" rx="1" fill="#ffffff" stroke="currentColor" strokeWidth="2" />
               </g>
               <defs>
                 <clipPath id="clip0_4934_8252">

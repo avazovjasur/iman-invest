@@ -1,0 +1,141 @@
+@import "../mixins.scss";
+
+.content {
+  background: #f5f7fa;
+  min-height: 100vh;
+  &Header {
+    display: flex;
+    @include resa("padding", 4px);
+    align-items: center;
+    position: relative;
+    &Button {
+      @include resa("padding-left", 15px);
+      @include resa("padding-right", 75px);
+      @include resa("height", 44px);
+      display: flex;
+      align-items: center;
+      svg {
+        @include resa("width", 8px);
+        @include resa("height", 12px);
+      }
+    }
+    &Title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 600;
+      @include resa("font-size", 16px);
+      @include resa("line-height", 20px);
+      text-align: center;
+      color: #040415;
+    }
+  }
+  &Body {
+    @include resa("margin-top", 8px);
+    @include resa("padding-right", 16px);
+    @include resa("padding-left", 16px);
+    @include resa("padding-bottom", 30px);
+    display: flex;
+    flex-direction: column;
+    @include resa("gap", 16px);
+    &Top {
+      display: flex;
+      @include resa("gap", 12px);
+      align-items: center;
+      &Icon {
+        @include resa("width", 50px);
+        @include resa("height", 50px);
+        @include resa("border-radius", 10px);
+        background: #01cab0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &Texts {
+        display: flex;
+        flex-direction: column;
+        @include resa("gap", 4px);
+        h3 {
+          font-weight: 600;
+          @include resa("line-height", 18px);
+          @include resa("font-size", 14px);
+          text-align: left;
+          color: #040415;
+        }
+        h4 {
+          font-weight: 500;
+          @include resa("line-height", 12px);
+          @include resa("font-size", 16px);
+          text-align: left;
+          opacity: 0.5;
+          color: #040415;
+        }
+      }
+    }
+    &Image {
+      width: 100%;
+      @include resa("height", 180px);
+      @include resa("padding", 16px);
+      background-image: url(../../../public/useful-image.jpg);
+      background-size: cover;
+      background-position: center;
+      span {
+        display: inline-flex;
+        align-items: center;
+        @include resa("gap", 4px);
+        @include resa("padding-left", 10px);
+        @include resa("padding-right", 10px);
+        @include resa("padding-top", 4px);
+        @include resa("padding-bottom", 4px);
+        background-color: #040415;
+        @include resa("border-radius", 41px);
+        svg {
+          @include resa("height", 12px);
+          @include resa("width", 12px);
+        }
+        h3 {
+          font-weight: 500;
+          @include resa("font-size", 12px);
+          @include resa("line-height", 18px);
+          text-align: center;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  &Article {
+    @include resa("padding", 16px);
+    @include resa("padding-left", 16.5px);
+    @include resa("padding-right", 16.5px);
+    @include resa("border-radius", 20px);
+    background-color: #ffffff;
+    &Title {
+      font-weight: 600;
+      @include resa("font-size", 16px);
+      @include resa("line-height", 20px);
+      text-align: left;
+      color: #040415;
+    }
+    &Text {
+      @include resa("margin-top", 12px);
+      font-size: 14px;
+      font-weight: 500;
+      @include resa("font-size", 14px);
+      @include resa("line-height", 20px);
+      text-align: left;
+      color: #040415;
+      opacity: 0.65;
+    }
+  }
+  &Button {
+    @include resa("padding-bottom", 17px);
+    @include resa("padding-top", 17px);
+    font-weight: 400;
+    @include resa("font-size", 17px);
+    @include resa("line-height", 20px);
+    text-align: center;
+    color: #3680ff;
+    background: #3680ff14;
+    @include resa("border-radius", 20px);
+  }
+}
