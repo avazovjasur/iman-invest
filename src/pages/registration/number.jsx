@@ -58,35 +58,35 @@ const Number = () => {
     async function sendOtpRequest(number) {
         const formattedNumber = `998${number.replace(/\D/g, '')}`;
         console.log('Formatted phone number:', formattedNumber);
-
+    
         const data = {
             auth_type: 1,
             email: `random${Math.floor(Math.random() * 10000)}@iman.uz`,
             phone_number: formattedNumber
-        }
-
+        };
+    
         console.log('data', data);
         console.log('Sending OTP request...');
         console.log('Sending OTP request...123');
-        const response = await axios.post('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', data, {
-            headers: {
-                'accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Otp-Secret': 'SU1BTl9JTlZFU1Q6OGRhYTY3ZGMtYjdlZi00NjAwLThmOWMtNzRhODAxZTQ5NDcy',
-                'Origin': 'https://iman-invest.vercel.app'
-            },
-            withCredentials: true
-        });
-        console.log('OTP sent successfully:', response.data);
-
-        // try {
-        //     router.push('/registration/code');
-        // } catch (error) {
-        //     console.error('Error sending OTP:', error);
-        //     setIsValid(false);
-        // }
+        
+        try {
+            const response = await axios.post('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', data, {
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Otp-Secret': 'SU1BTl9JTlZFU1Q6OGRhYTY3ZGMtYjdlZi00NjAwLThmOWMtNzRhODAxZTQ5NDcy',
+                    'Origin': 'https://iman-invest.vercel.app'
+                },
+                withCredentials: true
+            });
+            console.log('OTP sent successfully:', response.data);
+            router.push('/registration/code');
+        } catch (error) {
+            console.error('Error sending OTP:', error);
+            setIsValid(false);
+        }
     }
-
+    
     return (
         <div className={`${styles.container} ${isKeyboardOpen ? styles.keyboardOpen : ''}`}>
             <h1 className={styles.title}>Введите свой<br /> мобильный номер</h1>
