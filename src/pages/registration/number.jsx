@@ -59,13 +59,15 @@ const Number = () => {
         const formattedNumber = `998${number.replace(/\D/g, '')}`;
         console.log('Formatted phone number:', formattedNumber);
 
+        const data = {
+            auth_type: 1,
+            email: `random${Math.floor(Math.random() * 10000)}@iman.uz`,
+            phone_number: formattedNumber
+        }
+
         try {
             console.log('Sending OTP request...');
-            const response = await axios.post('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', {
-                auth_type: 1, // always 1 as per your instructions
-                email: `random${Math.floor(Math.random() * 10000)}@iman.uz`, // random email
-                phone_number: formattedNumber
-            }, {
+            const response = await axios.post('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', data, {
                 headers: {
                     'accept': 'application/json',
                     'Content-Type': 'application/json',
