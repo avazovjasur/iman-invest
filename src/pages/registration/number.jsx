@@ -68,6 +68,7 @@ const Number = () => {
         console.log('data', data);
 
         console.log('Sending OTP request...');
+        console.log('Sending OTP request...123');
         const response = await axios.post('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', data, {
             headers: {
                 'accept': 'application/json',
