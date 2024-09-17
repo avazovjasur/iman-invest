@@ -65,6 +65,8 @@ const Number = () => {
             phone_number: formattedNumber
         }
 
+        console.log('data', data);
+
         try {
             console.log('Sending OTP request...');
             const response = await axios.post('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', data, {
