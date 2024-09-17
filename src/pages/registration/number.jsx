@@ -55,7 +55,8 @@ const Number = () => {
             }, {
                 headers: {
                     'accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Otp-Secret': 'SU1BTl9JTlZFU1Q6OGRhYTY3ZGMtYjdlZi00NjAwLThmOWMtNzRhODAxZTQ5NDcy' // Added Otp-Secret header
                 }
             });
             console.log('OTP sent:', response.data);
