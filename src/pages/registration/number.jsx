@@ -73,10 +73,8 @@ const Number = () => {
                 headers: {
                     'accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Otp-Secret': 'SU1BTl9JTlZFU1Q6OGRhYTY3ZGMtYjdlZi00NjAwLThmOWMtNzRhODAxZTQ5NDcy',
-                    'Origin': 'https://iman-invest.vercel.app'
-                },
-                withCredentials: true,
+                    'Otp-Secret': 'SU1BTl9JTlZFU1Q6OGRhYTY3ZGMtYjdlZi00NjAwLThmOWMtNzRhODAxZTQ5NDcy'
+                }
             });
             console.log('OTP sent successfully:', response.data);
             router.push('/registration/code');
