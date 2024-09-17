@@ -1,0 +1,495 @@
+@import "../../styles/mixins.scss";
+
+.wrapper {
+  min-height: 100vh;
+  @include resa("padding-bottom", 90px);
+}
+
+.start {
+  &Title {
+    @include resa("padding-left", 16px);
+    @include resa("padding-right", 16px);
+    @include resa("padding-top", 20px);
+    font-weight: 600;
+    @include resa("font-size", 20px);
+    @include resa("line-height", 24px);
+    text-align: left;
+    color: #040415;
+    @include resa("margin-bottom", 12px);
+  }
+  &Top {
+    &List {
+      @include resa("padding-left", 16px);
+      @include resa("padding-top", 4px);
+      @include resa("padding-bottom", 4px);
+      display: flex;
+      @include resa("gap", 8px);
+      overflow-x: auto;
+      @include resa("padding-right", 16px);
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      &Item {
+        outline-color: #3680ff;
+        outline-style: solid;
+        @include resa("outline-width", 1px);
+        @include resa("width", 104px);
+        @include resa("height", 104px);
+        @include resa("border-radius", 20px);
+        @include resa("padding", 4px);
+      }
+      &Inner {
+        overflow: hidden;
+        @include resa("width", 96px);
+        @include resa("height", 96px);
+        @include resa("border-radius", 16px);
+        @include resa("padding-left", 8px);
+        @include resa("padding-right", 3px);
+        @include resa("padding-top", 8px);
+        background-color: #d5e5e5;
+        position: relative;
+
+        &.first {
+          background-color: #d5e5e5;
+        }
+        &.second {
+          background: #3680ff33;
+        }
+        &.third {
+          background: #fdedd5;
+        }
+        &.fourth {
+          background: #eae4fc;
+        }
+        h3 {
+          font-weight: 600;
+          @include resa("font-size", 12px);
+          @include resa("line-height", 14px);
+          text-align: left;
+          color: #040415;
+        }
+        img {
+          position: absolute;
+          object-fit: cover;
+          &.first {
+            @include resa("right", 5px);
+            bottom: 0;
+            @include resa("width", 78px);
+            @include resa("height", 78px);
+          }
+          &.second {
+            bottom: 0;
+            @include resa("right", 3px);
+            @include resa("width", 85px);
+            @include resa("height", 76px);
+          }
+          &.third {
+            bottom: 0;
+            @include resa("right", 9px);
+            @include resa("width", 68px);
+            @include resa("height", 65px);
+          }
+        }
+      }
+    }
+  }
+  &Wrapper {
+    @include resa("margin-top", 12px);
+    display: flex;
+    flex-direction: column;
+    @include resa("gap", 16px);
+  }
+  &Body {
+    @include resa("padding-left", 16px);
+    @include resa("padding-right", 16px);
+  }
+  &Content {
+    @include resa("padding-left", 16px);
+    @include resa("padding-right", 16px);
+    display: flex;
+    flex-direction: column;
+    @include resa("gap", 16px);
+  }
+  &Button {
+    @include resa("padding-bottom", 17px);
+    @include resa("padding-top", 17px);
+    font-weight: 400;
+    @include resa("font-size", 17px);
+    @include resa("line-height", 20px);
+    text-align: center;
+    color: #3680ff;
+    background: #3680ff14;
+    @include resa("border-radius", 20px);
+  }
+}
+
+.title {
+  @include resa("font-size", 16px);
+  @include resa("line-height", 22px);
+  font-weight: 600;
+  text-align: left;
+  color: #040415;
+}
+
+.value {
+  background-color: #ffffff;
+  @include resa("padding-top", 16px);
+  @include resa("padding-bottom", 16px);
+  @include resa("border-radius", 16px);
+  &Top {
+    @include resa("padding-right", 16px);
+    @include resa("padding-left", 16px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include resa("margin-bottom", 16px);
+    &Btn {
+      display: flex;
+      @include resa("gap", 4px);
+      align-items: center;
+      h3 {
+        font-weight: 600;
+        @include resa("font-size", 12px);
+        @include resa("line-height", 14px);
+        color: #3680ff;
+      }
+      svg {
+        @include resa("width", 12px);
+        @include resa("height", 12px);
+      }
+    }
+  }
+  &List {
+    display: flex;
+    @include resa("padding-left", 16px);
+    @include resa("padding-right", 16px);
+    @include resa("gap", 8px);
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &Item {
+      @include resa("min-width", 148px);
+      @include resa("width", 148px);
+      @include resa("height", 209px);
+      @include resa("border-radius", 14px);
+      position: relative;
+      background-image: url(../../../public/start-img.png);
+      background-size: cover;
+      background-position: center;
+      &Box {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include resa("padding-left", 10px);
+        @include resa("left", 8px);
+        @include resa("bottom", 8px);
+        @include resa("padding-right", 10px);
+        @include resa("padding-bottom", 4px);
+        @include resa("padding-top", 4px);
+        @include resa("border-radius", 40px);
+        @include resa("gap", 4px);
+        background: #040415;
+        svg {
+          @include resa("width", 12px);
+          @include resa("height", 10px);
+        }
+        h3 {
+          font-weight: 500;
+          @include resa("font-size", 12px);
+          @include resa("line-height", 18px);
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+.main {
+  &List {
+    display: flex;
+    @include resa("padding-left", 16px);
+    @include resa("padding-right", 16px);
+    @include resa("gap", 8px);
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &Item {
+      display: flex;
+      flex-direction: column;
+      @include resa("gap", 8px);
+      &Img {
+        @include resa("min-width", 148px);
+        @include resa("width", 148px);
+        @include resa("height", 148px);
+        @include resa("border-radius", 14px);
+        position: relative;
+        background-image: url(../../../public/start-item.jpg);
+        background-size: cover;
+        background-position: center;
+        @include resa("padding-top", 8px);
+        @include resa("padding-left", 8px);
+      }
+      &Box {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        @include resa("padding-left", 10px);
+        @include resa("left", 8px);
+        @include resa("bottom", 8px);
+        @include resa("padding-right", 10px);
+        @include resa("padding-bottom", 4px);
+        @include resa("padding-top", 4px);
+        @include resa("border-radius", 40px);
+        @include resa("gap", 4px);
+        background: #040415;
+        &.second {
+          background: #fff4df;
+          h3 {
+            color: #040415;
+            opacity: 0.7;
+          }
+        }
+        svg {
+          @include resa("width", 12px);
+          @include resa("height", 12px);
+        }
+        h3 {
+          font-weight: 500;
+          @include resa("font-size", 12px);
+          @include resa("line-height", 18px);
+          color: #ffffff;
+        }
+      }
+      &Title {
+        font-weight: 600;
+        @include resa("font-size", 12px);
+        @include resa("line-height", 16px);
+        text-align: left;
+        color: #040415;
+      }
+      &Subtitle {
+        font-weight: 500;
+        @include resa("font-size", 12px);
+        @include resa("line-height", 14.12px);
+        text-align: left;
+        color: #040415;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+.top {
+  &List {
+    display: flex;
+    flex-direction: column;
+    @include resa("gap", 16px);
+    &Item {
+      display: flex;
+      justify-content: space-between;
+      &Icon {
+        @include resa("width", 40px);
+        @include resa("height", 40px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+          @include resa("width", 20px);
+          @include resa("height", 20px);
+        }
+        &.first {
+          background: #ffbb3829;
+        }
+        &.second {
+          background: #828da129;
+        }
+        &.third {
+          background: #99553329;
+        }
+        @include resa("margin-right", 12px);
+      }
+      &Left {
+        display: flex;
+      }
+      &Right {
+        display: flex;
+        @include resa("gap", 16px);
+      }
+      h3 {
+        font-weight: 500;
+        @include resa("font-size", 14px);
+        @include resa("line-height", 20px);
+        color: #000000;
+        &.right {
+          text-align: right;
+        }
+      }
+      h4 {
+        @include resa("margin-top", 2px);
+        font-weight: 500;
+        @include resa("font-size", 12px);
+        @include resa("line-height", 14.56px);
+        color: #040415;
+        opacity: 0.5;
+        &.right {
+          text-align: right;
+        }
+      }
+    }
+  }
+  &Button {
+    width: 100%;
+    @include resa("margin-top", 16px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include resa("gap", 8px);
+    svg {
+      @include resa("height", 20px);
+      @include resa("width", 20px);
+    }
+    h3 {
+      font-weight: 500;
+      @include resa("font-size", 14px);
+      @include resa("line-height", 18px);
+      text-align: left;
+      color: #828da1;
+    }
+  }
+}
+
+.line {
+  background: #0404150d;
+  width: 100%;
+  @include resa("height", 1px);
+}
+
+.more {
+  &List {
+    display: flex;
+    align-items: center;
+    @include resa("gap", 8px);
+    @include resa("padding-left", 16px);
+    @include resa("padding-right", 16px);
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &Item {
+      @include resa("border-radius", 16px);
+      @include resa("min-width", 148px);
+      @include resa("width", 148px);
+      @include resa("height", 148px);
+      @include resa("padding", 12px);
+      background-position: center;
+      background-size: cover;
+      &.first {
+        background-image: url("../../../public/more/item1.jpg");
+      }
+      &.second {
+        background-image: url("../../../public/more/item2.jpg");
+      }
+      &Title {
+        font-weight: 600;
+        @include resa("font-size", 14px);
+        @include resa("line-height", 16px);
+        text-align: left;
+        color: #040415;
+      }
+    }
+  }
+}
+
+.faq {
+  background-color: #ffffff;
+  @include resa("padding-top", 16px);
+  @include resa("border-radius", 16px);
+  &Content {
+    @include resa("padding-right", 16px);
+    @include resa("padding-left", 16px);
+  }
+  &List {
+    @include resa("margin-top", 4px);
+    display: flex;
+    flex-direction: column;
+    &Item {
+      @include resa("padding-bottom", 8px);
+      &Top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include resa("padding-top", 16px);
+        @include resa("padding-bottom", 8px);
+        h3 {
+          font-weight: 500;
+          @include resa("font-size", 14px);
+          @include resa("line-height", 20px);
+          text-align: left;
+          color: #000000;
+        }
+        svg {
+          @include resa("height", 12px);
+          @include resa("width", 12px);
+        }
+      }
+      &Content {
+        @include resa("max-width", 283px);
+        p {
+          font-weight: 500;
+          @include resa("font-size", 14px);
+          @include resa("line-height", 20px);
+          text-align: left;
+          color: #040415;
+          opacity: 0.65;
+          @include resa("padding-bottom", 8px);
+        }
+      }
+    }
+  }
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  @include resa("gap", 16px);
+  @include resa("padding-bottom", 21.5px);
+  @include resa("padding-top", 21.5px);
+  @include resa("padding-left", 16px);
+  @include resa("padding-right", 16px);
+  @include resa("border-radius", 20px);
+  background: linear-gradient(105.12deg, #3680ff -1.08%, #47b2ff 60.63%);
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    background-image: url(../../../public/social-bg.png);
+    @include resa("height", 99px);
+    right: 0;
+    top: 0;
+    @include resa("width", 146px);
+    opacity: 0.2;
+  }
+  &Left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include resa("min-width", 56px);
+    @include resa("width", 56px);
+    @include resa("height", 56px);
+    svg {
+      @include resa("width", 46.67px);
+      @include resa("height", 46.67px);
+    }
+  }
+  &Right {
+    font-weight: 400;
+    @include resa("font-size", 17px);
+    @include resa("line-height", 20px);
+    text-align: left;
+    color: #ffffff;
+  }
+}

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import NavBar from "@/components/Navbar";
 import HomeInner from "@/components/HomeInner";
 import ProjectsInner from "@/components/ProjectsInner";
+import StartInner from "@/components/StartInner";
 import OnBoarding from "@/components/OnBoarding";
 
 const Home = () => {
@@ -38,6 +39,7 @@ const Home = () => {
     <div className='wrapper'>
       {activeIndex === 0 && <HomeInner />}
       {activeIndex === 1 && <ProjectsInner />}
+      {activeIndex === 2 && <StartInner />}
       <NavBar activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       {isOnBoardingVisible && <OnBoarding onClose={handleOnBoardingClose} />}
     </div>
