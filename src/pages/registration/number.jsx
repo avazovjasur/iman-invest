@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import InputMask from 'react-input-mask';
+import axios from 'axios';
 
 import styles from '../../styles/modules/number.module.scss';
 
@@ -28,7 +29,7 @@ const Number = () => {
 
     function nextPage() {
         if (validatePhoneNumber(phoneNumber)) {
-            router.push('/registration/code');
+            sendOtpRequest(phoneNumber);
         } else {
             setIsValid(false);
         }
@@ -42,6 +43,27 @@ const Number = () => {
     function handleInputChange(e) {
         setPhoneNumber(e.target.value);
         setIsValid(true);
+    }
+
+    async function sendOtpRequest(number) {
+        const formattedNumber = `998${number.replace(/\D/g, '')}`;
+        try {
+            const response = await axios.post('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', {
+                auth_type: 1, // always 1 as per your instructions
+                email: `random${Math.floor(Math.random() * 10000)}@iman.uz`, // random email
+                phone_number: formattedNumber
+            }, {
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('OTP sent:', response.data);
+            router.push('/registration/code');
+        } catch (error) {
+            console.error('Error sending OTP:', error);
+            setIsValid(false);
+        }
     }
 
     return (
