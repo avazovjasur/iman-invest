@@ -43,13 +43,14 @@
 .pinIndicator {
     @include resa("width", 12px);
     @include resa("height", 12px);
-    border: solid black;
-    @include resa("border-width", 2px);
     border-radius: 50%;
+    background-color: black;
+    opacity: .1;
     @include resa("margin-bottom", 50px);
 
     &.filled {
-        background-color: black;
+        background-color: #3680FF;
+        opacity: 1;
     }
 }
 
@@ -73,6 +74,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        color: black;
     }
 
     .deleteButton {
