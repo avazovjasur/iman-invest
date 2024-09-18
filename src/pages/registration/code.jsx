@@ -1,13 +1,17 @@
 import { useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'; // Импортируем useSelector
 import styles from '../../styles/modules/code.module.scss';
 import { useRouter } from 'next/router';
+import { setTokensAndInvestor } from '@/store/otpSlice';
+import axios from 'axios'; // Убедитесь, что axios импортирован, если он будет использоваться для запроса
 
 const Code = () => {
     const router = useRouter();
     const inputRefs = useRef([]);
+    const otpGuid = useSelector(state => state.otp.otpGuid);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        // Автоматически фокусируемся на первом поле ввода
         if (inputRefs.current[0]) {
             inputRefs.current[0].focus();
         }
@@ -15,17 +19,15 @@ const Code = () => {
 
     const handleInputChange = (e, index) => {
         const { value } = e.target;
-
         if (/^\d$/.test(value)) {
             inputRefs.current[index].value = value;
-
             const nextEmptyIndex = inputRefs.current.findIndex(input => input.value === '');
             if (nextEmptyIndex !== -1) {
                 inputRefs.current[nextEmptyIndex].focus();
             } else {
-                const allDigitsFilled = inputRefs.current.every((input) => input.value.length === 1);
+                const allDigitsFilled = inputRefs.current.every(input => input.value.length === 1);
                 if (allDigitsFilled) {
-                    router.push('/registration/pin');
+                    sendOtpConfirm()
                 }
             }
         } else {
@@ -40,6 +42,28 @@ const Code = () => {
             inputRefs.current[index - 1].focus();
         } else if (e.key === 'ArrowRight' && index < 3) {
             inputRefs.current[index + 1].focus();
+        }
+    };
+
+    const sendOtpConfirm = async () => {
+        const code = inputRefs.current.map(input => input.value).join('');
+        try {
+            const response = await axios.post('/api/confirm-otp', {
+                code,
+                otp_guid: otpGuid,
+            });
+            console.log('OTP Confirmation Response:', response.data);
+            const { refresh_token, access_token, investor_id } = response.data;
+            
+            dispatch(setTokensAndInvestor({
+                refreshToken: refresh_token,
+                accessToken: access_token,
+                investorId: investor_id
+            }));
+
+            router.push('/registration/pin');
+        } catch (error) {
+            console.error('Error confirming OTP:', error);
         }
     };
 
@@ -61,7 +85,7 @@ const Code = () => {
             </div>
 
             <div className={styles.codeInputContainer}>
-                {[...Array(4)].map((_, index) => (
+                {[...Array(5)].map((_, index) => (
                     <input
                         key={index}
                         ref={(el) => (inputRefs.current[index] = el)}

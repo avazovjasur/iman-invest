@@ -17,7 +17,7 @@ export default function Home() {
 
     const timer = setTimeout(() => {
       redirectToReg();
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);

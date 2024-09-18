@@ -1,18 +1,21 @@
-import React, {useState} from 'react'
-import { useRouter } from 'next/router'
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { setLang } from '../../store/otpSlice';
+import styles from '../../styles/modules/language.module.scss';
 
-import styles from '../../styles/modules/language.module.scss'
-
-const lang = () => {
-    const router = useRouter()
-    const [activeLang, setActiveLang] = useState('ru')
+const Lang = () => {
+    const router = useRouter();
+    const dispatch = useDispatch();
+    const [activeLang, setActiveLang] = useState('ru');
 
     function nextPage() {
-        router.push('/registration/number')
+        router.push('/registration/number');
     }
 
     const handleLangClick = (lang) => {
-        setActiveLang(lang)
+        setActiveLang(lang);
+        dispatch(setLang(lang));
     };
 
     return <div className={styles.container}>
@@ -110,4 +113,4 @@ const lang = () => {
     </div>
 }
 
-export default lang
+export default Lang

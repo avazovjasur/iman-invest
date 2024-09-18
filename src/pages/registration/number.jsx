@@ -2,42 +2,45 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import InputMask from 'react-input-mask';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setOtpGuid, setPhoneNumber } from '../../store/otpSlice'
 
-import styles from '../../styles/modules/number.module.scss';
+import styles from '../../styles/modules/number.module.scss'
 
 const Number = () => {
-    const router = useRouter();
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [isValid, setIsValid] = useState(true);
-    const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+    const router = useRouter()
+    const dispatch = useDispatch()
+    const [number, setNumber] = useState('')
+    const [isValid, setIsValid] = useState(true)
+    const [isKeyboardOpen, setIsKeyboardOpen] = useState(false)
 
     useEffect(() => {
         const handleResize = () => {
-            console.log('Window resized, checking keyboard state...');
+            console.log('Window resized, checking keyboard state...')
             if (window.innerHeight < 500) {
-                console.log('Keyboard is likely open.');
-                setIsKeyboardOpen(true);
+                console.log('Keyboard is likely open.')
+                setIsKeyboardOpen(true)
             } else {
-                console.log('Keyboard is likely closed.');
-                setIsKeyboardOpen(false);
+                console.log('Keyboard is likely closed.')
+                setIsKeyboardOpen(false)
             }
-        };
+        }
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', handleResize)
 
         return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
 
     function nextPage() {
-        console.log('Next button clicked, validating phone number...');
-        if (validatePhoneNumber(phoneNumber)) {
-            console.log('Phone number is valid. Proceeding to send OTP request.');
-            sendOtpRequest(phoneNumber);
+        console.log('Next button clicked, validating phone number...')
+        if (validatePhoneNumber(number)) {
+            console.log('Phone number is valid. Proceeding to send OTP request.')
+            sendOtpRequest(number)
         } else {
-            console.log('Phone number is invalid.');
-            setIsValid(false);
+            console.log('Phone number is invalid.')
+            setIsValid(false)
         }
     }
 
@@ -51,8 +54,8 @@ const Number = () => {
 
     function handleInputChange(e) {
         console.log('Phone number input changed:', e.target.value);
-        setPhoneNumber(e.target.value);
-        setIsValid(true);
+        setNumber(e.target.value)
+        setIsValid(true)
     }
 
     async function sendOtpRequest(number) {
@@ -64,14 +67,17 @@ const Number = () => {
             email: `random${Math.floor(Math.random() * 10000)}@iman.uz`,
             phone_number: formattedNumber
         };
-        
+
         console.log('data', data);
         console.log('Sending OTP request via proxy...');
         
         try {
-            // Отправка запроса на ваш серверный API
             const response = await axios.post('/api/send-otp', data);
             console.log('OTP sent successfully via proxy:', response.data);
+
+            dispatch(setOtpGuid(response.data.otp_guid));
+            dispatch(setPhoneNumber(number))
+
             router.push('/registration/code');
         } catch (error) {
             console.error('Error sending OTP via proxy:', error);
@@ -87,7 +93,7 @@ const Number = () => {
                 <p>+998</p>
                 <InputMask
                     mask="(99) 999 99-99"
-                    value={phoneNumber}
+                    value={number}
                     onChange={handleInputChange}
                     placeholder="Номер телефона"
                     type="tel"

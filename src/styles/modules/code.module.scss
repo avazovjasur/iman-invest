@@ -47,7 +47,7 @@
 }
 
 .codeInputContainer {
-    @include resa("width", 270px);
+    @include resa("width", 320px);
     @include resa("height", 64px);
     display: flex;
     align-items: center;
