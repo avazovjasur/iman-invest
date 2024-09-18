@@ -5,7 +5,6 @@ export default async function handler(req, res) {
         const { phone_number, email, auth_type } = req.body;
 
         try {
-            // Отправка запроса к стороннему API
             const response = await axios.post('https://dev.api.investment.imaninvest.com/v1/investor/send-otp', {
                 phone_number,
                 email,
@@ -18,14 +17,12 @@ export default async function handler(req, res) {
                 }
             });
 
-            // Возврат ответа на клиент
             res.status(200).json(response.data);
         } catch (error) {
             console.error('Ошибка при отправке OTP:', error);
             res.status(500).json({ message: 'Ошибка сервера', error: error.message });
         }
     } else {
-        // Возвращаем ошибку, если метод запроса не POST
         res.status(405).json({ message: 'Метод не разрешён' });
     }
 }
