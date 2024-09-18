@@ -10,9 +10,11 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (window.Telegram.WebApp) {
-      window.Telegram.WebApp.expand();
-      window.Telegram.WebApp.disableClosingConfirmation(); 
+    if (window.Telegram && window.Telegram.WebApp) {
+      const webApp = window.Telegram.WebApp;
+
+      webApp.expand();
+      webApp.disableClosingConfirmation(); 
     }
 
     const timer = setTimeout(() => {
