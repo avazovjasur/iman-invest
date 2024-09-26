@@ -18,7 +18,7 @@ export default async function handler(req, res) {
             return res.status(200).json(response.data);
         } catch (error) {
             console.error('Ошибка при подтверждении OTP:', error);
-            return res.status(500).json({ message: 'Ошибка сервера', error: error.message });
+            return res.status(error.response.status).json({ message: 'Ошибка сервера', error: error.message });
         }
     } else {
         res.status(405).json({ message: 'Метод не разрешён' });

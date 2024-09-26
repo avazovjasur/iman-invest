@@ -77,6 +77,8 @@ const Number = () => {
 
             dispatch(setOtpGuid(response.data.otp_guid));
             dispatch(setPhoneNumber(number))
+            localStorage.setItem('phoneNumber', formattedNumber)
+            localStorage.setItem('otpGuid', response.data.otp_guid)
 
             router.push('/registration/code');
         } catch (error) {

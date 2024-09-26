@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@inappstory/react-sdk": "^0.4.3",
     "@reduxjs/toolkit": "^2.2.7",
     "apexcharts": "^3.53.0",
     "axios": "^1.7.7",

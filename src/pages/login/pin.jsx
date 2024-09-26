@@ -1,13 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
-import { setPinCode } from '../../store/otpSlice';
 import styles from '../../styles/modules/pin.module.scss';
+import useTokenChecker from '@/hooks/useTokenChecker';
 
 const Pin = () => {
+    useTokenChecker()
+
     const [pin, setPin] = useState('');
+    const [lsPin, setLsPin] = useState(null);
+    const [wrongPin, setWrongPin] = useState(false)
     const router = useRouter();
-    const dispatch = useDispatch();
+
+    useEffect(() => {
+      if (typeof window !== 'undefined') {
+        const pin = localStorage.getItem('pinCode');
+        setLsPin(pin)
+      }
+    }, []);
 
     const handleNumberClick = (number) => {
         if (pin.length < 4) {
@@ -17,13 +26,16 @@ const Pin = () => {
 
     const handleDelete = () => {
         setPin(prevPin => prevPin.slice(0, -1));
+        setWrongPin(false)
     };
 
     const handleComplete = () => {
         if (pin.length === 4) {
-            dispatch(setPinCode(pin));
-
-            router.push('/home');
+            if (pin === lsPin) {
+                router.push('/home');
+            } else {
+                setWrongPin(true)
+            }
         }
     };
 
@@ -51,10 +63,10 @@ const Pin = () => {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Установите PIN-код</h1>
-            <p className={styles.subtitle}>Этот PIN-код будет использоваться <br />для входа в приложение</p>
+            <h1 className={styles.title}>Введите свой PIN-код</h1>
+            <p className={styles.subtitle}>для входа в приложение</p>
 
-            <div className={styles.pinIndicators}>
+            <div className={`${styles.pinIndicators} ${wrongPin ? styles.wrong : ''}`}>
                 {[...Array(4)].map((_, index) => (
                     <div
                         key={index}

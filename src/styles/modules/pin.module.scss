@@ -38,6 +38,37 @@
     justify-content: center;
     @include resa("gap", 15px);
     width: 100%;
+
+    &.wrong .pinIndicator {
+        border: solid #ff00007e;
+        @include res('border-width', 1px);
+        background-color: #ff00005b;
+        position: relative;
+        animation: shake 200ms linear forwards;
+    }
+}
+
+@keyframes shake {
+    0% {
+        top: 2px;
+        left: 2px;
+    }
+    25% {
+        top: -2px;
+        left: 2px;
+    }
+    50% {
+        top: 2px;
+        left: -2px;
+    }
+    75% {
+        top: -2px;
+        left: -2px;
+    }
+    100% {
+        top: 0;
+        left: 0;
+    }
 }
 
 .pinIndicator {

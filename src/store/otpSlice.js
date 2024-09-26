@@ -8,6 +8,11 @@ const initialState = {
   accessToken: null,
   investorId: null,
   pinCode: null,
+  investments: null,
+  investments_amount: null,
+  investments_profit: null,
+  resident: null,
+  autopayments: null,
 };
 
 const otpSlice = createSlice({
@@ -32,6 +37,21 @@ const otpSlice = createSlice({
     setPinCode: (state, action) => {
       state.pinCode = action.payload;
     },
+    setInvestments: (state, action) => {
+      state.investments = action.payload;
+    },
+    setInvestmentsAmount: (state, action) => {
+      state.investments_amount = action.payload;
+    },
+    setInvestmentsProfit: (state, action) => {
+      state.investments_profit = action.payload;
+    },
+    setResident: (state, action) => {
+      state.resident = action.payload;
+    },
+    setAutopayments: (state, action) => {
+      state.autopayments = action.payload;
+    },
   },
 });
 
@@ -41,6 +61,11 @@ export const {
     setPhoneNumber,
     setTokensAndInvestor,
     setPinCode,
+    setInvestments,
+    setInvestmentsAmount,
+    setInvestmentsProfit,
+    setResident,
+    setAutopayments,
  } = otpSlice.actions;
 
 export default otpSlice.reducer;

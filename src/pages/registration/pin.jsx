@@ -22,6 +22,7 @@ const Pin = () => {
     const handleComplete = () => {
         if (pin.length === 4) {
             dispatch(setPinCode(pin));
+            localStorage.setItem('pinCode', pin)
 
             router.push('/home');
         }

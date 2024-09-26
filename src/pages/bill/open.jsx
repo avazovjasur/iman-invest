@@ -1,24 +1,109 @@
-import styles from '../../styles/modules/bill.module.scss'
+import { useSelector } from 'react-redux';
 import PaymentDrawer from "@/components/PaymentDrawer"
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import axios from 'axios';
+
+import styles from '../../styles/modules/bill.module.scss'
+import useTokenChecker from '@/hooks/useTokenChecker';
+import { useRouter } from 'next/router';
 
 const lang = () => {
+  useTokenChecker()
+  const router = useRouter()
+
+  const monthRef = useRef(null);
+  const yearRef = useRef(null);
+  const [cvv, setCvv] = useState('');
+  const [selectedId, setSelectedId] = useState(3);
+  const [percentage, setPercentage] = useState(27);
+  const [income, setIncome] = useState('0');
   const [isChecked, setIsCapActive] = useState(false);
+
+  const [accessToken, setAccessToken] = useState(null);
+  const [goalTitle, setGoalTitle] = useState('')
+  const [amount, setAmount] = useState(null)
+  const [term, setTerm] = useState(24)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('accessToken')
+      setAccessToken(token)
+    }
+  }, []);
+
+  const handleInvest = async (e) => {
+    e?.preventDefault()
+
+    const token = localStorage.getItem('accessToken')
+    const investorStatus = localStorage.getItem('investorStatus')
+    const resident = localStorage.getItem('resident')
+    const strategyId = localStorage.getItem('strategyId')
+    const tariffId = localStorage.getItem('tariffId')
+    setAccessToken(token)
+
+    const data = {
+      amount: Number(amount),
+      goal_icon_id: "",
+      goal_title: goalTitle,
+      initial_amount: Number(amount),
+      investor_status: investorStatus,
+      is_resident: resident === 'true' ? true : false,
+      strategy_id: strategyId,
+      tariff_id: tariffId,
+      term: Number(term) || 0,
+    }
+
+    console.log('here 123', data, accessToken);
+
+    try {
+      const response = await axios.post('/api/entrypoints/create-investments', data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      router.push('/home')
+    } catch (error) {
+      if (error.response && error.response.status === 403 || error.response && error.response.status === 401) {
+        console.error(error.response);
+        // await refreshTokensAndRetry(handleInvest);
+      } else {
+        console.error('Error creating investment:', error)
+      }
+    }
+  }
+
+  // const refreshTokensAndRetry = async (retryCallback) => {
+  //   try {
+  //     const refreshToken = localStorage.getItem('refreshToken');
+  //     console.log('refreshToken', refreshToken);
+  //     const response = await axios.post('/api/refresh-token', { refreshToken });
+
+  //     const { access_token, refresh_token } = response.data;
+
+  //     console.log('access_token, refresh_token', access_token, refresh_token);
+
+  //     localStorage.setItem('accessToken', access_token);
+  //     localStorage.setItem('refreshToken', refresh_token);
+
+  //     setAccessToken(access_token);
+
+  //     retryCallback();
+  //   } catch (error) {
+  //     console.error('Ошибка при обновлении токенов:', error);
+  //   }
+  // };
 
   const handleCheckboxChange = () => {
     setIsCapActive(!isChecked);
   };
 
-  const monthRef = useRef(null);
-  const yearRef = useRef(null);
-  const [cvv, setCvv] = useState('');
-
   const handleMonthInput = () => {
     if (monthRef.current.value.length === 2) {
       yearRef.current.focus();
     }
-  };
+  }
 
   const handleInputChange = (e) => {
     let value = e.target.value;
@@ -44,40 +129,18 @@ const lang = () => {
     }
   };
 
-  const [amount, setAmount] = useState('');
-  const [selectedId, setSelectedId] = useState(3);
-  const [percentage, setPercentage] = useState(27);
-  const [income, setIncome] = useState('0');
-
   const formatNumber = (value) => {
-    const cleanedValue = value.replace(/\D/g, '');
-    if (cleanedValue === '') {
-      return '';
-    }
-    const formattedValue = new Intl.NumberFormat('ru-RU').format(cleanedValue);
+    const roundedValue = Math.round(value);
+
+    const formattedValue = new Intl.NumberFormat('ru-RU').format(roundedValue);
+
     return `${formattedValue} сум`;
   };
 
   const handleSumInputChange = (e) => {
-    let cleanedValue = e.target.value.replace(/\D/g, '');
-
-    // Ограничиваем значение максимумом
-    if (parseInt(cleanedValue, 10) > 99999999999) {
-      cleanedValue = '99999999999';
-    }
-
-    if (cleanedValue === '') {
-      setAmount('');
-      setIncome('');
-    } else if (parseInt(cleanedValue, 10) >= 500000) {
-      setAmount(cleanedValue);
-      calculateIncome(cleanedValue, percentage);
-    } else {
-      setAmount('500000');
-      calculateIncome('500000', percentage);
-    }
+    setAmount(e.target.value)
+    handleTermChange(selectedId, percentage)
   };
-
 
   const handleTermChange = (id, percentage) => {
     setSelectedId(id);
@@ -89,6 +152,16 @@ const lang = () => {
     const income = (amount * percentage) / 100;
     setIncome(income.toString());
   };
+
+  useEffect(() => {
+    if (selectedId === 1) {
+      setTerm(12)
+    } else if (selectedId === 2) {
+      setTerm(18)
+    } else if (selectedId === 3) {
+      setTerm(24)
+    }
+  }, [selectedId])
 
   return <div className={styles.container}>
     <div className={styles.billsHeader}>
@@ -102,12 +175,17 @@ const lang = () => {
       <h3 className={styles.billsHeaderTitle}>Выберите условия</h3>
     </div>
     <div className={styles.content}>
-      <form className={styles.contentForm}>
+      <form className={styles.contentForm} onSubmit={handleInvest}>
         <label htmlFor="target">
           <h3 className={styles.contentTitle}>Выберите цель</h3>
           <div className={styles.contentFormBox}>
             <label htmlFor='target' className={styles.contentFormInput} >
-              <input id='target' type="text" placeholder='Например: Машина' />
+              <input 
+                id='target'
+                type="text"
+                placeholder='Например: Машина'
+                onChange={e => setGoalTitle(e.target.value)}
+              />
               <span>Цель</span>
             </label>
             <div className={styles.contentFormItem}>
@@ -121,13 +199,9 @@ const lang = () => {
             <label htmlFor='price' className={styles.contentFormInput}>
               <input
                 id='price'
-                type="text"
-                placeholder='1 000 000 сум'
-                inputMode="numeric"
-                value={formatNumber(amount)}
+                type="num"
+                placeholder='1 000 000'
                 onChange={handleSumInputChange}
-                onBlur={(e) => e.target.value = formatNumber(e.target.value)}
-                pattern="[0-9]*"
               />
               <span>Сумма</span>
             </label>
@@ -291,7 +365,9 @@ const lang = () => {
                 </div>
               </div>
             </div>
-            <button className={styles.totalButton}>Начать копить</button>
+            <button type='submit' className={styles.totalButton}>
+              Начать копить
+            </button>
             <span className={styles.totalText}>*Расчёт примерный и носит справочный характер</span>
           </div>
         </div>
@@ -372,170 +448,6 @@ const lang = () => {
     </div>
     <div className={styles.payment}>
       <div className={styles.paymentBox}>
-        {/* <div className={styles.paymentContent}>
-            <div className={styles.paymentHeader}>
-              <h2 className={styles.paymentTitle}>
-            Пополнить с помощью
-              </h2>
-            </div>
-          <ul className={styles.paymentList}>
-            <li>
-              <label className={styles.paymentListItem} htmlFor="1">
-                <div className={styles.paymentListItemIcon}>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clipPath="url(#clip0_4565_31689)">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M7.94014 0.483691C8.58868 0.0783524 9.41159 0.0783537 10.0601 0.483691L17.5301 5.15244C17.9985 5.44515 18.1408 6.0621 17.8481 6.53044C17.5554 6.99878 16.9385 7.14115 16.4701 6.84844L9.00013 2.17969L1.53013 6.84844C1.0618 7.14115 0.444846 6.99878 0.152136 6.53044C-0.140575 6.0621 0.0017984 5.44515 0.470135 5.15244L7.94014 0.483691ZM2.00013 10.0004C2.00013 9.44815 2.44785 9.00044 3.00013 9.00044C3.55242 9.00044 4.00013 9.44816 4.00013 10.0004V13.0004C4.00013 13.5527 3.55242 14.0004 3.00013 14.0004C2.44785 14.0004 2.00013 13.5527 2.00013 13.0004V10.0004ZM1.00013 17.0004C1.00013 16.4482 1.44785 16.0004 2.00013 16.0004H16.0001C16.5524 16.0004 17.0001 16.4482 17.0001 17.0004C17.0001 17.5527 16.5524 18.0004 16.0001 18.0004H2.00013C1.44785 18.0004 1.00013 17.5527 1.00013 17.0004ZM11.0001 9.00044C10.4478 9.00044 10.0001 9.44815 10.0001 10.0004V13.0004C10.0001 13.5527 10.4478 14.0004 11.0001 14.0004C11.5524 14.0004 12.0001 13.5527 12.0001 13.0004V10.0004C12.0001 9.44816 11.5524 9.00044 11.0001 9.00044ZM6.00013 10.0004C6.00013 9.44815 6.44785 9.00044 7.00013 9.00044C7.55242 9.00044 8.00013 9.44816 8.00013 10.0004V13.0004C8.00013 13.5527 7.55242 14.0004 7.00013 14.0004C6.44785 14.0004 6.00013 13.5527 6.00013 13.0004V10.0004ZM15.0001 9.00044C14.4478 9.00044 14.0001 9.44815 14.0001 10.0004V13.0004C14.0001 13.5527 14.4478 14.0004 15.0001 14.0004C15.5524 14.0004 16.0001 13.5527 16.0001 13.0004V10.0004C16.0001 9.44816 15.5524 9.00044 15.0001 9.00044ZM7.00013 5.00044C6.44785 5.00044 6.00013 5.44816 6.00013 6.00044C6.00013 6.55272 6.44785 7.00044 7.00013 7.00044H11.0001C11.5524 7.00044 12.0001 6.55272 12.0001 6.00044C12.0001 5.44816 11.5524 5.00044 11.0001 5.00044H7.00013Z" fill="#040415" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_4565_31689">
-                        <rect width="18" height="18" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </div>
-                <div className={styles.paymentListItemTexts}>
-                  <h3>Банковский перевод</h3>
-                  <p>Перевод на счёт</p>
-                </div>
-                <div className={styles.paymentListItemInput}>
-                  <input type="radio" name="payment" id="1" />
-                </div>
-              </label>
-            </li>
-            <li>
-              <label htmlFor="2" className={styles.paymentListItem}>
-                <div className={`${styles.paymentListItemIcon} ${styles.main}`}>
-                  <h3>ипак</h3>
-                </div>
-                <div className={styles.paymentListItemTexts}>
-                  <h3>
-                    <span>
-                      <svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="2" cy="8" r="2" fill="#040415" />
-                        <circle cx="9" cy="8" r="2" fill="#040415" />
-                      </svg>
-                    </span>
-                    6289</h3>
-                  <p>Недавно использовали</p>
-                </div>
-                <div className={styles.paymentListItemInput}>
-                  <input type="radio" name="payment" id="2" />
-                </div>
-              </label>
-            </li>
-            <li>
-              <label htmlFor="3" className={styles.paymentListItem}>
-                <div className={`${styles.paymentListItemIcon} ${styles.main}`}>
-                  <h3>ипак</h3>
-                </div>
-                <div className={styles.paymentListItemTexts}>
-                  <h3>
-                    <span>
-                      <svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="2" cy="8" r="2" fill="#040415" />
-                        <circle cx="9" cy="8" r="2" fill="#040415" />
-                      </svg>
-                    </span>
-                    6289</h3>
-                  <p>Недавно использовали</p>
-                </div>
-                <div className={styles.paymentListItemInput}>
-                  <input type="radio" name="payment" id="3" />
-                </div>
-              </label>
-            </li>
-            <li>
-              <label htmlFor="4" className={styles.paymentListItem}>
-                <div className={`${styles.paymentListItemIcon} ${styles.main}`}>
-                  <h3>ипак</h3>
-                </div>
-                <div className={styles.paymentListItemTexts}>
-                  <h3>
-                    <span>
-                      <svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="2" cy="8" r="2" fill="#040415" />
-                        <circle cx="9" cy="8" r="2" fill="#040415" />
-                      </svg>
-                    </span>
-                    Payme</h3>
-                  <p>Добавлена 21.06.2024</p>
-                </div>
-                <div className={styles.paymentListItemInput}>
-                  <input type="radio" name="payment" id="4" />
-                </div>
-              </label>
-            </li>
-            <li>
-              <label htmlFor="5" className={styles.paymentListItem}>
-                <div className={`${styles.paymentListItemIcon} ${styles.main}`}>
-                  <h3>ипак</h3>
-                </div>
-                <div className={styles.paymentListItemTexts}>
-                  <h3>
-                    <span>
-                      <svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="2" cy="8" r="2" fill="#040415" />
-                        <circle cx="9" cy="8" r="2" fill="#040415" />
-                      </svg>
-                    </span>
-                    6289</h3>
-                  <p>Добавлена 21.06.2024</p>
-                </div>
-                <div className={styles.paymentListItemInput}>
-                  <input type="radio" name="payment" id="5" />
-                </div>
-              </label>
-            </li>
-            <li>
-              <label htmlFor="6" className={styles.paymentListItem}>
-                <div className={`${styles.paymentListItemIcon} ${styles.main}`}>
-                  <h3>ипак</h3>
-                </div>
-                <div className={styles.paymentListItemTexts}>
-                  <h3>
-                    <span>
-                      <svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="2" cy="8" r="2" fill="#040415" />
-                        <circle cx="9" cy="8" r="2" fill="#040415" />
-                      </svg>
-                    </span>
-                    6289</h3>
-                  <p className={styles.error}>Карта заблокирована</p>
-                </div>
-                <div className={styles.paymentListItemInput}>
-                  <input type="radio" name="payment" id="6" />
-                </div>
-              </label>
-            </li>
-            <li>
-              <button className={styles.paymentListItem}>
-                <div className={styles.paymentListItemIcon}>
-                  <svg className={styles.plus} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clipPath="url(#clip0_4565_31774)">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M6 0C5.44772 0 5 0.447715 5 1V5H1C0.447715 5 0 5.44771 0 6C0 6.55228 0.447715 7 1 7H5V11C5 11.5523 5.44772 12 6 12C6.55228 12 7 11.5523 7 11V7H11C11.5523 7 12 6.55229 12 6C12 5.44772 11.5523 5 11 5H7V1C7 0.447715 6.55228 0 6 0Z" fill="#040415" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_4565_31774">
-                        <rect width="12" height="12" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </div>
-                <div className={styles.paymentListItemTexts}>
-                  <h3>Добавить новую</h3>
-                  <p>Карта для пополнения</p>
-                </div>
-                <div className={styles.paymentListItemInput}>
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g opacity="0.2">
-                      <path d="M3 1L8 6L3 11" stroke="#040415" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </g>
-                  </svg>
-                </div>
-              </button>
-            </li>
-          </ul>
-        </div> */}
         <div className={styles.card}>
           <div className={styles.paymentHeader}>
             <h2 className={styles.paymentTitle}>

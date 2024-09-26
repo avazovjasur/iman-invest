@@ -2,12 +2,18 @@ import styles from './AimInner.module.scss'
 import Link from 'next/link';
 import { useState } from 'react';
 import dynamic from "next/dynamic";
+import { useSelector } from 'react-redux';
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-
-const AimInner = () => {
+const AimInner = ({ investmentId }) => {
   const [isCapActive, setIsCapActive] = useState(false);
   const [isAutoActive, setIsAutoActive] = useState(false);
+  const [investment, setInvestment] = useState(null)
+  const investments = useSelector((state) => state.otp.investments);
+
+  function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
 
   const handleCapCheckboxChange = () => {
     setIsCapActive(!isCapActive);
@@ -16,6 +22,16 @@ const AimInner = () => {
   const handleAutoCheckboxChange = () => {
     setIsAutoActive(!isAutoActive);
   };
+
+  useState(() => {
+    console.log(investmentId)
+    investments.forEach(el => {
+      if (el.guid === investmentId) {
+        setInvestment(el)
+      }
+    });
+    console.log('investments', investments);
+  }, [investmentId])
 
   const option = {
     chart: {
@@ -84,7 +100,7 @@ const AimInner = () => {
           </svg>
           <h3>На лобутены</h3>
         </div>
-        <h3 className={styles.topContentTitle}>672 902 209 сум</h3>
+        <h3 className={styles.topContentTitle}>{investment && formatNumber(investment.investment_amount)} сум</h3>
         <div className={styles.topProfit}>
           <div className={styles.topProfitIcon}>
             <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,11 +109,7 @@ const AimInner = () => {
             <h3 className={styles.topProfitTitle}> Прибыль</h3>
           </div>
           <h3 className={styles.topProfitTitle}>
-            + 1 074 467 сум
-          </h3>
-          <div className={styles.topProfitLine}></div>
-          <h3 className={styles.topProfitTitle}>
-            + 7%
+            + {investment && formatNumber(investment.last_month_profit.amount)} сум
           </h3>
         </div>
       </div>

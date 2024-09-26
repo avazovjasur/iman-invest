@@ -1,8 +1,12 @@
-import AimInner from "@/components/AimInner"
+import AimInner from "@/components/AimInner/AimInner"
+import { useRouter } from "next/router";
 
 const Aim = () => {
+  const router = useRouter()
+  const { id } = router.query;
+
   return <>
-    <AimInner />
+    <AimInner investmentId={id} />
   </>
 }
 

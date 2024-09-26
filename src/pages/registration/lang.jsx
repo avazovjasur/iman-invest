@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { setLang } from '../../store/otpSlice';
@@ -13,9 +13,14 @@ const Lang = () => {
         router.push('/registration/number');
     }
 
+    useEffect(() => {
+        localStorage.setItem('lang', activeLang)
+    }, [])
+
     const handleLangClick = (lang) => {
         setActiveLang(lang);
         dispatch(setLang(lang));
+        localStorage.setItem('lang', lang);
     };
 
     return <div className={styles.container}>

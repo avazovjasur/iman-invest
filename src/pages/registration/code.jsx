@@ -1,15 +1,23 @@
-import { useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'; // Импортируем useSelector
+import { useRef, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/modules/code.module.scss';
 import { useRouter } from 'next/router';
 import { setTokensAndInvestor } from '@/store/otpSlice';
-import axios from 'axios'; // Убедитесь, что axios импортирован, если он будет использоваться для запроса
+import axios from 'axios';
 
 const Code = () => {
     const router = useRouter();
     const inputRefs = useRef([]);
-    const otpGuid = useSelector(state => state.otp.otpGuid);
+    const [otpGuid, setOtpGuid] = useState(null)
     const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+        const otpGuid = localStorage.getItem('otpGuid')
+        setOtpGuid(otpGuid)
+    }
+  }, []);
 
     useEffect(() => {
         if (inputRefs.current[0]) {
@@ -54,12 +62,17 @@ const Code = () => {
             });
             console.log('OTP Confirmation Response:', response.data);
             const { refresh_token, access_token, investor_id } = response.data;
+            console.log('refresh_token, access_token, investor_id', refresh_token, access_token, investor_id);
             
             dispatch(setTokensAndInvestor({
                 refreshToken: refresh_token,
                 accessToken: access_token,
-                investorId: investor_id
+                investorId: investor_id,
             }));
+
+            localStorage.setItem('refreshToken', refresh_token);
+            localStorage.setItem('accessToken', access_token);
+            localStorage.setItem('investorId', investor_id);
 
             router.push('/registration/pin');
         } catch (error) {
