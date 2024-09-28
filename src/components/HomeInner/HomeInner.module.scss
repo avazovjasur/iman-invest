@@ -353,6 +353,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 6px;
   @include resa("margin-bottom", 10px);
   svg {
     @include resa("height", 11px);
@@ -365,6 +366,27 @@
     text-align: left;
     color: #040415;
   }
+}
+
+.goalListItemAmount {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  @include resa("margin-bottom", 10px);
+  h3 {
+    font-weight: 500;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+    text-align: left;
+    color: #040415;
+  }
+}
+
+.goalListItemAmountCurrency {
+  font-weight: 500;
+  @include resa("font-size", 16px);
+  @include resa("line-height", 20px);
+  color: #a8afbd;
 }
 
 .goalListItemStatistics {

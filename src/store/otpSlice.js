@@ -13,6 +13,8 @@ const initialState = {
   investments_profit: null,
   resident: null,
   autopayments: null,
+  cards: null,
+  profitMonthes: null
 };
 
 const otpSlice = createSlice({
@@ -52,10 +54,16 @@ const otpSlice = createSlice({
     setAutopayments: (state, action) => {
       state.autopayments = action.payload;
     },
+    setCards: (state, action) => {
+      state.cards = action.payload;
+    },
+    setProfitMonthes: (state, action) => {
+      state.profitMonthes = action.payload;
+    },
   },
 });
 
-export const { 
+export const {
     setLang,
     setOtpGuid,
     setPhoneNumber,

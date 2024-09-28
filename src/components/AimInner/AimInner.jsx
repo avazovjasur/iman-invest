@@ -1,15 +1,33 @@
 import styles from './AimInner.module.scss'
 import Link from 'next/link';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
+import { useDispatch } from 'react-redux';
 import dynamic from "next/dynamic";
 import { useSelector } from 'react-redux';
+import axios from "axios";
+import useTokenChecker from "@/hooks/useTokenChecker";
+import {useRouter} from "next/router";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const AimInner = ({ investmentId }) => {
+  useTokenChecker()
+  const router = useRouter()
+
+  const [accessToken, setAccessToken] = useState(null);
   const [isCapActive, setIsCapActive] = useState(false);
   const [isAutoActive, setIsAutoActive] = useState(false);
   const [investment, setInvestment] = useState(null)
+  const [cards, setCards] = useState(null)
+  const [profitMonthes, setProfitMonthes] = useState(null)
+  const dispatch = useDispatch();
   const investments = useSelector((state) => state.otp.investments);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('accessToken');
+      setAccessToken(token);
+    }
+  }, []);
 
   function formatNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -22,6 +40,10 @@ const AimInner = ({ investmentId }) => {
   const handleAutoCheckboxChange = () => {
     setIsAutoActive(!isAutoActive);
   };
+
+  const getSecretPan = (pan) => {
+    return '****  ' + pan.split('').splice(-4).join('')
+  }
 
   useState(() => {
     console.log(investmentId)
@@ -76,6 +98,72 @@ const AimInner = ({ investmentId }) => {
     name: 'graph',
     data: [10, 41, 69, 91, 150]
   }]
+
+  const fetchInvestorCards = async () => {
+    try {
+      const response = await axios.get('/api/entrypoints/get-cards', {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      dispatch(setCards(response.data));
+    } catch (error) {
+      if (error.response?.status === 403 || error.response?.status === 401) {
+        console.log('403 error, refreshing tokens...');
+        await refreshTokensAndRetry(fetchInvestorCards);
+      } else {
+        console.error('Ошибка при загрузке карты:', error);
+      }
+    }
+  };
+
+  const fetchProfitMonths = async () => {
+    try {
+      const response = await axios.get('/api/entrypoints/get-profit-monthes', {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      dispatch(setProfitMonthes(response.data));
+    } catch (error) {
+      if (error.response?.status === 403 || error.response?.status === 401) {
+        console.log('403 error, refreshing tokens...');
+        await refreshTokensAndRetry(fetchInvestorCards);
+      } else {
+        console.error('Ошибка при загрузке карты:', error);
+      }
+    }
+  };
+
+  const refreshTokensAndRetry = async (retryCallback) => {
+    try {
+      const refreshToken = localStorage.getItem('refreshToken');
+      const response = await axios.post('/api/refresh-token', { refreshToken });
+
+      const { accessToken, refreshToken: newRefreshToken } = response.data;
+
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', newRefreshToken);
+
+      setAccessToken(accessToken);
+
+      retryCallback();
+    } catch (error) {
+      if (error.response.status === 400) {
+        localStorage.clear();
+
+        router.push('/registration/lang')
+      }
+      console.error('Ошибка при обновлении токенов:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (accessToken) {
+      fetchInvestorCards()
+      fetchProfitMonths()
+    }
+  }, [accessToken]);
 
   return <>
     <div className={styles.top}>
@@ -133,15 +221,19 @@ const AimInner = ({ investmentId }) => {
           <h3 className={styles.contentWrapperTitle}>
             Ваша карта
           </h3>
-          <div className={styles.contentWrapperCard}>
-            <div className={styles.contentWrapperCardTexts}>
-              <h3>TBC</h3>
-              <h4>** 3214</h4>
-            </div>
-            <div className={styles.contentWrapperCardIcon}>
-              <img src="/card-inner.svg" alt="card inner" />
-            </div>
-          </div>
+          {cards && cards.length &&
+            cards.map((el, index) => (
+              <div className={styles.contentWrapperCard}>
+                <div className={styles.contentWrapperCardTexts}>
+                  <h3>{el.card_type}</h3>
+                  <h4>{getSecretPan(el.pan)}</h4>
+                </div>
+                <div className={styles.contentWrapperCardIcon}>
+                  <img src="/card-inner.svg" alt="card inner"/>
+                </div>
+              </div>
+            ))
+          }
         </div>
         <div className={`${styles.contentWrapperBox} ${styles.contentWrapperAuto}`}>
           <div className={styles.contentWrapperAutoTexts}>
@@ -150,7 +242,7 @@ const AimInner = ({ investmentId }) => {
           </div>
           <div>
             <label
-              className={`${styles.contentWrapperAutoCheckbox} ${isAutoActive ? styles.active : ''}`}
+                className={`${styles.contentWrapperAutoCheckbox} ${isAutoActive ? styles.active : ''}`}
               htmlFor="auto"
             >
               <input

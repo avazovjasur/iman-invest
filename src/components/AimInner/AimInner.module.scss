@@ -214,6 +214,7 @@
     @include resa("line-height", 19.19px);
     text-align: left;
     color: #ffffff;
+    white-space: nowrap;
   }
   h4 {
     @include resa("margin-top", 13.1px);
