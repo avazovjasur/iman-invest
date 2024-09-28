@@ -56,7 +56,7 @@ const Code = () => {
     };
 
     const clearInputs = () => {
-        inputRefs.current.forEach(input => {
+        inputRefs.current && inputRefs.current.forEach(input => {
             if (input) input.value = '';
         });
         if (inputRefs.current[0]) {
