@@ -96,3 +96,11 @@
         @include resa("height", 16px);
     }
 }
+
+.backBtn {
+    font-weight: 500;
+    color: #32c2fb;
+    @include resa("font-size", 14px);
+    @include resa("line-height", 22px);
+    @include resa("margin-bottom", 34px);
+}

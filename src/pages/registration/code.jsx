@@ -9,15 +9,17 @@ const Code = () => {
     const router = useRouter();
     const inputRefs = useRef([]);
     const [otpGuid, setOtpGuid] = useState(null)
+    const [secondsLeft, setSecondsLeft] = useState(60);
     const dispatch = useDispatch();
+    const phoneNumber = useSelector((state) => state.otp.phoneNumber);
+    const maskedNumber = phoneNumber.replace(/\d{2}-\d{2}$/, "** **");
 
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-        const otpGuid = localStorage.getItem('otpGuid')
-        setOtpGuid(otpGuid)
-    }
-  }, []);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const otpGuid = localStorage.getItem('otpGuid')
+            setOtpGuid(otpGuid)
+        }
+    }, []);
 
     useEffect(() => {
         if (inputRefs.current[0]) {
@@ -53,6 +55,15 @@ const Code = () => {
         }
     };
 
+    const clearInputs = () => {
+        inputRefs.current.forEach(input => {
+            if (input) input.value = '';
+        });
+        if (inputRefs.current[0]) {
+            inputRefs.current[0].focus();
+        }
+    };
+
     const sendOtpConfirm = async () => {
         const code = inputRefs.current.map(input => input.value).join('');
         try {
@@ -76,13 +87,27 @@ const Code = () => {
 
             router.push('/registration/pin');
         } catch (error) {
-            console.error('Error confirming OTP:', error);
+            clearInputs();
         }
     };
 
     const back = () => {
         router.push('/registration/number');
     };
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setSecondsLeft(prev => {
+                if (prev > 0) {
+                    return prev - 1;
+                }
+                clearInterval(timer);
+                return 0;
+            });
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -93,8 +118,10 @@ const Code = () => {
                     </svg>
                 </button>
                 <h1 className={styles.title}>Введите код</h1>
-                <p className={styles.info}>Мы отправили код на номер +998 77 666 ** **</p>
-                <p className={styles.resend}>Отправить повторно через 00:42</p>
+                <p className={styles.info}>Мы отправили код на номер +998 {maskedNumber}</p>
+                { secondsLeft > 0 ? <p className={styles.resend}>Отправить повторно через 00:{secondsLeft}</p> : 
+                    <a href='#!' className={styles.backBtn} type='button' onClick={back}>Вернуться назад к заполнению номера</a>
+                }
             </div>
 
             <div className={styles.codeInputContainer}>
