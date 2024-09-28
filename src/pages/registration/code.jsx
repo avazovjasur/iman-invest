@@ -11,7 +11,7 @@ const Code = () => {
     const [otpGuid, setOtpGuid] = useState(null)
     const [secondsLeft, setSecondsLeft] = useState(60);
     const dispatch = useDispatch();
-    const phoneNumber = useSelector((state) => state.otp.phoneNumber);
+    const phoneNumber = useSelector((state) => state.otp.phoneNumber) || '';
     const maskedNumber = phoneNumber.replace(/\d{2}-\d{2}$/, "** **");
 
     useEffect(() => {
