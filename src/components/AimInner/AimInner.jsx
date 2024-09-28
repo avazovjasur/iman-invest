@@ -47,7 +47,7 @@ const AimInner = ({ investmentId }) => {
 
   useState(() => {
     console.log(investmentId)
-    investments.forEach(el => {
+    investments && investments.forEach(el => {
       if (el.guid === investmentId) {
         setInvestment(el)
       }

@@ -365,11 +365,11 @@ const StartInner = () => {
             <div className={styles.faqContent}>
               <h3 className={styles.title}>FAQ</h3>
               <ul className={styles.faqList}>
-                {questions.map((el, index) => (
+                {questions && questions?.map((el, index) => (
                   <FaqItem
                     key={index}
-                    title={el.title}
-                    description={el.description}
+                    title={el?.title}
+                    description={el?.description}
                   />
                 ))}
               </ul>
