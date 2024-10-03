@@ -19,6 +19,8 @@ const AimInner = ({ investmentId }) => {
   const [investment, setInvestment] = useState(null)
   const [cards, setCards] = useState(null)
   const [profitMonthes, setProfitMonthes] = useState(null)
+  const [isAllTransactions, setIsAllTransactions] = useState(false)
+  const [investmentTransactions, setInvestmentTransactions] = useState(null)
   const dispatch = useDispatch();
   const investments = useSelector((state) => state.otp.investments);
 
@@ -33,6 +35,10 @@ const AimInner = ({ investmentId }) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   }
 
+  const getAllTransactions = () => {
+    setIsAllTransactions(true)
+  }
+
   const handleCapCheckboxChange = () => {
     setIsCapActive(!isCapActive);
   };
@@ -45,8 +51,11 @@ const AimInner = ({ investmentId }) => {
     return '****  ' + pan.split('').splice(-4).join('')
   }
 
+  const goToReplenish = () => {
+    router.push('/invest/replenish')
+  }
+
   useState(() => {
-    console.log(investmentId)
     investments && investments.forEach(el => {
       if (el.guid === investmentId) {
         setInvestment(el)
@@ -115,6 +124,27 @@ const AimInner = ({ investmentId }) => {
         console.error('Ошибка при загрузке карты:', error);
       }
     }
+  }
+
+  const fetchInvestmentTransactions = async (id = '') => {
+    try {
+      const response = await axios.get(`/api/entrypoints/get-transactions`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        },
+        params: {
+          investmentId: id
+        }
+      });
+      dispatch(setInvestmentTransactions(response.data));
+    } catch (error) {
+      if (error.response?.status === 403 || error.response?.status === 401) {
+        console.log('403 error, refreshing tokens...');
+        await refreshTokensAndRetry(fetchInvestmentTransactions);
+      } else {
+        console.error('Ошибка при загрузке транзакции:', error);
+      }
+    }
   };
 
   const fetchProfitMonths = async () => {
@@ -161,7 +191,11 @@ const AimInner = ({ investmentId }) => {
   useEffect(() => {
     if (accessToken) {
       fetchInvestorCards()
+      fetchInvestmentTransactions(investmentId)
       fetchProfitMonths()
+      // if (investmentTransactions?.transaction_histories.length > 3 && !isAllTransactions) {
+      //   setInvestmentTransactions(investmentTransactions.splice(0, 3))
+      // }
     }
   }, [accessToken]);
 
@@ -204,7 +238,7 @@ const AimInner = ({ investmentId }) => {
     </div>
     <div className={styles.content}>
       <div className={styles.contentButtons}>
-        <button className={styles.contentButtonsItem}>Пополнить</button>
+        <button className={styles.contentButtonsItem} onClick={goToReplenish}>Пополнить</button>
         <button className={`${styles.contentButtonsItem} ${styles.other}`}>Редактировать</button>
       </div>
       <div className={styles.contentWrapper}>
@@ -298,69 +332,65 @@ const AimInner = ({ investmentId }) => {
             </label>
           </div>
         </div>
-        <div className={`${styles.contentWrapperBox} ${styles.contentWrapperHistory}`}>
-          <h3 className={styles.contentTitle}>История поступлений</h3>
-          <ul className={styles.historyList}>
-            <li className={styles.historyListItem}>
-              <div className={styles.historyListItemLeft}>
-                <div className={styles.historyListItemIcon}>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 5L6 14M6 14V9M6 14H11" stroke="#01CAB0" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <div className={styles.historyListItemTexts}>
-                  <h3>Со счёта •• 6289</h3>
-                  <p>29 авг 2024</p>
-                </div>
-              </div>
-              <h3 className={styles.historyListItemPrice}>+ 122 720 сум</h3>
-            </li>
-            <li className={styles.historyListItem}>
-              <div className={styles.historyListItemLeft}>
-                <div className={styles.historyListItemIcon}>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 5L6 14M6 14V9M6 14H11" stroke="#01CAB0" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <div className={styles.historyListItemTexts}>
-                  <h3>Со счёта •• 6289</h3>
-                  <p>29 авг 2024</p>
-                </div>
-              </div>
-              <h3 className={styles.historyListItemPrice}>+ 122 720 сум</h3>
-            </li>
-            <li className={styles.historyListItem}>
-              <div className={styles.historyListItemLeft}>
-                <div className={styles.historyListItemIcon}>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clipPath="url(#clip0_4850_7140)">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M15.2931 2.00003C15.6831 2.00003 16.0001 2.31703 16.0001 2.70703V4.00003H17.2931C17.433 4 17.5697 4.04145 17.686 4.11913C17.8023 4.19682 17.8929 4.30725 17.9464 4.43645C18 4.56566 18.014 4.70784 17.9867 4.845C17.9594 4.98216 17.892 5.10815 17.7931 5.20703L16.3331 6.66703C16.1199 6.87973 15.8313 6.99945 15.5301 7.00003H14.0601L10.5301 10.53C10.3879 10.6625 10.1999 10.7346 10.0056 10.7312C9.81129 10.7278 9.6259 10.6491 9.48849 10.5117C9.35108 10.3742 9.27237 10.1889 9.26894 9.99455C9.26551 9.80025 9.33763 9.6122 9.47011 9.47003L13.0001 5.94003V4.47003C13.0001 4.16903 13.1201 3.88003 13.3331 3.66603L14.7931 2.20603C14.8585 2.14007 14.9365 2.0878 15.0223 2.05226C15.1081 2.01672 15.2002 1.99863 15.2931 1.99903M4.50011 10C4.50001 9.18457 4.68123 8.37928 5.03067 7.64248C5.38011 6.90568 5.88901 6.25581 6.52054 5.73991C7.15207 5.224 7.89041 4.85499 8.68211 4.65957C9.47382 4.46416 10.2991 4.44723 11.0981 4.61003C11.292 4.64703 11.4927 4.60608 11.6567 4.49606C11.8206 4.38604 11.9345 4.21582 11.9737 4.02233C12.013 3.82884 11.9743 3.62769 11.8662 3.46252C11.758 3.29735 11.5891 3.18147 11.3961 3.14003C9.92178 2.84028 8.3901 3.02352 7.02808 3.66258C5.66606 4.30165 4.54618 5.36253 3.83441 6.688C3.12263 8.01348 2.85685 9.53301 3.07644 11.0214C3.29603 12.5098 3.98931 13.8878 5.05354 14.9513C6.11777 16.0147 7.4963 16.707 8.98485 16.9255C10.4734 17.144 11.9927 16.8771 13.3177 16.1643C14.6426 15.4516 15.7027 14.3309 16.3408 12.9684C16.9788 11.606 17.1609 10.0741 16.8601 8.60003C16.8205 8.4051 16.705 8.2339 16.5391 8.12409C16.3732 8.01429 16.1705 7.97488 15.9756 8.01453C15.7807 8.05418 15.6095 8.16964 15.4997 8.33552C15.3899 8.50139 15.3505 8.7041 15.3901 8.89903C15.4628 9.25436 15.4994 9.62136 15.5001 10C15.5001 11.4587 14.9207 12.8577 13.8892 13.8891C12.8578 14.9206 11.4588 15.5 10.0001 15.5C8.54142 15.5 7.14248 14.9206 6.11103 13.8891C5.07958 12.8577 4.50011 11.4587 4.50011 10ZM9.86411 7.50403C10.0628 7.49342 10.2491 7.40434 10.382 7.25637C10.515 7.1084 10.5837 6.91368 10.5731 6.71503C10.5625 6.51638 10.4734 6.33009 10.3255 6.19712C10.1775 6.06416 9.98276 5.99542 9.78411 6.00603C9.01604 6.04742 8.27619 6.30939 7.6532 6.76055C7.03022 7.21171 6.55053 7.83293 6.27161 8.54976C5.99269 9.2666 5.92637 10.0487 6.08059 10.8022C6.23481 11.5558 6.60303 12.2489 7.14114 12.7985C7.67925 13.3482 8.36442 13.731 9.11455 13.9011C9.86469 14.0713 10.648 14.0215 11.3706 13.7579C12.0931 13.4942 12.7244 13.0278 13.1886 12.4145C13.6529 11.8012 13.9305 11.0671 13.9881 10.3C14.0028 10.1016 13.9381 9.90554 13.8083 9.75486C13.6784 9.60417 13.494 9.51125 13.2956 9.49653C13.0972 9.48181 12.9011 9.5465 12.7504 9.67637C12.5998 9.80624 12.5068 9.99065 12.4921 10.189C12.4556 10.6682 12.2818 11.1266 11.9916 11.5096C11.7013 11.8925 11.3067 12.1837 10.8553 12.3482C10.4038 12.5127 9.91444 12.5436 9.44584 12.4372C8.97724 12.3308 8.54922 12.0917 8.21304 11.7483C7.87685 11.405 7.64674 10.972 7.55025 10.5013C7.45376 10.0305 7.49498 9.54195 7.66897 9.09404C7.84296 8.64612 8.14236 8.25783 8.53132 7.97566C8.92027 7.6935 9.38231 7.5294 9.86211 7.50303" fill="#01CAB0" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_4850_7140">
-                        <rect width="16" height="16" fill="white" transform="translate(2 2)" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </div>
-                <div className={styles.historyListItemTexts}>
-                  <h3>Открыта цель</h3>
-                  <p>29 авг 2024</p>
-                </div>
-              </div>
-              <h3 className={styles.historyListItemPrice}>+ 122 720 сум</h3>
-            </li>
-          </ul>
-          <div className={styles.contentGraphLine}></div>
-          <button className={styles.historyButton}>Показать всю историю</button>
-        </div>
+        {investmentTransactions?.transaction_histories.length > 0 &&
+          <div className={`${styles.contentWrapperBox} ${styles.contentWrapperHistory}`}>
+            {investmentTransactions?.transaction_histories.length &&
+                <h3 className={styles.contentTitle}>История поступлений</h3>}
+            <ul className={styles.historyList}>
+              {investmentTransactions &&
+              investmentTransactions?.transaction_histories.length &&
+              investmentTransactions?.transaction_histories.length > 3 &&
+              !isAllTransactions ? investmentTransactions?.transaction_histories.splice(0, 3).map((el, index) => (
+                      <li className={styles.historyListItem}>
+                        <div className={styles.historyListItemLeft}>
+                          <div className={styles.historyListItemIcon}>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M15 5L6 14M6 14V9M6 14H11" stroke="#01CAB0" strokeWidth="1.6" strokeLinecap="round"
+                                    strokeLinejoin="round"/>
+                            </svg>
+                          </div>
+                          <div className={styles.historyListItemTexts}>
+                            <h3>Со счёта</h3>
+                            <p>{el.time}</p>
+                          </div>
+                        </div>
+                        <h3 className={styles.historyListItemPrice}>+ {formatNumber(el.amount)} сум</h3>
+                      </li>)) :
+                  investmentTransactions?.transaction_histories.map((el, index) => (
+                      <li className={styles.historyListItem}>
+                        <div className={styles.historyListItemLeft}>
+                          <div className={styles.historyListItemIcon}>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                              <path d="M15 5L6 14M6 14V9M6 14H11" stroke="#01CAB0" strokeWidth="1.6" strokeLinecap="round"
+                                    strokeLinejoin="round"/>
+                            </svg>
+                          </div>
+                          <div className={styles.historyListItemTexts}>
+                            <h3>Со счёта •• 6289</h3>
+                            <p>{el.time}</p>
+                          </div>
+                        </div>
+                        <h3 className={styles.historyListItemPrice}>+ {formatNumber(el.amount)} сум</h3>
+                      </li>))
+              }
+            </ul>
+            {!isAllTransactions && investmentTransactions?.transaction_histories.length &&
+                <div onClick={getAllTransactions}>
+                  <div className={styles.contentGraphLine}></div>
+                  <button className={styles.historyButton}>Показать всю историю</button>
+                </div>}
+          </div>
+        }
         <div className={`${styles.contentWrapperBox} ${styles.contentWrapperHistory}`}>
           <ul className={styles.featuresList}>
             <li className={styles.featuresListItem}>
               <div className={styles.featuresListItemIcon}>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g opacity="0.5">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M6 0C5.44772 0 5 0.447715 5 1V2C3.34315 2 2 3.34315 2 5V7V9V15C2 16.6569 3.34315 18 5 18H15C16.6569 18 18 16.6569 18 15V9V7V5C18 3.34315 16.6569 2 15 2V1C15 0.447715 14.5523 0 14 0C13.4477 0 13 0.447715 13 1V2H7V1C7 0.447715 6.55228 0 6 0ZM13 4H7C7 4.55228 6.55228 5 6 5C5.44772 5 5 4.55228 5 4C4.44772 4 4 4.44772 4 5V7L16 7V5C16 4.44772 15.5523 4 15 4C15 4.55228 14.5523 5 14 5C13.4477 5 13 4.55228 13 4ZM4 15V9L16 9V15C16 15.5523 15.5523 16 15 16H5C4.44772 16 4 15.5523 4 15Z" fill="#1E468C" />
+                    <path fillRule="evenodd" clipRule="evenodd"
+                          d="M6 0C5.44772 0 5 0.447715 5 1V2C3.34315 2 2 3.34315 2 5V7V9V15C2 16.6569 3.34315 18 5 18H15C16.6569 18 18 16.6569 18 15V9V7V5C18 3.34315 16.6569 2 15 2V1C15 0.447715 14.5523 0 14 0C13.4477 0 13 0.447715 13 1V2H7V1C7 0.447715 6.55228 0 6 0ZM13 4H7C7 4.55228 6.55228 5 6 5C5.44772 5 5 4.55228 5 4C4.44772 4 4 4.44772 4 5V7L16 7V5C16 4.44772 15.5523 4 15 4C15 4.55228 14.5523 5 14 5C13.4477 5 13 4.55228 13 4ZM4 15V9L16 9V15C16 15.5523 15.5523 16 15 16H5C4.44772 16 4 15.5523 4 15Z"
+                          fill="#1E468C"/>
                   </g>
                 </svg>
               </div>
@@ -373,7 +403,8 @@ const AimInner = ({ investmentId }) => {
             <li className={styles.featuresListItem}>
               <div className={styles.featuresListItemIcon}>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M3 2C2.20435 2 1.44129 2.31607 0.87868 2.87868C0.31607 3.44129 0 4.20435 0 5V11C0 11.7956 0.31607 12.5587 0.87868 13.1213C1.44129 13.6839 2.20435 14 3 14H4V15C4 15.7956 4.31607 16.5587 4.87868 17.1213C5.44129 17.6839 6.20435 18 7 18H17C17.7957 18 18.5587 17.6839 19.1213 17.1213C19.6839 16.5587 20 15.7957 20 15V9C20 8.20435 19.6839 7.44129 19.1213 6.87868C18.5587 6.31607 17.7957 6 17 6H16V5C16 4.20435 15.6839 3.44129 15.1213 2.87868C14.5587 2.31607 13.7956 2 13 2H3ZM14 6V5C14 4.73478 13.8946 4.48043 13.7071 4.29289C13.5196 4.10536 13.2652 4 13 4H3C2.73478 4 2.48043 4.10536 2.29289 4.29289C2.10536 4.48043 2 4.73478 2 5V11C2 11.2652 2.10536 11.5196 2.29289 11.7071C2.48043 11.8946 2.73478 12 3 12H4V9C4 8.20435 4.31607 7.44129 4.87868 6.87868C5.44129 6.31607 6.20435 6 7 6H14ZM6 13V9C6 8.73478 6.10536 8.48043 6.29289 8.29289C6.48043 8.10536 6.73478 8 7 8H15H17C17.2652 8 17.5196 8.10536 17.7071 8.29289C17.8946 8.48043 18 8.73478 18 9V15C18 15.2652 17.8946 15.5196 17.7071 15.7071C17.5196 15.8946 17.2652 16 17 16H7C6.73478 16 6.48043 15.8946 6.29289 15.7071C6.10536 15.5196 6 15.2652 6 15V13ZM9.87868 9.87868C10.4413 9.31607 11.2043 9 12 9C12.7957 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2043 15 12C15 12.7957 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7957 15 12 15C11.2043 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7957 9 12C9 11.2043 9.31607 10.4413 9.87868 9.87868ZM12 11C11.7348 11 11.4804 11.1054 11.2929 11.2929C11.1054 11.4804 11 11.7348 11 12C11 12.2652 11.1054 12.5196 11.2929 12.7071C11.4804 12.8946 11.7348 13 12 13C12.2652 13 12.5196 12.8946 12.7071 12.7071C12.8946 12.5196 13 12.2652 13 12C13 11.7348 12.8946 11.4804 12.7071 11.2929C12.5196 11.1054 12.2652 11 12 11Z" fill="#1E468C" fillOpacity="0.5" />
+                  <path fillRule="evenodd" clipRule="evenodd"
+                        d="M3 2C2.20435 2 1.44129 2.31607 0.87868 2.87868C0.31607 3.44129 0 4.20435 0 5V11C0 11.7956 0.31607 12.5587 0.87868 13.1213C1.44129 13.6839 2.20435 14 3 14H4V15C4 15.7956 4.31607 16.5587 4.87868 17.1213C5.44129 17.6839 6.20435 18 7 18H17C17.7957 18 18.5587 17.6839 19.1213 17.1213C19.6839 16.5587 20 15.7957 20 15V9C20 8.20435 19.6839 7.44129 19.1213 6.87868C18.5587 6.31607 17.7957 6 17 6H16V5C16 4.20435 15.6839 3.44129 15.1213 2.87868C14.5587 2.31607 13.7956 2 13 2H3ZM14 6V5C14 4.73478 13.8946 4.48043 13.7071 4.29289C13.5196 4.10536 13.2652 4 13 4H3C2.73478 4 2.48043 4.10536 2.29289 4.29289C2.10536 4.48043 2 4.73478 2 5V11C2 11.2652 2.10536 11.5196 2.29289 11.7071C2.48043 11.8946 2.73478 12 3 12H4V9C4 8.20435 4.31607 7.44129 4.87868 6.87868C5.44129 6.31607 6.20435 6 7 6H14ZM6 13V9C6 8.73478 6.10536 8.48043 6.29289 8.29289C6.48043 8.10536 6.73478 8 7 8H15H17C17.2652 8 17.5196 8.10536 17.7071 8.29289C17.8946 8.48043 18 8.73478 18 9V15C18 15.2652 17.8946 15.5196 17.7071 15.7071C17.5196 15.8946 17.2652 16 17 16H7C6.73478 16 6.48043 15.8946 6.29289 15.7071C6.10536 15.5196 6 15.2652 6 15V13ZM9.87868 9.87868C10.4413 9.31607 11.2043 9 12 9C12.7957 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2043 15 12C15 12.7957 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7957 15 12 15C11.2043 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7957 9 12C9 11.2043 9.31607 10.4413 9.87868 9.87868ZM12 11C11.7348 11 11.4804 11.1054 11.2929 11.2929C11.1054 11.4804 11 11.7348 11 12C11 12.2652 11.1054 12.5196 11.2929 12.7071C11.4804 12.8946 11.7348 13 12 13C12.2652 13 12.5196 12.8946 12.7071 12.7071C12.8946 12.5196 13 12.2652 13 12C13 11.7348 12.8946 11.4804 12.7071 11.2929C12.5196 11.1054 12.2652 11 12 11Z" fill="#1E468C" fillOpacity="0.5" />
                 </svg>
               </div>
               <div className={styles.featuresListItemTexts}>

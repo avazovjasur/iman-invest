@@ -1,0 +1,257 @@
+@import "../../styles/mixins.scss";
+
+.topButton {
+  @include resa("padding", 16px);
+  @include resa("padding-left", 15px);
+  @include resa("padding-top", 16px);
+  @include resa("padding-right", 75px);
+  svg {
+    @include resa("height", 14px);
+    @include resa("width", 8px);
+  }
+}
+
+.top {
+  width: 100%;
+  border-radius: 0;
+  @include resa("border-bottom-left-radius", 24px);
+  @include resa("border-bottom-right-radius", 24px);
+  @include resa("padding", 4px);
+  @include resa("padding-top", 6px);
+  @include resa("padding-bottom", 21px);
+}
+
+.topContent {
+  @include resa("margin-top", 12px);
+  @include resa("margin-bottom", 18px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topContentHeader {
+  position: relative;
+}
+
+.topBackButton {
+  position: absolute;
+}
+
+.topContentTitle {
+  @include resa("margin-top", 8px);
+  @include resa("font-size", 18px);
+  @include resa("line-height", 20px);
+  font-weight: 600;
+  @include resa("letter-spacing", -0.16px);
+  color: #040415;
+  text-align: center;
+}
+
+.topContentDesc {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  @include resa("margin-top", 6px);
+  @include resa("font-size", 14px);
+  @include resa("line-height", 15px);
+  font-weight: 600;
+  @include resa("letter-spacing", -0.16px);
+  color: #040415;
+  text-align: center;
+}
+
+.topContentPrice {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #7c7d87;
+  margin-left: 4px;
+  @include resa("line-height", 15px);
+}
+
+.currencyBlockCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.currencySwitch {
+  width: 316px;
+  display: flex;
+  gap: 4px;
+  border-radius: 12px;
+  padding: 4px;
+  box-sizing: border-box;
+  background-color: #f5f7fa;
+}
+
+.currencyItem {
+  width: 152px;
+  height: 34px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: #7c7d87;
+  transition: all 0.3s;
+}
+
+.currencyItemActive {
+  background-color: #3680FF;
+  color: #ffffff;
+}
+
+.currencyBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 56px;
+}
+
+.currencyDesc {
+  color: #7c7d87;
+  font-weight: 600;
+}
+
+.currencySum {
+  @include resa("font-size", 26px);
+  font-weight: 500;
+  color: #c9c8c8;
+}
+
+.currencyInputBlock {
+  box-sizing: border-box;
+  padding: 0 30px;
+  width: 324px;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  align-items: end;
+  grid-gap: 6px;
+}
+
+.currencyInput {
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  overflow: visible;
+  border: none;
+  outline: none;
+  @include resa("font-size", 30px);
+  @include resa("line-height", 15px);
+
+  &::placeholder {
+    color: #c9c8c8;
+    font-size: 28px;
+    font-weight: 500;
+  }
+}
+
+.contentButtonsItem {
+  @include resa("border-radius", 16px);
+  background: #3680ff;
+  text-align: center;
+  width: 100%;
+  @include resa("padding-bottom", 17px);
+  @include resa("padding-top", 17px);
+  font-weight: 600;
+  @include resa("line-height", 20px);
+  @include resa("font-size", 17px);
+  color: #ffffff;
+  &.other {
+    background: #3680ff14;
+    color: #3680ff;
+  }
+}
+
+.replenishContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.replenishBody {
+  box-sizing: border-box;
+  padding: 8px 16px 42px;
+}
+
+.paymentMethodCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #F4F4F5;
+  border-radius: 18px;
+  margin: 50px 30px 0;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.paymentMethodCardInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.paymentMethodCardTitle {
+  @include resa("font-size", 16px);
+  font-weight: 600
+}
+
+.paymentMethodCardDesc {
+  @include resa("font-size", 14px);
+  color: #7c7d87;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.paymentBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.paymentBlockTitle {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.paymentCheckCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    padding-bottom: 20px;
+    border-bottom: solid 1px #c9c8c8;
+  }
+
+  &:not(:first-child) {
+    padding-top: 20px;
+  }
+}
+
+.paymentMethodLogo {
+  width: 60px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 9px;
+  padding: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #F4F4F5;
+}
+
+.replenishKeyboard {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}

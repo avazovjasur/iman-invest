@@ -1,19 +1,25 @@
 import { useSelector } from 'react-redux';
 import styles from './HomeInner.module.scss'
 import Link from 'next/link';
+import {useState} from "react";
 
 const HomeInner = () => {
   const investments = useSelector((state) => state.otp.investments);
   const investmentsAmount = useSelector((state) => state.otp.investments_amount);
   const investmentsProfit = useSelector((state) => state.otp.investments_profit);
   const investmentsAutopayments = useSelector((state) => state.otp.autopayments);
+  const [income, setIncome] = useState('0')
 
   function formatNumber(num) {
     if (!num) return num
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   }
 
-  console.log(investments)
+  const calculateIncome = (amount, percentage) => {
+    const income = (amount * percentage) / 100;
+    // setIncome(income.toString());
+    return income.toString()
+  }
 
   return <>
     <div className={styles.top}>
@@ -139,14 +145,22 @@ const HomeInner = () => {
                     <div class="mb-0" className={styles.goalListItemHeader}>
                       {el.goal.icon !== '' ? <img src={`${el.goal.icon}`}/> : ''}
                       <h3>
-                      {el.goal.title}
+                        {el.goal.title}
                       </h3>
                     </div>
-                    <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path opacity="0.5" d="M1 0.5L6 5.5L1 10.5" stroke="#828DA1" strokeLinecap="round"/>
-                    </svg>
+                    <div className={styles.goalItemFeaturesCurrency}>
+                      Сумовый
+                    </div>
                   </div>
                   <div className={styles.goalListItemAmount}>
+                    <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                          d="M4.94108 10.6372L5.05653 1.63799M5.05653 1.63799L1.01196 5.08639M5.05653 1.63799L9.0113 5.18901"
+                          stroke="#117C3A"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                      />
+                    </svg>
                     <h3>
                       {formatNumber(el.goal.amount)}
                     </h3>
@@ -155,7 +169,7 @@ const HomeInner = () => {
                   <div className={styles.goalListItemStatistics}>
                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g opacity="0.5">
-                      <g clipPath="url(#clip0_4841_8272)">
+                        <g clipPath="url(#clip0_4841_8272)">
                           <path
                               d="M10.6665 11.1663C10.6665 10.4297 8.57717 9.83301 5.99984 9.83301M10.6665 11.1663C10.6665 11.903 8.57717 12.4997 5.99984 12.4997C3.4225 12.4997 1.33317 11.903 1.33317 11.1663M10.6665 11.1663V14.4577C10.6665 15.217 8.57717 15.833 5.99984 15.833C3.4225 15.833 1.33317 15.2177 1.33317 14.4577V11.1663M10.6665 11.1663C13.2158 11.1663 15.3332 10.5083 15.3332 9.83301V3.16634M5.99984 9.83301C3.4225 9.83301 1.33317 10.4297 1.33317 11.1663M5.99984 9.83301C3.0545 9.83301 0.666504 9.17501 0.666504 8.49967V5.16634M5.99984 3.83301C3.0545 3.83301 0.666504 4.42967 0.666504 5.16634M0.666504 5.16634C0.666504 5.90301 3.0545 6.49967 5.99984 6.49967C5.99984 7.17501 8.1685 7.83301 10.7178 7.83301C13.2672 7.83301 15.3332 7.17501 15.3332 6.49967M15.3332 3.16634C15.3332 2.42967 13.2665 1.83301 10.7178 1.83301C8.16917 1.83301 6.1025 2.42967 6.1025 3.16634M15.3332 3.16634C15.3332 3.90301 13.2665 4.49967 10.7178 4.49967C8.16917 4.49967 6.1025 3.90301 6.1025 3.16634M6.1025 3.16634V9.94367"
                               stroke="#828DA1" strokeWidth="1.2"/>
@@ -172,20 +186,23 @@ const HomeInner = () => {
                   </div>
                   <div className={styles.goalListItemLine}></div>
                   <div className={styles.goalItemBottom}>
-                    <div className={styles.goalItemFeatures}>
-                      <div className={styles.goalItemFeaturesBox}>
-                        Ставка <span>27%</span>
-                      </div>
-                      <div className={styles.goalItemFeaturesBox}>
-                        На {el.goal.term} мес
-                      </div>
-                    </div>
+                    {/*<div className={styles.goalItemFeatures}>*/}
+                    {/*  <div className={styles.goalItemFeaturesBox}>*/}
+                    {/*    Ставка <span>27%</span>*/}
+                    {/*  </div>*/}
+                    {/*  <div className={styles.goalItemFeaturesBox}>*/}
+                    {/*    На {el.goal.term} мес*/}
+                    {/*  </div>*/}
+                    {/*</div>*/}
                     <div className={styles.goalItemExtra}>
                       <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 3.75L5.5 8.25L13 0.75" stroke="#828DA1" strokeLinecap="round"/>
                       </svg>
                       Автоплатеж
                     </div>
+                    <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path opacity="0.5" d="M1 0.5L6 5.5L1 10.5" stroke="#828DA1" strokeLinecap="round"/>
+                    </svg>
                   </div>
                 </li>
               </Link>

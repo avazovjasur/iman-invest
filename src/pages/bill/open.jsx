@@ -53,8 +53,7 @@ const lang = () => {
       tariff_id: tariffId,
       term: Number(term) || 0,
     }
-
-    console.log('here 123', data, accessToken);
+    console.log('Send data: ', data)
 
     try {
       const response = await axios.post('/api/entrypoints/create-investments', data, {
@@ -63,7 +62,7 @@ const lang = () => {
         },
       });
 
-      router.push('/home')
+      await router.push('/home')
     } catch (error) {
       if (error.response && error.response.status === 403 || error.response && error.response.status === 401) {
         console.error(error.response);
@@ -180,7 +179,7 @@ const lang = () => {
           <h3 className={styles.contentTitle}>Выберите цель</h3>
           <div className={styles.contentFormBox}>
             <label htmlFor='target' className={styles.contentFormInput} >
-              <input 
+              <input
                 id='target'
                 type="text"
                 placeholder='Например: Машина'

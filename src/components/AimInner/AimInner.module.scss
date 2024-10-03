@@ -196,7 +196,7 @@
   @include resa("border-top-left-radius", 9px);
   @include resa("border-top-right-radius", 9px);
   display: flex;
-  @include resa("gap", 32.5px);
+  @include resa("gap", 24px);
 }
 
 .contentWrapperCardIcon {

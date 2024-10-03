@@ -50,13 +50,9 @@ const Home = () => {
         }
       })
 
-      console.log('overallAmount', overallAmount);
-
       dispatch(setInvestmentsAmount(overallAmount));
       dispatch(setInvestmentsProfit(overallLastMonthProfitAmount));
       dispatch(setInvestments(response.data));
-
-      console.log(response.data);
     } catch (error) {
       if (error.response?.status === 403 || error.response?.status === 401) {
         console.log('403 error, refreshing tokens...');
@@ -194,8 +190,9 @@ const Home = () => {
       fetchStrategies()
       fetchTariffs()
       fetchAutoPayments()
-      console.log('investmentAmount', investmentAmount);
-      console.log('investmentsProfit', investmentsProfit);
+      setTimeout(async () => {
+        fetchInvestments()
+      }, 10000)
     }
   }, [accessToken]);
 

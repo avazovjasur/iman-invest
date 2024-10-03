@@ -14,7 +14,8 @@ const initialState = {
   resident: null,
   autopayments: null,
   cards: null,
-  profitMonthes: null
+  profitMonthes: null,
+  investmentTransactions: null
 };
 
 const otpSlice = createSlice({
@@ -59,6 +60,9 @@ const otpSlice = createSlice({
     },
     setProfitMonthes: (state, action) => {
       state.profitMonthes = action.payload;
+    },
+    setInvestmentTransactions: (state, action) => {
+      state.investmentTransactions = action.payload;
     },
   },
 });

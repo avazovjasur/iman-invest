@@ -1,0 +1,17 @@
+.mainDialog {
+  width: 100%;
+  max-width: 96%;
+  left: 50%;
+  bottom: 34px;
+  top: auto;
+  transform: translateX(-50%);
+  border: none;
+  padding: 24px 20px;
+  border-radius: 16px;
+  transition: all .3s;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    transition: all .3s;
+  }
+}
