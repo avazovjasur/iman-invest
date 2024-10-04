@@ -1,0 +1,127 @@
+@import "../../styles/mixins.scss";
+
+.top {
+  width: 100%;
+  border-radius: 0;
+  @include resa("border-bottom-left-radius", 24px);
+  @include resa("border-bottom-right-radius", 24px);
+  @include resa("padding", 4px);
+  @include resa("padding-top", 6px);
+  @include resa("padding-bottom", 21px);
+}
+
+.topButton {
+  @include resa("padding", 16px);
+  @include resa("padding-left", 15px);
+  @include resa("padding-top", 16px);
+  @include resa("padding-right", 75px);
+  svg {
+    @include resa("height", 14px);
+    @include resa("width", 8px);
+  }
+}
+
+.topContent {
+  @include resa("margin-top", 12px);
+  @include resa("margin-bottom", 18px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topContentHeader {
+  position: relative;
+  @include resa("margin-top", 24px);
+}
+
+.topBackButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-43%);
+}
+
+.topContentTitle {
+  @include resa("font-size", 18px);
+  @include resa("line-height", 20px);
+  font-weight: 600;
+  @include resa("letter-spacing", -0.16px);
+  color: #040415;
+  text-align: center;
+}
+
+.contentBody {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+.contentTitle {
+  @include resa("font-size", 26px);
+  @include resa("line-height", 32px);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.contentDesc {
+  @include resa("font-size", 15px);
+  @include resa("line-height", 20px);
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.expiryCode {
+  @include resa("font-size", 15px);
+  @include resa("line-height", 20px);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.resend {
+  @include resa("font-size", 15px);
+  @include resa("line-height", 20px);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.backBtn {
+  font-weight: 500;
+  color: #32c2fb;
+  @include resa("font-size", 14px);
+  @include resa("line-height", 22px);
+}
+
+.codeInputContainer {
+  @include resa("width", 320px);
+  @include resa("height", 64px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  input {
+    @include resa("width", 60px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    @include resa("font-size", 26px);
+    @include resa("line-height", 32px);
+
+    @include resa("border-radius", 18px);
+    background-color: #f4f4f5;
+    border: none;
+    outline: none;
+  }
+}
+
+.helpContainer {
+  button {
+    color: rgba(4, 4, 21, 0.4);
+    font-weight: 600;
+    @include resa("font-size", 15px);
+    @include resa("line-height", 20px);
+  }
+}

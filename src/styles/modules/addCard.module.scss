@@ -1,0 +1,131 @@
+@import "../../styles/mixins.scss";
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  border-radius: 0;
+  @include resa("border-bottom-left-radius", 24px);
+  @include resa("border-bottom-right-radius", 24px);
+  @include resa("padding", 16px);
+  @include resa("padding-top", 32px);
+  @include resa("padding-bottom", 16px);
+}
+
+.addCardTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 32px 0 10px
+}
+
+.addCardDesc {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #9b9ba1;
+}
+
+.addCardForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.addCardPanBlock {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  border-radius: 16px;
+  border: 1px solid rgba(4, 4, 21, 0.05);
+  padding: 12px 15px;
+  background-color: #F4F4F5;
+}
+
+.contentButtonsItem {
+  @include resa("border-radius", 16px);
+  background: #3680ff;
+  text-align: center;
+  width: 100%;
+  @include resa("padding-bottom", 17px);
+  @include resa("padding-top", 17px);
+  font-weight: 600;
+  @include resa("line-height", 20px);
+  @include resa("font-size", 17px);
+  color: #ffffff;
+  &.other {
+    background: #3680ff14;
+    color: #3680ff;
+  }
+}
+
+.cardPan {
+  font-weight: 500;
+  width: 100%;
+  overflow: visible;
+  border: none;
+  outline: none;
+  @include resa("font-size", 20px);
+  background-color: transparent;
+
+  &::placeholder {
+    color: #c9c8c8;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+.addCardLabel {
+  @include resa("font-size", 15px);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 4px;
+}
+
+.addCardExpiryBlock {
+  width: 60%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  border-radius: 16px;
+  border: 1px solid rgba(4, 4, 21, 0.05);
+  padding: 12px 15px;
+  background-color: #F4F4F5;
+}
+
+.codeInputContainer {
+  @include resa("height", 40px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  input {
+    @include resa("width", 60px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    @include resa("font-size", 20px);
+    @include resa("border-radius", 18px);
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+  }
+
+  input:nth-child(1) {
+    padding-left: 1.5px;
+  }
+}
+
+.cardExpiryLine {
+  display: inline-block;
+  width: 1.5px;
+  height: 70%;
+  background-color: rgba(0, 0, 0, 0.2);
+}

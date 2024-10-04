@@ -2,23 +2,32 @@ import { useEffect, useRef } from "react";
 import styles from './Modal.module.scss';
 
 function Modal({ openModal, closeModal, children }) {
-    const ref = useRef();
+    const modalRef  = useRef();
+
+    const handleClickOutside  = (e) => {
+        if (modalRef.current.className === e.target.className) {
+            closeModal();
+        }
+    }
 
     useEffect(() => {
         if (openModal) {
-            ref.current?.showModal();
+            modalRef.current?.showModal();
         } else {
-            ref.current?.close();
+            modalRef.current?.close();
         }
     }, [openModal]);
 
     return (
         <dialog
-            ref={ref}
+            ref={modalRef}
             onCancel={closeModal}
             className={styles.mainDialog}
+            onClick={handleClickOutside}
         >
-            {children}
+            <div className={styles.mainDialogBody}>
+                {children}
+            </div>
         </dialog>
     );
 }

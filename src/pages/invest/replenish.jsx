@@ -5,12 +5,14 @@ import Link from "next/link";
 import CurrencyInput from 'react-currency-input-field';
 import PlasticCard from "@/components/PlasticCard";
 import Modal from "../../components/Modal";
+import {useRouter} from "next/router";
 
 const Replenish = () => {
     const [activeIndex, setActiveIndex] = useState(1)
     const [activeCurrency, setActiveCurrency] = useState('сум')
     const [modal, setModal] = useState(false);
     const [pin, setPin] = useState('');
+    const router = useRouter()
     const handleNumberClick = (number) => {
         console.log(number)
         setPin(prevPin => prevPin + number);
@@ -24,6 +26,10 @@ const Replenish = () => {
         setActiveIndex(val)
         if (val === 1) setActiveCurrency('сум')
         else setActiveCurrency('$')
+    }
+
+    function toAddCard () {
+        router.push('/invest/add-card')
     }
 
     useEffect(() => {
@@ -102,7 +108,7 @@ const Replenish = () => {
                     </div>
                     <div className={styles.currencyDesc}>500 000 - 100 000 000 сум</div>
                 </div>
-                <div className={styles.paymentMethodCard}>
+                <div className={styles.paymentMethodCard} onClick={() => setModal(true)}>
                     <div className={styles.paymentMethodCardInfo}>
                         <PlasticCard/>
                         <div>
@@ -156,7 +162,7 @@ const Replenish = () => {
                         </button>
                     </div>
                 </div>
-                <button className={styles.contentButtonsItem} onClick={() => setModal(true)}>Пополнить</button>
+                <button className={styles.contentButtonsItem}>Пополнить</button>
                 <Modal
                     openModal={modal}
                     closeModal={() => setModal(false)}
@@ -175,8 +181,8 @@ const Replenish = () => {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className={styles.paymentMethodCardTitle}>Способ оплаты</div>
-                                        <div className={styles.paymentMethodCardDesc}>Пополняем с карты</div>
+                                        <div className={styles.paymentMethodCardTitle}>Банковский перевод</div>
+                                        <div className={styles.paymentMethodCardDesc}>Перевод на счёт</div>
                                     </div>
                                 </div>
                                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
@@ -208,8 +214,8 @@ const Replenish = () => {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className={styles.paymentMethodCardTitle}>Способ оплаты</div>
-                                        <div className={styles.paymentMethodCardDesc}>Пополняем с карты</div>
+                                        <div className={styles.paymentMethodCardTitle}>Оплата в payme</div>
+                                        <div className={styles.paymentMethodCardDesc}>Перейти в сервис</div>
                                     </div>
                                 </div>
                                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
@@ -227,7 +233,7 @@ const Replenish = () => {
                                 </svg>
                             </div>
 
-                            <div className={styles.paymentCheckCard}>
+                            <div className={styles.paymentCheckCard} onClick={toAddCard}>
                                 <div className={styles.paymentMethodCardInfo}>
                                     <div className={styles.paymentMethodLogo}>
                                         <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
@@ -238,8 +244,8 @@ const Replenish = () => {
                                         </svg>
                                     </div>
                                     <div>
-                                        <div className={styles.paymentMethodCardTitle}>Способ оплаты</div>
-                                        <div className={styles.paymentMethodCardDesc}>Пополняем с карты</div>
+                                        <div className={styles.paymentMethodCardTitle}>Добавить карту</div>
+                                        <div className={styles.paymentMethodCardDesc}>Карта для пополнения</div>
                                     </div>
                                 </div>
                                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none"

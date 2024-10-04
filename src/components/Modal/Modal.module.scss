@@ -6,7 +6,7 @@
   top: auto;
   transform: translateX(-50%);
   border: none;
-  padding: 24px 20px;
+  outline: none;
   border-radius: 16px;
   transition: all .3s;
 
@@ -14,4 +14,8 @@
     background: rgba(0, 0, 0, 0.5);
     transition: all .3s;
   }
+}
+
+.mainDialogBody {
+  padding: 24px 20px;
 }
