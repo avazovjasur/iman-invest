@@ -127,7 +127,7 @@ const HomeInner = () => {
       <div className={styles.goalContent}>
         <div className={styles.goalTop}>
           <h3 className={styles.goalTopTitle}>Ваши цели</h3>
-          <Link href="/bill/open">
+          <Link href="/intention/open">
             <button type='button' className={styles.goalTopButton}>
               <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.0173 8.66634H8.68392V11.9997C8.68392 12.3663 8.38392 12.6663 8.01725 12.6663C7.65059 12.6663 7.35059 12.3663 7.35059 11.9997V8.66634H4.01725C3.65059 8.66634 3.35059 8.36634 3.35059 7.99967C3.35059 7.63301 3.65059 7.33301 4.01725 7.33301H7.35059V3.99967C7.35059 3.63301 7.65059 3.33301 8.01725 3.33301C8.38392 3.33301 8.68392 3.63301 8.68392 3.99967V7.33301H12.0173C12.3839 7.33301 12.6839 7.63301 12.6839 7.99967C12.6839 8.36634 12.3839 8.66634 12.0173 8.66634Z" fill="#367FFD" />

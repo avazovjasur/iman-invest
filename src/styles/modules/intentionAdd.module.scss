@@ -4,21 +4,33 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #f5f7fa;
 }
 
 .top {
+  position: relative;
   height: 294px;
   width: 100%;
-  background-image: url("../../../public/home-bg.png");
+  background-image: url("../../../public/home-bg-2.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 0;
   @include resa("border-bottom-left-radius", 24px);
   @include resa("border-bottom-right-radius", 24px);
-  @include resa("padding", 5px);
-  @include resa("padding-top", 25px);
-  @include resa("padding-bottom", 6px);
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.title {
+  font-weight: 600;
+  @include resa("line-height", 30px);
+  @include resa("font-size", 24px);
+  margin-bottom: 16px;
 }
 
 .rocket {
@@ -315,8 +327,10 @@
 .body {
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 28px;
+  box-sizing: border-box;
+  padding: 24px 16px 0;
 }
 
 .bottomButton {
@@ -329,11 +343,611 @@
   @include resa("padding-left", 20px);
   @include resa("padding-right", 20px);
   font-weight: 600;
-  @include resa("line-height", 18px);
-  @include resa("font-size", 13px);
+  @include resa("line-height", 20px);
+  @include resa("font-size", 17px);
   color: #ffffff;
   &.other {
     background: #3680ff14;
     color: #3680ff;
   }
+}
+
+.topButton {
+  position: absolute;
+  left: 4px;
+  top: 53px;
+  @include resa("padding", 16px);
+  @include resa("padding-left", 15px);
+  @include resa("padding-top", 16px);
+  @include resa("padding-right", 75px);
+  svg {
+    @include resa("height", 14px);
+    @include resa("width", 8px);
+  }
+}
+
+.aimButton {
+  @include resa("border-radius", 16px);
+  background: #3680ff;
+  text-align: center;
+  width: 100%;
+  @include resa("padding-bottom", 17px);
+  @include resa("padding-top", 17px);
+  @include resa("padding-left", 20px);
+  @include resa("padding-right", 20px);
+  font-weight: 600;
+  @include resa("line-height", 22px);
+  @include resa("font-size", 17px);
+  color: #ffffff;
+  &.other {
+    background: #3680ff14;
+    color: #3680ff;
+  }
+}
+
+.contentWrapperBox {
+  background-color: #ffffff;
+  @include resa("border-radius", 14px);
+
+  position: relative;
+}
+
+.contentWrapperHistory {
+  grid-column: span 2;
+  @include resa("padding", 16px);
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 20px);
+}
+
+.featuresListItem {
+  display: flex;
+  align-items: center;
+  @include resa("gap", 12px);
+}
+
+.featuresListItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include resa("height", 42px);
+  @include resa("width", 42px);
+  border-radius: 50%;
+  background: #f5f7fa;
+  svg {
+    @include resa("height", 20px);
+    @include resa("width", 20px);
+  }
+}
+
+.featuresListItemTexts {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  @include resa("max-width", 241px);
+  h3 {
+    color: #040415;
+    font-weight: 600;
+    text-align: left;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+  }
+  p {
+    font-weight: 500;
+    text-align: left;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    color: #9aa3b3;
+  }
+}
+
+.contentTitle {
+  font-weight: 600;
+  @include resa("font-size", 20px);
+  @include resa("line-height", 24px);
+  text-align: left;
+  color: #040415;
+}
+
+.contentFormBox {
+  display: flex;
+  @include resa("gap", 8px);
+  @include resa("height", 64px);
+}
+
+.contentFormBlock {
+  display: flex;
+  @include resa("gap", 27px);
+  align-items: center;
+  margin-top: 16px;
+}
+
+.contentFormInput {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  @include resa("gap", 4px);
+
+  @include resa("padding-bottom", 12px);
+  @include resa("padding-top", 12px);
+  @include resa("width", 263px);
+  @include resa("padding-left", 15px);
+  @include resa("padding-right", 15px);
+  @include resa("border-radius", 18px);
+  background-color: #f4f4f5;
+  span {
+    font-weight: 500;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+    text-align: left;
+    color: #040415;
+    opacity: 0.5;
+    position: absolute;
+    transition: 0.3s all;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  input {
+    background-color: transparent;
+    outline: none;
+    position: absolute;
+    border: none;
+    transition: 0.3s all;
+    font-weight: 500;
+    @include resa("bottom", 12px);
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+    text-align: left;
+    &::placeholder {
+      font-weight: 500;
+      @include resa("font-size", 16px);
+      text-align: left;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:focus::placeholder {
+      opacity: 0.2;
+    }
+  }
+
+  input:focus + span,
+  input:not(:placeholder-shown) + span {
+    @include resa("top", 12px);
+    transform: translateY(0);
+    @include resa("font-size", 12px);
+    @include resa("line-height", 16px);
+  }
+
+  &:not(:has(+ .contentFormItem)) {
+    width: 100%;
+  }
+}
+
+.contentFormItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include resa("font-size", 30px);
+  line-height: 0px;
+  @include resa("width", 64px);
+  @include resa("height", 64px);
+  @include resa("border-radius", 18px);
+  background-color: #f4f4f5;
+}
+
+.contentFormList {
+  display: flex;
+  @include resa("gap", 10px);
+}
+
+.contentFormListItem {
+  cursor: pointer;
+  font-weight: 500;
+  @include resa("font-size", 16px);
+  @include resa("line-height", 20px);
+  text-align: left;
+  color: #a1a1a1;
+  @include resa("padding-left", 14px);
+  @include resa("padding-right", 14px);
+  @include resa("padding-top", 12px);
+  @include resa("padding-bottom", 12px);
+  @include resa("width", 78px);
+  @include resa("height", 44px);
+  background-color: #f4f4f5;
+  @include resa("border-radius", 12px);
+  outline-style: solid;
+  outline-color: #f4f4f5;
+  @include resa("outline-width", 2px);
+  &.active {
+    outline-color: #3680ff;
+  }
+}
+
+.contentFormPersentage {
+  font-weight: 600;
+  text-align: right;
+  color: #1e468c;
+  opacity: 0.4;
+  @include resa("font-size", 22px);
+  @include resa("line-height", 26px);
+  &.active {
+    color: #040415;
+    opacity: 1;
+  }
+}
+
+.totalList {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 12px);
+}
+
+.totalOther {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.totalOtherTexts {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  h3 {
+    color: #040415;
+    font-weight: 600;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+    text-align: left;
+  }
+  p {
+    color: #9aa3b3;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    font-weight: 500;
+    text-align: left;
+  }
+}
+
+.totalOtherCheckbox {
+  @include resa("padding", 2px);
+  @include resa("width", 46px);
+  @include resa("height", 28px);
+  @include resa("border-radius", 50px);
+  background: #0404151a;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    @include resa("width", 24px);
+    @include resa("height", 24px);
+    @include resa("top", 2px);
+    @include resa("left", 2px);
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition:
+            transform 0.3s ease,
+            background-color 0.3s ease;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+
+  &.active {
+    background: #3680ff;
+    &::after {
+      transform: translateX(4.8vw);
+    }
+  }
+}
+
+.totalListItem {
+  padding: 24px 0;
+  border-top: 1px solid #0404150d;
+  border-bottom: 1px solid #0404150d;
+}
+
+.totalButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3680ff;
+  width: 100%;
+  @include resa("height", 54px);
+  font-weight: 600;
+  text-align: center;
+  color: #ffffff;
+  @include resa("font-size", 17px);
+  @include resa("line-height", 22px);
+  @include resa("border-radius", 16px);
+}
+
+.totalText {
+  display: block;
+  font-weight: 500;
+  @include resa("font-size", 13px);
+  @include resa("line-height", 16px);
+  color: #354259;
+  margin-top: 16px;
+  text-align: center;
+
+  & span:nth-child(1) {
+    opacity: 0.5;
+  }
+}
+
+.condition {
+  color: #3680ff;
+}
+
+.tariffBlock {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tariffCheckBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #0404150d;
+}
+
+.tariffList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tariffDesc {
+  font-weight: 500;
+  @include resa("font-size", 15px);
+  @include resa("line-height", 20px);
+  color: #828DA1;
+}
+
+.tariffItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: rgba(244, 244, 245, 1);
+  position: relative;
+
+  & input[type="radio"] {
+    display: none;
+  }
+
+  & input[type="radio"]:checked ~ .radioIcon {
+    border: 3px solid #3680ff;
+  }
+
+  & input[type="radio"]:checked ~ .radioIcon:after {
+    opacity: 1;
+  }
+}
+
+.radioGroup {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-gap: 8px;
+  padding-right: 30px;
+}
+
+.radioIcon {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 2px solid #999999FF;
+  transition: .2s all 0s;
+
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: '';
+    width: 11.4px;
+    height: 11.4px;
+    border-radius: 50%;
+    opacity: 0;
+    background-color: #3680ff;
+    transition: all .2s;
+  }
+}
+
+.tariffItemDesc {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  @include resa("font-size", 16px);
+  @include resa("line-height", 21px);
+}
+
+.tariffItemPercent {
+  font-weight: 600;
+  @include resa("font-size", 16px);
+  @include resa("line-height", 21px);
+}
+
+.tariffDataBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tariffData {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tariffItemData {
+  box-sizing: border-box;
+  padding: 8px 16px;
+  border-radius: 16px;
+  background: rgba(130, 141, 161, 0.1);
+  font-weight: 500;
+  @include resa("font-size", 15px);
+  @include resa("line-height", 20px);
+}
+
+.billGift {
+  @include resa("padding", 20px);
+  width: 100%;
+  @include resa("border-radius", 16px);
+  @include resa("border-width", 2px);
+  border-style: solid;
+  border-color: #8668d8;
+  background: #4059e61a;
+  display: flex;
+  @include resa("gap", 12px);
+  align-items: center;
+  position: relative;
+}
+
+.billGiftIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include resa("width", 42px);
+  @include resa("height", 42px);
+  @include resa("border-radius", 50px);
+  background-color: #ffffff;
+  svg {
+    @include resa("width", 24px);
+    @include resa("height", 24px);
+  }
+}
+
+.billGiftTexts {
+  display: flex;
+  flex-direction: column;
+  @include resa("gap", 4px);
+  & > h3 {
+    font-weight: 600;
+    text-align: left;
+    color: #040415;
+    @include resa("font-size", 16px);
+    @include resa("line-height", 20px);
+  }
+  & > p {
+    opacity: 0.5;
+    color: #040415;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    font-weight: 500;
+    text-align: left;
+  }
+}
+
+.billGiftTime {
+  position: absolute;
+  @include resa("top", -12px);
+  @include resa("right", 10px);
+  display: flex;
+  align-items: center;
+  @include resa("gap", 6px);
+  @include resa("padding-left", 8px);
+  @include resa("padding-right", 8px);
+  @include resa("padding-top", 2px);
+  @include resa("padding-bottom", 2px);
+  background: #ffffff;
+  box-shadow: 0px 0px 10px 0px #0404150d;
+  @include resa("border-radius", 50px);
+  & > h3 {
+    color: #4059e6;
+    font-weight: 600;
+    @include resa("font-size", 13px);
+    @include resa("line-height", 16px);
+    text-align: left;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.questionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(229, 244, 236, 1);
+}
+
+.questionText {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  @include resa("font-size", 15px);
+  @include resa("line-height", 20px);
+  color: rgba(78, 81, 85, 1);
+}
+
+.answerImageBlock {
+  display: flex;
+  justify-content: center;
+}
+
+.answerImage {
+  width: 113px;
+  height: 112px;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.answerTitle {
+  font-weight: 600;
+  @include resa("font-size", 20px);
+  @include resa("line-height", 24px);
+  text-align: center;
+  color: #040415;
+}
+
+.answerDesc {
+  font-weight: 600;
+  @include resa("font-size", 15px);
+  @include resa("line-height", 20px);
+  text-align: center;
+  color: rgba(130, 141, 161, 1);
+  margin-top: 12px;
 }

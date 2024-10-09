@@ -25,9 +25,7 @@ function Modal({ openModal, closeModal, children }) {
             className={styles.mainDialog}
             onClick={handleClickOutside}
         >
-            <div className={styles.mainDialogBody}>
-                {children}
-            </div>
+            {children}
         </dialog>
     );
 }
