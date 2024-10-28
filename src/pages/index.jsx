@@ -21,7 +21,7 @@ export default function Home() {
 
   function redirectToReg() {
     const timer = setTimeout(() => {
-      router.push('/registration/lang')
+      router.push('/registration/pin')
     }, 1000)
 
     return () => clearTimeout(timer)

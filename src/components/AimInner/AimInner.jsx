@@ -5,12 +5,10 @@ import { useDispatch } from 'react-redux';
 import dynamic from "next/dynamic";
 import { useSelector } from 'react-redux';
 import axios from "axios";
-import useTokenChecker from "@/hooks/useTokenChecker";
 import {useRouter} from "next/router";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const AimInner = ({ investmentId }) => {
-  useTokenChecker()
   const router = useRouter()
 
   const [accessToken, setAccessToken] = useState(null);
@@ -182,7 +180,7 @@ const AimInner = ({ investmentId }) => {
       if (error.response.status === 400) {
         localStorage.clear();
 
-        router.push('/registration/lang')
+        router.push('/registration/pin')
       }
       console.error('Ошибка при обновлении токенов:', error);
     }

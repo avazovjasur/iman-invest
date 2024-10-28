@@ -5,11 +5,9 @@ import Link from 'next/link';
 import axios from 'axios';
 
 import styles from '../../styles/modules/bill.module.scss'
-import useTokenChecker from '@/hooks/useTokenChecker';
 import { useRouter } from 'next/router';
 
 const lang = () => {
-  useTokenChecker()
   const router = useRouter()
 
   const monthRef = useRef(null);

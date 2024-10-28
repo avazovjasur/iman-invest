@@ -8,7 +8,7 @@ const useTokenChecker = () => {
     const clearDataAndRedirect = () => {
       localStorage.clear();
 
-      router.push('/registration/lang');
+      router.push('/registration/pin');
     };
 
     const accessToken = localStorage.getItem('accessToken');

@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../../styles/modules/pin.module.scss';
-import useTokenChecker from '@/hooks/useTokenChecker';
 
 const Pin = () => {
-    useTokenChecker()
-
     const [pin, setPin] = useState('');
     const [lsPin, setLsPin] = useState(null);
     const [wrongPin, setWrongPin] = useState(false)

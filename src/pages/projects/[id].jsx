@@ -1,12 +1,11 @@
-import ProjectDetail from "@/components/ProjectDetail"
-import useTokenChecker from "@/hooks/useTokenChecker"
+import ProjectDetail from "@/components/ProjectDetail";
 
 const Project = () => {
-  useTokenChecker()
+  return (
+    <>
+      <ProjectDetail />
+    </>
+  );
+};
 
-  return <>
-    <ProjectDetail />
-  </>
-}
-
-export default Project
+export default Project;

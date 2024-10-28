@@ -10,10 +10,8 @@ import HomeInner from "@/components/HomeInner/HomeInner";
 import ProjectsInner from "@/components/ProjectsInner";
 import StartInner from "@/components/StartInner";
 import OnBoarding from "@/components/OnBoarding";
-import useTokenChecker from '@/hooks/useTokenChecker';
 
 const Home = () => {
-  useTokenChecker()
   const router = useRouter()
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -176,7 +174,7 @@ const Home = () => {
       if (error.response.status === 400) {
         localStorage.clear();
 
-        router.push('/registration/lang')
+        router.push('/registration/pin')
       }
       console.error('Ошибка при обновлении токенов:', error);
     }
