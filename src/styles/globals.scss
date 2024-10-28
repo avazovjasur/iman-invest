@@ -7,11 +7,18 @@
   box-sizing: border-box;
   font-family: "Gilroy", sans-serif;
   overscroll-behavior: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 body {
   background-color: white;
   overscroll-behavior: none;
+  max-height: 100dvh;
+  min-height: 100dvh;
+  overflow-y: auto;
 }
 
 li {
