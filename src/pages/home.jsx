@@ -1,234 +1,146 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { setInvestments, setInvestmentsAmount, setInvestmentsProfit, setAutopayments } from '@/store/otpSlice';
-import { useRouter } from 'next/router';
-import axios from 'axios';
-
-import NavBar from "@/components/Navbar";
-import HomeInner from "@/components/HomeInner/HomeInner";
-import ProjectsInner from "@/components/ProjectsInner";
-import StartInner from "@/components/StartInner";
-import OnBoarding from "@/components/OnBoarding";
+import Link from "next/link";
+import styles from "@/styles/modules/intentionOpen.module.scss";
 
 const Home = () => {
-  const router = useRouter()
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isOnBoardingVisible, setIsOnBoardingVisible] = useState(false);
-  const dispatch = useDispatch();
-  const [accessToken, setAccessToken] = useState(null);
-  const investmentAmount = useSelector((state) => state.otp.investments_amount);
-  const investmentsProfit = useSelector((state) => state.otp.investments_profit);
+    return <>
+        <div className={styles.container}>
+            <div className={styles.top}>
+                <div className={styles.topHeader}>
+                    <div className={styles.topHeaderProfile}>
+                        <h3>E</h3>
+                        <span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="8" cy="8" r="8" fill="#96A0E4"/>
+                            <g clip-path="url(#clip0_4719_5045)">
+                            <path
+                                d="M6.977 3.10554C7.6438 2.96596 8.34035 2.96156 9.02245 3.10417C9.11095 3.68394 9.4524 4.2197 9.99985 4.53576C10.5472 4.85181 11.182 4.87966 11.7283 4.66639C12.1929 5.18583 12.5373 5.79126 12.7498 6.4385C12.2926 6.80503 11.9998 7.36824 11.9998 7.99984C11.9998 8.63184 12.2929 9.19534 12.7506 9.56184C12.645 9.88204 12.5052 10.1963 12.3299 10.4998C12.1547 10.8034 11.9524 11.0816 11.7279 11.3332C11.1817 11.12 10.5471 11.148 9.99985 11.4639C9.45285 11.7797 9.1115 12.3149 9.02265 12.8942C8.3559 13.0337 7.65935 13.0381 6.97721 12.8955C6.88874 12.3158 6.54725 11.78 5.99983 11.4639C5.45242 11.1479 4.81769 11.12 4.27136 11.3333C3.80678 10.8139 3.46233 10.2084 3.24982 9.56119C3.70706 9.19469 3.99984 8.63144 3.99984 7.99984C3.99984 7.36789 3.70672 6.80438 3.24902 6.43786C3.35466 6.11765 3.49447 5.80339 3.66971 5.49986C3.84495 5.19633 4.04721 4.91812 4.2717 4.66653C4.81796 4.87965 5.45253 4.85174 5.99983 4.53576C6.54682 4.21995 6.8882 3.68479 6.977 3.10554ZM7.99985 9.49984C8.82825 9.49984 9.49985 8.82829 9.49985 7.99984C9.49985 7.17144 8.82825 6.49986 7.99985 6.49986C7.1714 6.49986 6.49983 7.17144 6.49983 7.99984C6.49983 8.82829 7.1714 9.49984 7.99985 9.49984Z"
+                                fill="white"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_4719_5045">
+                            <rect width="10" height="10" fill="white" transform="translate(3 3)"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </span>
+                    </div>
+                    <button className={styles.topHeaderNotification}>
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.1139 2.30915C13.1295 2.20839 13.1376 2.10514 13.1376 2C13.1376 0.895431 12.2422 0 11.1376 0C10.0331 0 9.13762 0.895431 9.13762 2C9.13762 2.08805 9.14331 2.17478 9.15435 2.25982C6.23933 3.07819 4.09088 5.73736 4.05114 8.91184L4.01659 11.6717C4.00593 12.5233 3.66287 13.3371 3.06062 13.9393L2.82843 14.1715C2.29798 14.702 1.99998 15.4215 2 16.1716C2.00005 17.7337 3.26638 19 4.82845 19H11.1377H17.1714C18.7335 19 19.9998 17.7337 19.9998 16.1715C19.9998 15.4214 19.7019 14.702 19.1715 14.1716L18.9478 13.9479C18.3417 13.3418 18.006 12.5167 18.0167 11.6596L18.0489 9.08707C18.0888 5.90594 16.0014 3.19876 13.1139 2.30915ZM6.05098 8.93688L6.01643 11.6967C5.99924 13.0701 5.44603 14.3824 4.47484 15.3536L4.24265 15.5857C4.08728 15.7411 3.99999 15.9518 4 16.1716C4.00001 16.6291 4.37092 17 4.82845 17H11.1377H17.1714C17.6289 17 17.9998 16.6291 17.9998 16.1715C17.9998 15.9518 17.9126 15.7411 17.7572 15.5857L17.5336 15.3621C16.5463 14.3748 15.9994 13.0307 16.0169 11.6345L16.0491 9.06203C16.084 6.27666 13.8356 4 11.05 4C8.31333 4 6.08524 6.20038 6.05098 8.93688ZM8.1376 21C8.1376 20.4477 8.58531 20 9.1376 20H13.1376C13.6899 20 14.1376 20.4477 14.1376 21C14.1376 21.5523 13.6899 22 13.1376 22H9.1376C8.58531 22 8.1376 21.5523 8.1376 21Z"
+                                fill="white"/>
+                        </svg>
+                    </button>
+                </div>
+                <div className={styles.content}>
+                    <div className={styles.contentHeader}>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g opacity="0.4">
+                                <path
+                                    d="M12.2499 8.5C12.2499 8.69778 12.1912 8.89112 12.0813 9.05557C11.9714 9.22002 11.8153 9.34819 11.6325 9.42388C11.4498 9.49957 11.2487 9.51937 11.0548 9.48079C10.8608 9.4422 10.6826 9.34696 10.5427 9.20711C10.4029 9.06725 10.3077 8.88907 10.2691 8.69509C10.2305 8.50111 10.2503 8.30004 10.326 8.11732C10.4017 7.93459 10.5298 7.77841 10.6943 7.66853C10.8587 7.55865 11.0521 7.5 11.2499 7.5C11.5151 7.5 11.7694 7.60536 11.957 7.79289C12.1445 7.98043 12.2499 8.23478 12.2499 8.5ZM14.7499 6.25V11.25C14.7499 11.7804 14.5391 12.2891 14.1641 12.6642C13.789 13.0393 13.2803 13.25 12.7499 13.25H3.74985C3.21942 13.25 2.71071 13.0393 2.33564 12.6642C1.96056 12.2891 1.74985 11.7804 1.74985 11.25V3.8075C1.74216 3.54006 1.78821 3.27379 1.88526 3.02446C1.98232 2.77514 2.12842 2.54782 2.31491 2.35597C2.5014 2.16412 2.72449 2.01164 2.97097 1.90755C3.21744 1.80346 3.4823 1.74989 3.74985 1.75H11.9999C12.1988 1.75 12.3895 1.82902 12.5302 1.96967C12.6708 2.11032 12.7499 2.30109 12.7499 2.5C12.7499 2.69891 12.6708 2.88968 12.5302 3.03033C12.3895 3.17098 12.1988 3.25 11.9999 3.25H3.74985C3.6828 3.24996 3.61643 3.26342 3.55468 3.28955C3.49293 3.31569 3.43707 3.35398 3.39043 3.40214C3.34378 3.45031 3.30729 3.50736 3.28314 3.56991C3.25899 3.63247 3.24767 3.69923 3.24985 3.76625V3.77125C3.26035 3.90364 3.32111 4.02699 3.41966 4.11601C3.51821 4.20503 3.64708 4.25297 3.77985 4.25H12.7499C13.2803 4.25 13.789 4.46071 14.1641 4.83579C14.5391 5.21086 14.7499 5.71957 14.7499 6.25ZM13.2499 6.25C13.2499 6.11739 13.1972 5.99021 13.1034 5.89645C13.0096 5.80268 12.8825 5.75 12.7499 5.75H3.77985C3.60103 5.75009 3.42294 5.72741 3.24985 5.6825V11.25C3.24985 11.3826 3.30253 11.5098 3.3963 11.6036C3.49007 11.6973 3.61724 11.75 3.74985 11.75H12.7499C12.8825 11.75 13.0096 11.6973 13.1034 11.6036C13.1972 11.5098 13.2499 11.3826 13.2499 11.25V6.25Z"
+                                    fill="white"/>
+                            </g>
+                        </svg>
+                        <h3>Общий баланс</h3>
+                    </div>
+                    <h3 className={styles.contentBalance}>
+                        0 сум
+                    </h3>
+                    <div className={styles.contentProfit}>
+                        <h3 className={styles.contentProfitTitle}>Без цели нет прибыли</h3>
+                    </div>
+                </div>
+                <div className={styles.bottom}>
+                    <span className={styles.rocket}>🚀</span>
+                    <div className={styles.bottomTexts}>
+                        <h3>Поставьте цель и получайте до 27% прибыли</h3>
+                        <p>Поставьте цель и зарабатывайте, получайте до 27% прибыли</p>
+                    </div>
+                    <div className={styles.buttonClose}>
+                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.17343 9.60039L10.3734 2.40039" stroke="#D9D9D9"/>
+                            <path d="M10.3734 9.60039L3.17343 2.40039" stroke="#D9D9D9"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('accessToken');
-      setAccessToken(token);
-    }
-  }, []);
+            <div className={styles.body}>
+                <div className={styles.goalEmpty}>
+                    <div className={styles.goalEmptyIcon}>
+                        <svg width="85" height="75" viewBox="0 0 85 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M26.4256 5.29893C28.4443 3.43576 31.5557 3.43576 33.5744 5.29893L34.8398 6.46678C36.0482 7.58203 37.7078 8.06935 39.3273 7.78444L41.0232 7.4861C43.7288 7.01012 46.3462 8.69223 47.0372 11.351L47.4703 13.0176C47.8839 14.6091 49.0167 15.9164 50.5331 16.5523L52.1211 17.2181C54.6545 18.2805 55.947 21.1106 55.0908 23.7209L54.5541 25.3571C54.0416 26.9196 54.2878 28.6317 55.2197 29.9865L56.1956 31.4052C57.7525 33.6686 57.3097 36.7482 55.1782 38.4813L53.8422 39.5675C52.5663 40.6049 51.8478 42.1783 51.8993 43.8219L51.9533 45.543C52.0393 48.2888 50.0019 50.6401 47.2718 50.9457L45.5605 51.1372C43.9264 51.3201 42.4712 52.2553 41.626 53.6658L40.7409 55.1428C39.3288 57.4993 36.3435 58.3758 33.8816 57.1569L32.3385 56.3929C30.8649 55.6632 29.1351 55.6632 27.6615 56.3929L26.1184 57.1569C23.6565 58.3758 20.6712 57.4993 19.2591 55.1428L18.374 53.6658C17.5288 52.2553 16.0736 51.3201 14.4395 51.1372L12.7282 50.9457C9.99814 50.6401 7.96066 48.2888 8.04675 45.543L8.10071 43.8219C8.15223 42.1783 7.43368 40.6049 6.15781 39.5675L4.82176 38.4813C2.69027 36.7482 2.24748 33.6686 3.80438 31.4052L4.78026 29.9865C5.71219 28.6317 5.95836 26.9196 5.44587 25.3571L4.90921 23.7209C4.05304 21.1106 5.34553 18.2805 7.87894 17.2181L9.46691 16.5523C10.9834 15.9164 12.1161 14.6091 12.5297 13.0176L12.9628 11.351C13.6538 8.69223 16.2712 7.01012 18.9768 7.4861L20.6727 7.78444C22.2922 8.06935 23.9518 7.58203 25.1602 6.46678L26.4256 5.29893Z"
+                                fill="#626262"/>
+                            <path opacity="0.1"
+                                  d="M51.4256 14.2989C53.4443 12.4358 56.5557 12.4358 58.5744 14.2989L59.8398 15.4668C61.0482 16.582 62.7078 17.0693 64.3273 16.7844L66.0232 16.4861C68.7288 16.0101 71.3462 17.6922 72.0372 20.351L72.4703 22.0176C72.8839 23.6091 74.0167 24.9164 75.5331 25.5523L77.1211 26.2181C79.6545 27.2805 80.947 30.1106 80.0908 32.7209L79.5541 34.3571C79.0416 35.9196 79.2878 37.6317 80.2197 38.9865L81.1956 40.4052C82.7525 42.6686 82.3097 45.7482 80.1782 47.4813L78.8422 48.5675C77.5663 49.6049 76.8478 51.1783 76.8993 52.8219L76.9533 54.543C77.0393 57.2888 75.0019 59.6401 72.2718 59.9457L70.5605 60.1372C68.9264 60.3201 67.4712 61.2553 66.626 62.6658L65.7409 64.1428C64.3288 66.4993 61.3435 67.3758 58.8816 66.1569L57.3385 65.3929C55.8649 64.6632 54.1351 64.6632 52.6615 65.3929L51.1184 66.1569C48.6565 67.3758 45.6712 66.4993 44.2591 64.1428L43.374 62.6658C42.5288 61.2553 41.0736 60.3201 39.4395 60.1372L37.7282 59.9457C34.9981 59.6401 32.9607 57.2888 33.0467 54.543L33.1007 52.8219C33.1522 51.1783 32.4337 49.6049 31.1578 48.5675L29.8218 47.4813C27.6903 45.7482 27.2475 42.6686 28.8044 40.4052L29.7803 38.9865C30.7122 37.6317 30.9584 35.9196 30.4459 34.3571L29.9092 32.7209C29.053 30.1106 30.3455 27.2805 32.8789 26.2181L34.4669 25.5523C35.9834 24.9164 37.1161 23.6091 37.5297 22.0176L37.9628 20.351C38.6538 17.6922 41.2712 16.0101 43.9768 16.4861L45.6727 16.7844C47.2922 17.0693 48.9518 16.582 50.1602 15.4668L51.4256 14.2989Z"
+                                  fill="#7E7E7E"/>
+                            <g filter="url(#filter0_bd_5918_65977)">
+                                <circle cx="40.5" cy="33.5" r="22.5" fill="white" fill-opacity="0.1"
+                                        shape-rendering="crispEdges"/>
+                                <circle cx="40.5" cy="33.5" r="22.7766" stroke="url(#paint0_linear_5918_65977)"
+                                        stroke-width="0.55313"
+                                        shape-rendering="crispEdges"/>
+                            </g>
+                            <g clip-path="url(#clip0_5918_65977)">
+                                <path
+                                    d="M32.875 33.125C32.875 34.2577 33.0981 35.3792 33.5315 36.4256C33.965 37.4721 34.6003 38.4229 35.4012 39.2238C36.2021 40.0247 37.1529 40.66 38.1994 41.0935C39.2458 41.5269 40.3673 41.75 41.5 41.75C42.6327 41.75 43.7542 41.5269 44.8006 41.0935C45.8471 40.66 46.7979 40.0247 47.5988 39.2238C48.3997 38.4229 49.035 37.4721 49.4685 36.4256C49.9019 35.3792 50.125 34.2577 50.125 33.125C50.125 31.9923 49.9019 30.8708 49.4685 29.8244C49.035 28.7779 48.3997 27.8271 47.5988 27.0262C46.7979 26.2253 45.8471 25.59 44.8006 25.1565C43.7542 24.7231 42.6327 24.5 41.5 24.5C40.3673 24.5 39.2458 24.7231 38.1994 25.1565C37.1529 25.59 36.2021 26.2253 35.4012 27.0262C34.6003 27.8271 33.965 28.7779 33.5315 29.8244C33.0981 30.8708 32.875 31.9923 32.875 33.125Z"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M38.5 31.5H38.51" stroke="white" stroke-width="2.66667" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M44.5 31.5H44.51" stroke="white" stroke-width="2.66667" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path
+                                    d="M39 36.7497C39.3259 36.4171 39.7148 36.1529 40.1441 35.9725C40.5734 35.7921 41.0344 35.6992 41.5 35.6992C41.9656 35.6992 42.4266 35.7921 42.8559 35.9725C43.2852 36.1529 43.6741 36.4171 44 36.7497"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                                <filter id="filter0_bd_5918_65977" x="3.44687" y="0.447266" width="74.1063"
+                                        height="74.1055"
+                                        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="4.14848"/>
+                                    <feComposite in2="SourceAlpha" operator="in"
+                                                 result="effect1_backgroundBlur_5918_65977"/>
+                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                                   values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                   result="hardAlpha"/>
+                                    <feOffset dy="4"/>
+                                    <feGaussianBlur stdDeviation="7"/>
+                                    <feComposite in2="hardAlpha" operator="out"/>
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                                    <feBlend mode="normal" in2="effect1_backgroundBlur_5918_65977"
+                                             result="effect2_dropShadow_5918_65977"/>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_5918_65977"
+                                             result="shape"/>
+                                </filter>
+                                <linearGradient id="paint0_linear_5918_65977" x1="25.1633" y1="16.2426" x2="63.9642"
+                                                y2="53.6301"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="white" stop-opacity="0.25"/>
+                                    <stop offset="1" stop-color="white" stop-opacity="0"/>
+                                </linearGradient>
+                                <clipPath id="clip0_5918_65977">
+                                    <rect width="24" height="24" fill="white" transform="translate(29.5 21.5)"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div className={styles.goalEmptyTexts}>
+                        <h3>У вас пока нет целей</h3>
+                        <p>Вы ничего не зарабатываете, <br/>
+                            потому что не добавлены цели и не выбран тариф заработка</p>
+                    </div>
+                    <Link href="/intention/add">
+                        <button type="button" className={styles.bottomButton}>
+                            Добавить
+                        </button>
+                    </Link>
+                </div>
+            </div>
+        </div>
+    </>
+}
 
-  const fetchInvestments = async () => {
-    try {
-      const response = await axios.get('/api/entrypoints/investments', {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`
-        }
-      });
-
-      let overallAmount = 0
-      let overallLastMonthProfitAmount = 0
-
-      response.data.map((investment) => {
-        if (investment.investment_amount) {
-          overallAmount += investment.investment_amount
-        }
-        if (investment.last_month_profit?.amount) {
-          overallLastMonthProfitAmount += investment.last_month_profit?.amount
-        }
-      })
-
-      dispatch(setInvestmentsAmount(overallAmount));
-      dispatch(setInvestmentsProfit(overallLastMonthProfitAmount));
-      dispatch(setInvestments(response.data));
-    } catch (error) {
-      if (error.response?.status === 403 || error.response?.status === 401) {
-        console.log('403 error, refreshing tokens...');
-        await refreshTokensAndRetry(fetchInvestments);
-      } else {
-        console.error('Ошибка при загрузке инвестиций:', error);
-      }
-    }
-  };
-
-  const fetchResident = async () => {
-    try {
-      const response = await axios.get('/api/entrypoints/personal-data', {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`
-        }
-      });
-
-      localStorage.setItem('resident', response.data.resident)
-      console.log('personal data', response.data.resident)
-    } catch (error) {
-      if (error.response?.status === 403 || error.response?.status === 401) {
-        console.log('403 error, refreshing tokens...');
-        await refreshTokensAndRetry(fetchResident);
-      } else {
-        console.error('Ошибка при загрузке персональных данных:', error);
-      }
-    }
-  };
-
-  const fetchInvestorStatus = async () => {
-    try {
-      const response = await axios.get('/api/entrypoints/get-status', {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`
-        }
-      })
-
-      localStorage.setItem('investorStatus', response.data.status)
-    } catch (error) {
-      if (error.response?.status === 403 || error.response?.status === 401) {
-        console.log('403 error, refreshing tokens...');
-        await refreshTokensAndRetry(fetchInvestorStatus);
-      } else {
-        console.error('Ошибка при загрузке персональных данных:', error);
-      }
-    }
-  };
-
-  const fetchStrategies = async () => {
-    try {
-      const response = await axios.get('/api/entrypoints/get-strategies', {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`
-        }
-      })
-
-      localStorage.setItem('strategyId', response.data[0].guid)
-    } catch (error) {
-      if (error.response?.status === 403 || error.response?.status === 401) {
-        console.log('403 error, refreshing tokens...');
-        await refreshTokensAndRetry(fetchStrategies);
-      } else {
-        console.error('Ошибка при загрузке персональных данных:', error);
-      }
-    }
-  };
-
-  const fetchTariffs = async () => {
-    try {
-      const response = await axios.get('/api/entrypoints/get-tariffs', {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`
-        }
-      })
-
-      localStorage.setItem('tariffId', response.data[0].guid)
-    } catch (error) {
-      if (error.response?.status === 403 || error.response?.status === 401) {
-        console.log('403 error, refreshing tokens...');
-        await refreshTokensAndRetry(fetchTariffs);
-      } else {
-        console.error('Ошибка при загрузке персональных данных:', error);
-      }
-    }
-  };
-
-  const fetchAutoPayments = async () => {
-    try {
-      const response = await axios.get('/api/entrypoints/get-autopayments', {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`
-        }
-      })
-
-      dispatch(setAutopayments(response.data))
-    } catch (error) {
-      if (error.response?.status === 403 || error.response?.status === 401) {
-        console.log('403 error, refreshing tokens...');
-        await refreshTokensAndRetry(fetchTariffs);
-      } else {
-        console.error('Ошибка при загрузке персональных данных:', error);
-      }
-    }
-  }
-
-  const refreshTokensAndRetry = async (retryCallback) => {
-    try {
-      const refreshToken = localStorage.getItem('refreshToken');
-      const response = await axios.post('/api/refresh-token', { refreshToken });
-
-      const { accessToken, refreshToken: newRefreshToken } = response.data;
-
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', newRefreshToken);
-
-      setAccessToken(accessToken);
-
-      retryCallback();
-    } catch (error) {
-      if (error.response.status === 400) {
-        localStorage.clear();
-
-        router.push('/registration/pin')
-      }
-      console.error('Ошибка при обновлении токенов:', error);
-    }
-  };
-
-  useEffect(() => {
-    if (accessToken) {
-      fetchInvestments()
-      fetchResident()
-      fetchInvestorStatus()
-      fetchStrategies()
-      fetchTariffs()
-      fetchAutoPayments()
-      setTimeout(async () => {
-        fetchInvestments()
-      }, 10000)
-    }
-  }, [accessToken]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const hasSeenOnBoarding = localStorage.getItem('hasSeenOnBoarding');
-      if (!hasSeenOnBoarding) {
-        setIsOnBoardingVisible(true);
-        localStorage.setItem('hasSeenOnBoarding', 'true');
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isOnBoardingVisible) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOnBoardingVisible]);
-
-  const handleOnBoardingClose = () => {
-    setIsOnBoardingVisible(false);
-  };
-
-  return (
-    <div className='wrapper'>
-      {activeIndex === 0 && <HomeInner />}
-      {activeIndex === 1 && <ProjectsInner />}
-      {activeIndex === 2 && <StartInner />}
-      <NavBar activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
-      {isOnBoardingVisible && <OnBoarding onClose={handleOnBoardingClose} />}
-    </div>
-  );
-};
-
-export default Home;
+export default Home
